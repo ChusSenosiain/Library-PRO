@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="MJSCLibraryCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="110" height="150"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="110" height="150"/>
+                <subviews>
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JnU-GT-gyS" userLabel="Container">
+                        <rect key="frame" x="4" y="4" width="102" height="142"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="air-Zc-xBf">
+                                <rect key="frame" x="0.0" y="0.0" width="102" height="100"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WUl-qK-Pl1">
+                                <rect key="frame" x="4" y="100" width="94" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" id="QC8-Tw-rhK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="air-Zc-xBf" secondAttribute="trailing" id="HiH-Qv-w4d"/>
+                            <constraint firstAttribute="bottom" secondItem="WUl-qK-Pl1" secondAttribute="bottom" id="JS4-6g-xIj"/>
+                            <constraint firstItem="air-Zc-xBf" firstAttribute="top" secondItem="JnU-GT-gyS" secondAttribute="top" id="M0U-gl-4AZ"/>
+                            <constraint firstItem="air-Zc-xBf" firstAttribute="leading" secondItem="JnU-GT-gyS" secondAttribute="leading" id="Wt8-fb-T9w"/>
+                            <constraint firstItem="WUl-qK-Pl1" firstAttribute="leading" secondItem="JnU-GT-gyS" secondAttribute="leading" constant="4" id="vta-4X-aDC"/>
+                            <constraint firstItem="WUl-qK-Pl1" firstAttribute="top" secondItem="air-Zc-xBf" secondAttribute="bottom" id="w5y-1x-jvf"/>
+                            <constraint firstAttribute="trailing" secondItem="WUl-qK-Pl1" secondAttribute="trailing" constant="4" id="wD8-ew-wRW"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstItem="JnU-GT-gyS" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="4" id="Di3-UM-wiO"/>
+                <constraint firstAttribute="bottom" secondItem="JnU-GT-gyS" secondAttribute="bottom" constant="4" id="FRX-4n-DOF"/>
+                <constraint firstAttribute="trailing" secondItem="JnU-GT-gyS" secondAttribute="trailing" constant="4" id="WVE-r7-nha"/>
+                <constraint firstItem="JnU-GT-gyS" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="4" id="zQ9-yM-a3M"/>
+            </constraints>
+            <size key="customSize" width="112" height="152"/>
+            <connections>
+                <outlet property="bookImage" destination="air-Zc-xBf" id="0lO-et-wYL"/>
+                <outlet property="bookTitle" destination="WUl-qK-Pl1" id="SD0-sj-6Xe"/>
+                <outlet property="container" destination="JnU-GT-gyS" id="TjO-QL-xCA"/>
+            </connections>
+            <point key="canvasLocation" x="241" y="296"/>
+        </collectionViewCell>
+    </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

@@ -17,9 +17,11 @@
 
 -(id) initWithBooks;
 
--(MJSCBook *) bookAtSection:(NSString *) section
-                      index:(NSUInteger) index;
+-(MJSCBook *)bookAtSection:(NSInteger)section
+                      index:(NSUInteger)index;
 
--(NSUInteger) countBooksAtSection:(NSString *) section;
+-(NSUInteger)countBooksAtSection:(NSUInteger)section;
+
+-(NSString *)sectionTitle:(NSUInteger)section;
 
 @end

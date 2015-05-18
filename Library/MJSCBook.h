@@ -6,13 +6,33 @@
 //  Copyright (c) 2015 María Jesús Senosiain Caamiña. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
+@import UIKit;
 
 @interface MJSCBook : NSObject
-@property(nonatomic, strong) NSString *author;
-@property(nonatomic, strong) NSString *title;
-@property(nonatomic, strong) NSString *category;
+@property(nonatomic, copy) NSString *author;
+@property(nonatomic, copy) NSString *title;
+@property(nonatomic, copy) NSString *subtitle;
+@property(nonatomic, copy) NSString *summary;
+@property(nonatomic, copy) NSString *category;
+@property(nonatomic, strong) UIImage *image;
+@property(nonatomic, copy) NSString *pdf;
+@property(nonatomic, strong) NSURL *imageURL;
+@property(nonatomic, strong) NSURL *URL;
+
+
 -(id) initWithTitle:(NSString *) title
+           subtitle:(NSString *) subtitle
              author:(NSString *) author
-           category:(NSString *) category;
+            summary:(NSString *) summary
+           category:(NSString *) category
+           imageURL:(NSURL *) imageURL
+                URL:(NSURL *) URL;
+
+
+-(void) image:(void (^)())completionBlock;
+
+
+
+
 @end
