@@ -24,7 +24,7 @@
     self.container.clipsToBounds = YES;
     self.container.layer.cornerRadius = 2;
     self.container.layer.borderWidth = 1;
-    self.container.layer.borderColor = [UIColorFromRGB(0xB6B6B6) CGColor];
+    self.container.layer.borderColor = [[MJSCStyles separatotColor] CGColor];
 }
 
 

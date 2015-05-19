@@ -1,0 +1,17 @@
+//
+//  Library.pch
+//  Library
+//
+//  Created by María Jesús Senosiain Caamiña on 19/05/15.
+//  Copyright (c) 2015 María Jesús Senosiain Caamiña. All rights reserved.
+//
+
+#ifndef Library_Library_pch
+#define Library_Library_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#import "MJSCStyles.h"
+
+
+#endif

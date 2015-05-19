@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		28641E80F6BDC0A325484ED8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 989425D87DD3D17F44C74702 /* libPods.a */; };
+		BB67259B1B0BC395002B9670 /* MJSCStyles.m in Sources */ = {isa = PBXBuildFile; fileRef = BB67259A1B0BC395002B9670 /* MJSCStyles.m */; };
 		BB7FC1A91AB451BA0046D195 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7FC1A81AB451BA0046D195 /* main.m */; };
 		BB7FC1AC1AB451BA0046D195 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7FC1AB1AB451BA0046D195 /* AppDelegate.m */; };
 		BB7FC1AE1AB451BA0046D195 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB7FC1AD1AB451BA0046D195 /* Images.xcassets */; };
@@ -47,6 +48,9 @@
 		989425D87DD3D17F44C74702 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB67258B1B08B4DB002B9670 /* Settings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
 		BB6725961B0BA09E002B9670 /* MJSCLibraryViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MJSCLibraryViewControllerDelegate.h; sourceTree = "<group>"; };
+		BB6725991B0BC395002B9670 /* MJSCStyles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJSCStyles.h; sourceTree = "<group>"; };
+		BB67259A1B0BC395002B9670 /* MJSCStyles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJSCStyles.m; sourceTree = "<group>"; };
+		BB67259C1B0BC56B002B9670 /* Library.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Library.pch; sourceTree = "<group>"; };
 		BB7FC1A31AB451BA0046D195 /* Library.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Library.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB7FC1A71AB451BA0046D195 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BB7FC1A81AB451BA0046D195 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -126,6 +130,15 @@
 			name = Protocol;
 			sourceTree = "<group>";
 		};
+		BB6725981B0BC36F002B9670 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				BB6725991B0BC395002B9670 /* MJSCStyles.h */,
+				BB67259A1B0BC395002B9670 /* MJSCStyles.m */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
 		BB7FC19A1AB451BA0046D195 = {
 			isa = PBXGroup;
 			children = (
@@ -149,6 +162,9 @@
 		BB7FC1A51AB451BA0046D195 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				BB7FC1AA1AB451BA0046D195 /* AppDelegate.h */,
+				BB7FC1AB1AB451BA0046D195 /* AppDelegate.m */,
+				BB6725981B0BC36F002B9670 /* Utils */,
 				BB6725971B0BA436002B9670 /* Protocol */,
 				BBFAAAA21B0772BA007562FA /* Assets */,
 				BB9F731D1B062EE2004B6E3C /* Manager */,
@@ -156,8 +172,6 @@
 				BBA81A7B1B03B7BA0084CD97 /* View */,
 				BBA81A7A1B03B72C0084CD97 /* Controller */,
 				BB7FC1C61AB451EA0046D195 /* Model */,
-				BB7FC1AA1AB451BA0046D195 /* AppDelegate.h */,
-				BB7FC1AB1AB451BA0046D195 /* AppDelegate.m */,
 				BB7FC1AD1AB451BA0046D195 /* Images.xcassets */,
 				BB7FC1AF1AB451BA0046D195 /* LaunchScreen.xib */,
 				BB7FC1A61AB451BA0046D195 /* Supporting Files */,
@@ -171,6 +185,7 @@
 			children = (
 				BB7FC1A71AB451BA0046D195 /* Info.plist */,
 				BB7FC1A81AB451BA0046D195 /* main.m */,
+				BB67259C1B0BC56B002B9670 /* Library.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -420,6 +435,7 @@
 				BBA81AA61B04B9FC0084CD97 /* MJSCLibraryHeaderCollectionReusableView.m in Sources */,
 				BBA81A911B0488040084CD97 /* MJSCLibraryCollectionViewCell.m in Sources */,
 				BB9F736B1B063FFE004B6E3C /* MJSCLibraryViewController.m in Sources */,
+				BB67259B1B0BC395002B9670 /* MJSCStyles.m in Sources */,
 				BBFB081F1B0658FB00F61CB5 /* MJSCBookPDFViewController.m in Sources */,
 				BB7FC1A91AB451BA0046D195 /* main.m in Sources */,
 				BBA81A7E1B03B9A90084CD97 /* MJSCLibraryTableViewController.m in Sources */,
@@ -540,6 +556,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PREFIX_HEADER = Library/Library.pch;
 				INFOPLIST_FILE = Library/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -554,6 +571,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PREFIX_HEADER = Library/Library.pch;
 				INFOPLIST_FILE = Library/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

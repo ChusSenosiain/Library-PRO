@@ -13,6 +13,7 @@
                 <outlet property="bookImage" destination="eRn-sX-oqM" id="aHk-vz-JmM"/>
                 <outlet property="bookSummary" destination="lI2-CM-NUF" id="fRg-fQ-W3Y"/>
                 <outlet property="bookTitle" destination="rQS-q3-PgH" id="R5O-UZ-XGa"/>
+                <outlet property="btnRead" destination="zlT-26-KzO" id="0Ao-PD-1uy"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -49,11 +50,12 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zlT-26-KzO">
-                            <rect key="frame" x="8" y="250" width="178" height="28"/>
+                            <rect key="frame" x="8" y="250" width="178" height="34"/>
                             <color key="backgroundColor" red="0.32549019607843138" green="0.42745098039215684" blue="0.99607843137254903" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="28" id="PAF-Ec-V0P"/>
+                                <constraint firstAttribute="height" constant="34" id="PAF-Ec-V0P"/>
                             </constraints>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                             <state key="normal" title="Read">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>

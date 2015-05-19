@@ -11,7 +11,6 @@
 #import "MJSCBook.h"
 #import "MBProgressHUD.h"
 #import "AFNetworking.h"
-#import "Settings.h"
 
 @interface MJSCBookPDFViewController () <UIWebViewDelegate>
 @property (weak, nonatomic) IBOutlet UIWebView *browser;
@@ -101,7 +100,9 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 
 
 #pragma mark - Utils
--(void)syncViewWithModel{
+-(void)syncViewWithModel {
+    
+    self.title = self.book.title;
     
     // Cancel the request if it exists
     [self cancelCurrentRequest];
@@ -122,16 +123,16 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     hud.mode = MBProgressHUDModeAnnularDeterminate;
     hud.labelText = @"Loading...";
     hud.detailsLabelText = @"0 %%";
-    hud.color = UIColorFromRGB(0x536DFE);
+    hud.color = [MJSCStyles primaryColor];
     
     
     // PDF Request
-     __weak typeof(self) weakSelf = self;
+    __weak typeof(self) weakSelf = self;
     [self.requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         // Hide the download progress control
         hud.hidden = YES;
-    
+        
         if ([responseObject isKindOfClass:[NSData class]]) {
             __strong typeof (weakSelf) strongSelf = weakSelf;
             if (strongSelf) {
@@ -177,31 +178,23 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     }
 }
 
--(void)configureView{
-    
+-(void)configureView {
     // Disable default behavior for IOS7
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    
     // UIWebviewDelegate
     self.browser.delegate = self;
-    
     // Enable viewports
     self.browser.scalesPageToFit = YES;
-    
-
 }
 
 -(NSString*)cacheFile:(NSURL *)bookURL {
-    
     NSString *fileName = [bookURL lastPathComponent];
     NSString *cacheDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject];
     
     return [[cacheDir stringByAppendingString:@"/" ] stringByAppendingString:fileName];
-    
 }
 
 -(BOOL)fileExists:(NSString *)filePath {
-    
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
     return [fileManager fileExistsAtPath:filePath];

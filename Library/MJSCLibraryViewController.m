@@ -96,7 +96,7 @@
     [[self.tab tabBar] setTranslucent:NO];
     
     
-    [[UITabBar appearance] setTintColor:UIColorFromRGB(0x03A9F4)];
+    [[UITabBar appearance] setTintColor:[MJSCStyles accentColor]];
     [[UITabBar appearance] setBarTintColor:[UIColor groupTableViewBackgroundColor]];
 
     

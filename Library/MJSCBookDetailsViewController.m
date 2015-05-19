@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *bookCategory;
 @property (weak, nonatomic) IBOutlet UILabel *bookSummary;
 @property (weak, nonatomic) IBOutlet UIImageView *bookImage;
+@property (weak, nonatomic) IBOutlet UIView *btnRead;
 
 @end
 
@@ -90,6 +91,11 @@
     self.bookImage.layer.borderColor = [[UIColor grayColor] CGColor];
     self.bookImage.layer.borderWidth = 1;
     self.bookImage.layer.cornerRadius = 2;
+    
+    self.btnRead.clipsToBounds = YES;
+    self.btnRead.layer.cornerRadius = 4;
+    self.btnRead.backgroundColor = [MJSCStyles accentColor];
+    
 }
 
 @end

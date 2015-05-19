@@ -27,7 +27,7 @@
 - (void)awakeFromNib {
     self.bookImage.layer.cornerRadius = 2;
     self.bookImage.layer.borderWidth = 1;
-    self.bookImage.layer.borderColor = [UIColorFromRGB(0xB6B6B6) CGColor];
+    self.bookImage.layer.borderColor = [[MJSCStyles separatotColor] CGColor];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

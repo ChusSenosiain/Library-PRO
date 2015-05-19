@@ -47,7 +47,8 @@
     }
     
     // App aspect
-    [self configureAppearance];
+    [MJSCStyles configureAppearance];
+    
     [self.window makeKeyAndVisible];
     
     
@@ -86,7 +87,6 @@
     
     UISplitViewController *splitVC = [[UISplitViewController alloc] init];
     
-    splitVC.view.backgroundColor = UIColorFromRGB(0x03A9F4);
     splitVC.viewControllers = @[[libraryVC wrappedInNavigation], [bookDetailsVC wrappedInNavigation]];
     
     [splitVC setDelegate:bookDetailsVC];
@@ -104,16 +104,6 @@
 }
 
 
--(void)configureAppearance{
-    UIColor *background = UIColorFromRGB(0x03A9F4);
-    
-    [[UINavigationBar appearance] setBarTintColor:background];
-    [[UIBarButtonItem appearance] setTitleTextAttributes: @{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
-    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],
-                                                           NSFontAttributeName:[UIFont fontWithName:@"Helvetica Neue" size:30]}];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-}
 
 
 # pragma mark - Utils
