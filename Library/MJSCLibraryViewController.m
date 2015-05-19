@@ -31,50 +31,15 @@
 }
 
 - (void)viewDidLoad {
-    
     [super viewDidLoad];
    
-    // Eliminamos comportamiento por defcto de iOS 7
-    self.edgesForExtendedLayout = UIRectEdgeNone;
-    
-    self.title = @"Library";
-    
-    
-    
-   
-    MJSCLibraryTableViewController *libraryTableVC = [[MJSCLibraryTableViewController alloc] initWithModel:self.library];
-    MJSCLibraryCollectionViewController *libraryCollectionVC = [[MJSCLibraryCollectionViewController alloc] initWithModel:self.library];
-
-    
-    [libraryTableVC setDelegate:self];
-    [libraryCollectionVC setDelegate:self];
-    
-    
-    libraryTableVC.tabBarItem.image = [UIImage imageNamed:@"Table"];
-    libraryCollectionVC.tabBarItem.image = [UIImage imageNamed:@"Collection"];
-    
-    self.tab = [[UITabBarController alloc] init];
-    self.tab.viewControllers = @[libraryTableVC, libraryCollectionVC];
-    self.tab.view.frame = self.view.frame;
-    
-    
-    
-    
-    [[self.tab tabBar] setTranslucent:NO];
-    
-    
-    [[UITabBar appearance] setTintColor:UIColorFromRGB(0x03A9F4)];
-    [[UITabBar appearance] setBarTintColor:[UIColor groupTableViewBackgroundColor]];
-    
-    [self.view addSubview:self.tab.view];
-
+    [self configureView];
 }
 
 
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 
@@ -110,6 +75,46 @@
     
 }
 
+#pragma mark - Utils
 
+-(void)configureView{
+    
+    // Disable default behavior for IOS7
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    
+    self.title = @"Library";
+  
+    // Vcs
+    MJSCLibraryTableViewController *libraryTableVC = [[MJSCLibraryTableViewController alloc] initWithModel:self.library];
+    MJSCLibraryCollectionViewController *libraryCollectionVC = [[MJSCLibraryCollectionViewController alloc] initWithModel:self.library];
+    
+    // Set the LibraryViewController Delegate
+    [libraryTableVC setDelegate:self];
+    [libraryCollectionVC setDelegate:self];
+    
+    
+    // Prepare Vcs to the etabbar
+    libraryTableVC.tabBarItem.image = [UIImage imageNamed:@"Table"];
+    libraryCollectionVC.tabBarItem.image = [UIImage imageNamed:@"Collection"];
+    
+    self.tab = [[UITabBarController alloc] init];
+
+    // Tab bar appearance
+    self.tab.view.frame = self.view.frame;
+    [[self.tab tabBar] setTranslucent:NO];
+    
+    
+    [[UITabBar appearance] setTintColor:UIColorFromRGB(0x03A9F4)];
+    [[UITabBar appearance] setBarTintColor:[UIColor groupTableViewBackgroundColor]];
+
+    
+    // Set the VCs to the tab bar
+    self.tab.viewControllers = @[libraryTableVC, libraryCollectionVC];
+    
+    
+    // Ad the tabbar to the view
+    [self.view addSubview:self.tab.view];
+    
+}
 
 @end

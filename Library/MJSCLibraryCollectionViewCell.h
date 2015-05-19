@@ -6,7 +6,8 @@
 //  Copyright (c) 2015 María Jesús Senosiain Caamiña. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
+@class MJSCBook;
 
 @interface MJSCLibraryCollectionViewCell : UICollectionViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *bookImage;
@@ -14,6 +15,9 @@
 @property (weak, nonatomic) IBOutlet UIView *container;
 
 
-+(NSString*) cellId;
+-(void)configureWithBook:(MJSCBook *)book;
+
++(NSString*)cellId;
+
 
 @end

@@ -8,7 +8,8 @@
 
 #import "MJSCLibraryCollectionViewCell.h"
 #import "Settings.h"
-
+#import "MJSCBook.h"
+#import <AFNetworking/UIKit+AFNetworking.h>
 
 @implementation MJSCLibraryCollectionViewCell
 
@@ -29,5 +30,18 @@
     self.container.layer.borderColor = [UIColorFromRGB(0xB6B6B6) CGColor];
      
 }
+
+
+-(void)configureWithBook:(MJSCBook *)book {
+    self.bookTitle.text = book.title;
+    [self.bookImage setImageWithURL:book.imageURL];
+}
+
+-(void)prepareForReuse {
+    [super prepareForReuse];
+    [self.bookImage cancelImageRequestOperation];
+    self.bookImage.image = nil;
+}
+
 
 @end

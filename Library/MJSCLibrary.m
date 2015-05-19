@@ -52,21 +52,21 @@
     
     NSMutableDictionary *library = [[NSMutableDictionary alloc] init];
     
-    // Crear la libreria ordenada por las categorias de los libros
+    // Create the library grouy by categories
     for (MJSCBook *book in [self createBooks]) {
         
-        // buscar en el diccionario si existe la categoria
+        // Search the category in the dictionary
         NSMutableArray *array = [library objectForKey:[book category]];
         
-        // Si no existe la categoria la creo
+        // The category doesn't existe, create it
         if (!array) {
             array = [[NSMutableArray alloc] init];
         }
         
-        // Añado el libro a la categoria
+        // Add the book to the category
         [array addObject:book];
         
-        // Añado la categoria con sus libros a la librería
+        // Add the category with it's books to the library
         [library setObject:array forKeyedSubscript:[book category]];
         
     }
@@ -75,6 +75,8 @@
     return [library copy];
 }
 
+
+#pragma mark - Utils
 
 -(NSArray*) createBooks {
     
@@ -192,12 +194,6 @@
                                                summary:summary
                                               category:@"Go"
                                               imageURL:[NSURL URLWithString:@"http://hackershelf.com/media/cache/fd/6a/fd6a2f610226dffb29fca630b25c1858.jpg"]                                               URL:[NSURL URLWithString:@"http://openmymind.net/assets/go/go.pdf"]];
-    
-    
-
-
-
-    
     
     
     NSArray *books = @[book1, book2, book3, book4, book5, book6, book7, book8, book9, book10, book11];

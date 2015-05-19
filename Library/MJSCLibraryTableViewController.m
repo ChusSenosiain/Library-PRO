@@ -23,10 +23,8 @@
 @implementation MJSCLibraryTableViewController
 
 -(id)initWithModel:(MJSCLibrary *)library {
-    
     if (self = [super init]) {
         _library = library;
-        
     }
     
     return self;
@@ -35,8 +33,15 @@
 
 -(void)viewDidLoad {
     [super viewDidLoad];
+    
     [self registerNibs];
     
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self configureView];
 }
 
 -(void)didReceiveMemoryWarning {
@@ -63,27 +68,9 @@
     // Get the book
     MJSCBook *book = [self.library bookAtSection:indexPath.section index:indexPath.row];
     
-    // Create the cell
+    // Create the cell and load the book data
     MJSCLibraryTableViewCell *bookCell =[tableView dequeueReusableCellWithIdentifier:[MJSCLibraryTableViewCell cellId] forIndexPath:indexPath];
-    
-    bookCell.bookTitle.text = book.title;
-    bookCell.bookAuthor.text = book.author;
-    bookCell.bookImage.image = nil;
-    
-    
-    if (book.image) {
-        bookCell.bookImage.image = book.image;
-    } else {
-         [book image:^{
-            // Comprobar que la celda esta visible
-            if([tableView.indexPathsForVisibleRows containsObject:indexPath]) {
-                // hacer el reload
-                [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            }
-        }];
-        
-    }
-    
+    [bookCell configureWithBook:book];
     
     return bookCell;
 }
@@ -102,6 +89,7 @@ titleForHeaderInSection:(NSInteger)section{
     // Get the book
     MJSCBook *book = [self.library bookAtSection:indexPath.section index:indexPath.row];
     
+    // Set the book and indexpath to the delegate
     if ([self.delegate respondsToSelector:@selector(libraryViewController:didSelectBook:indexPath:)]) {
         [self.delegate libraryViewController:self didSelectBook:book indexPath:indexPath];
     }
@@ -110,14 +98,16 @@ titleForHeaderInSection:(NSInteger)section{
 
 
 #pragma mark - Utils
--(void) registerNibs{
-    
+-(void)registerNibs {
     [self.tableView registerNib:[UINib nibWithNibName:[MJSCLibraryTableViewCell cellId] bundle:nil]
          forCellReuseIdentifier:[MJSCLibraryTableViewCell cellId]];
     
  }
 
-
+-(void)configureView {
+    self.tableView.backgroundColor = [UIColor whiteColor];
+    
+}
 
 
 

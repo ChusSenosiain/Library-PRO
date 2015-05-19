@@ -9,6 +9,7 @@
 #import "MJSCBookDetailsViewController.h"
 #import "MJSCBookPDFViewController.h"
 #import "MJSCBook.h"
+#import <AFNetworking/UIKit+AFNetworking.h>
 
 @interface MJSCBookDetailsViewController ()
 
@@ -38,18 +39,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
 }
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    // Eliminar comportamiento por defecto de iOS 7
-    self.edgesForExtendedLayout = UIRectEdgeNone;
-    
-    self.bookImage.layer.borderColor = [[UIColor grayColor] CGColor];
-    self.bookImage.layer.borderWidth = 1;
-    self.bookImage.layer.cornerRadius = 2;
+    [self configureView];
     
     // Update the view with the model
     [self syncViewWithModel];
@@ -58,6 +53,7 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+    [self.bookImage cancelImageRequestOperation];
 }
 
 
@@ -79,9 +75,7 @@
     willChangeToDisplayMode:(UISplitViewControllerDisplayMode)displayMode{
     
     if (displayMode != UISplitViewControllerDisplayModeAllVisible) {
-        // Tenemos que poner un botón en mi barra
-        // de navegación que permita mostrar el controlador
-        // primario (el de la izquierda)
+        // We've to put a button on the navigation bar to show the primary controller (left)
         self.navigationItem.rightBarButtonItem = splitVC.displayModeButtonItem;
     }
     
@@ -96,7 +90,6 @@
     self.book = book;
     
     // Update the view
-    
     [self syncViewWithModel];
 }
 
@@ -108,13 +101,20 @@
     self.bookCategory.text = self.book.category;
     self.bookSummary.text = self.book.summary;
     
-  
-    __weak typeof (self) weakSelf = self;
-    [self.book image:^{
-        __strong typeof(self) strongSelf = weakSelf;
-        strongSelf.bookImage.image = self.book.image;
-    }];
+    [self.bookImage setImageWithURL:self.book.imageURL];
     
+}
+
+-(void)configureView {
+    
+    // Disable default behavior for IOS7
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    
+    // Frame of book image
+    self.bookImage.layer.borderColor = [[UIColor grayColor] CGColor];
+    self.bookImage.layer.borderWidth = 1;
+    self.bookImage.layer.cornerRadius = 2;
+
 }
 
 

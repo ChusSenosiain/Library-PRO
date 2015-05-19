@@ -29,7 +29,6 @@
         _library = library;
     }
     
-    
     return self;
     
 }
@@ -37,13 +36,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self registerNibs];
-
-    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 
@@ -64,28 +60,9 @@
     // Get the book
     MJSCBook *book = [self.library bookAtSection:indexPath.section index:indexPath.row];
     
-    // Create the cell
+    // Create the cell and load the book data
     MJSCLibraryCollectionViewCell *bookCell = [collectionView dequeueReusableCellWithReuseIdentifier:[MJSCLibraryCollectionViewCell cellId] forIndexPath:indexPath];
-    
-    
-    
-    bookCell.bookTitle.text = book.title;
-    bookCell.bookImage.image = nil;
-    
-    
-    
-    if (book.image) {
-        bookCell.bookImage.image = book.image;
-    } else {
-        __weak typeof (self) weakSelf = self;
-        [book image:^{
-            __strong typeof (self) strongSelf = weakSelf;
-             if([strongSelf.libraryCollectionView.indexPathsForVisibleItems containsObject:indexPath]) {
-                 [strongSelf.libraryCollectionView reloadItemsAtIndexPaths:@[indexPath]];
-             }
-        }];
-        
-    }
+    [bookCell configureWithBook:book];
     
     return bookCell;
 
@@ -133,15 +110,11 @@
     [self.libraryCollectionView registerNib:[UINib nibWithNibName:[MJSCLibraryCollectionViewCell cellId] bundle:nil]
                  forCellWithReuseIdentifier:[MJSCLibraryCollectionViewCell cellId]];
     
- 
-    
     // Header nib
     [self.libraryCollectionView registerNib:[UINib nibWithNibName:[MJSCLibraryHeaderCollectionReusableView headerID]  bundle:nil]
                  forSupplementaryViewOfKind:UICollectionElementKindSectionHeader
                         withReuseIdentifier:[MJSCLibraryHeaderCollectionReusableView headerID]];
     
-
- 
 }
 
 

@@ -6,12 +6,12 @@
 //  Copyright (c) 2015 María Jesús Senosiain Caamiña. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 @class MJSCBook;
 
 @interface MJSCLibrary : NSObject
 
-@property (nonatomic, readonly) NSDictionary *library;
+@property (nonatomic, copy) NSDictionary *library;
 @property (nonatomic, readonly) NSUInteger sectionCount;
 
 

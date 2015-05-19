@@ -35,12 +35,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Eliminamos comportamiento por defcto de iOS 7
-    self.edgesForExtendedLayout = UIRectEdgeNone;
-    
-    
-    self.browser.delegate = self;
-    self.browser.scalesPageToFit = YES;
+    [self configureView];
     
     [self syncViewWithModel];
     
@@ -64,10 +59,7 @@
     [super viewWillDisappear:animated];
     
     // Cancel current PDF request
-    if (self.requestOperation) {
-        [self.requestOperation cancel];
-        self.requestOperation = nil;
-    }
+    [self cancelCurrentRequest];
     
     // Remove notification oberver
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
@@ -78,6 +70,9 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+    
+    // Cancel current PDF request
+    [self cancelCurrentRequest];
 }
 
 
@@ -86,6 +81,7 @@
 shouldStartLoadWithRequest:(NSURLRequest *)request
  navigationType:(UIWebViewNavigationType)navigationType{
     
+    // Disable external navigation
     if ((navigationType == UIWebViewNavigationTypeLinkClicked) ||
         (navigationType == UIWebViewNavigationTypeFormSubmitted)){
         return NO;
@@ -94,12 +90,6 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     }
     
 }
-
--(void)webViewDidFinishLoad:(UIWebView *)webView {
-    
-    
-}
-
 
 #pragma mark - notification
 // BOOK_DID_CHANGE_NOTIFICATION
@@ -112,7 +102,6 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     // Sync view with the new book
     [self syncViewWithModel];
     
-    
 }
 
 
@@ -120,13 +109,9 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 -(void)syncViewWithModel{
     
     // Cancel the request if it exists
-    if (self.requestOperation) {
-        [self.requestOperation cancel];
-        self.requestOperation = nil;
-    }
+    [self cancelCurrentRequest];
     
-    // Verify if the PDF exists in cache
-    // If exists load the PDF and exit
+    // If the PDF exists in cache load the PDF on browser and return
     if ([self fileExists:[self cacheFile:self.book.URL]]) {
         NSURL *url = [NSURL URLWithString:[self cacheFile:self.book.URL]];
         [self.browser loadRequest:[NSURLRequest requestWithURL:url]];
@@ -153,7 +138,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     
         if ([responseObject isKindOfClass:[NSData class]]) {
            
-            __strong typeof (self) strongSelf = weakSelf;
+            __strong typeof (weakSelf) strongSelf = weakSelf;
             if (strongSelf) {
                 // Show the downloaded PDF
                 [strongSelf.browser loadData:responseObject MIMEType:@"application/pdf" textEncodingName:nil baseURL:nil];
@@ -188,6 +173,28 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 
 
 #pragma mark - Utils
+
+-(void)cancelCurrentRequest {
+    
+    if (self.requestOperation) {
+        [self.requestOperation cancel];
+        self.requestOperation = nil;
+    }
+}
+
+-(void)configureView{
+    
+    // Disable default behavior for IOS7
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    
+    // UIWebviewDelegate
+    self.browser.delegate = self;
+    
+    // Enable viewports
+    self.browser.scalesPageToFit = YES;
+    
+
+}
 
 -(NSString*)cacheFile:(NSURL *)bookURL {
     
