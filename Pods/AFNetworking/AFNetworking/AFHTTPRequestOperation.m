@@ -45,15 +45,15 @@ static dispatch_group_t http_request_operation_completion_group() {
 #pragma mark -
 
 @interface AFURLConnectionOperation ()
-@property (readwrite, nonatomic, strong) NSURLRequest *request;
-@property (readwrite, nonatomic, strong) NSURLResponse *response;
+@property (readwrite, strong, nonatomic) NSURLRequest *request;
+@property (readwrite, strong, nonatomic) NSURLResponse *response;
 @end
 
 @interface AFHTTPRequestOperation ()
-@property (readwrite, nonatomic, strong) NSHTTPURLResponse *response;
-@property (readwrite, nonatomic, strong) id responseObject;
-@property (readwrite, nonatomic, strong) NSError *responseSerializationError;
-@property (readwrite, nonatomic, strong) NSRecursiveLock *lock;
+@property (readwrite, strong, nonatomic) NSHTTPURLResponse *response;
+@property (readwrite, strong, nonatomic) id responseObject;
+@property (readwrite, strong, nonatomic) NSError *responseSerializationError;
+@property (readwrite, strong, nonatomic) NSRecursiveLock *lock;
 @end
 
 @implementation AFHTTPRequestOperation

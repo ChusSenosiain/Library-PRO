@@ -34,7 +34,7 @@
 #pragma mark -
 
 @interface UIImageView (_AFNetworking)
-@property (readwrite, nonatomic, strong, setter = af_setImageRequestOperation:) AFHTTPRequestOperation *af_imageRequestOperation;
+@property (readwrite, strong, nonatomic, setter = af_setImageRequestOperation:) AFHTTPRequestOperation *af_imageRequestOperation;
 @end
 
 @implementation UIImageView (_AFNetworking)

@@ -41,12 +41,12 @@
 /**
  The request serializer used to serialize requests made with the `-loadRequest:...` category methods. By default, this is an instance of `AFHTTPRequestSerializer`.
  */
-@property (nonatomic, strong) AFHTTPRequestSerializer <AFURLRequestSerialization> * requestSerializer;
+@property (strong, nonatomic) AFHTTPRequestSerializer <AFURLRequestSerialization> * requestSerializer;
 
 /**
  The response serializer used to serialize responses made with the `-loadRequest:...` category methods. By default, this is an instance of `AFHTTPResponseSerializer`.
  */
-@property (nonatomic, strong) AFHTTPResponseSerializer <AFURLResponseSerialization> * responseSerializer;
+@property (strong, nonatomic) AFHTTPResponseSerializer <AFURLResponseSerialization> * responseSerializer;
 
 /**
  Asynchronously loads the specified request.

@@ -43,7 +43,7 @@
 #endif
 
 @interface AFHTTPSessionManager ()
-@property (readwrite, nonatomic, strong) NSURL *baseURL;
+@property (readwrite, strong, nonatomic) NSURL *baseURL;
 @end
 
 @implementation AFHTTPSessionManager

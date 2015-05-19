@@ -10,23 +10,14 @@
 @class MJSCLibrary;
 @class MJSCBook;
 
+#import "MJScLibraryViewControllerDelegate.h"
+
 #define BOOK_DID_CHANGE_NOTIFICATION @"bookDidChange"
 #define BOOK_KEY @"book"
 
-@protocol MJSCLibraryViewControllerDelegate <NSObject>
-
-@optional
-
--(void)libraryViewController:(UIViewController *)libraryVC
-               didSelectBook:(MJSCBook *) book
-                   indexPath:(NSIndexPath *) indexPath;
-
-@end
-
-
 @interface MJSCLibraryViewController : UIViewController <MJSCLibraryViewControllerDelegate>
 
-@property(weak, nonatomic) id<MJSCLibraryViewControllerDelegate> delegate;
+@property (weak, nonatomic) id<MJSCLibraryViewControllerDelegate>delegate;
 
 -(id)initWithModel:(MJSCLibrary *)library;
 

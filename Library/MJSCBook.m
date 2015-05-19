@@ -11,13 +11,13 @@
 
 @implementation MJSCBook
 
--(id)initWithTitle:(NSString *) title
-          subtitle:(NSString *) subtitle
-            author:(NSString *) author
-           summary:(NSString *) summary
-          category:(NSString *) category
-          imageURL:(NSURL *) imageURL
-               URL:(NSURL *) URL; {
+-(id)initWithTitle:(NSString *)title
+          subtitle:(NSString *)subtitle
+            author:(NSString *)author
+           summary:(NSString *)summary
+          category:(NSString *)category
+          imageURL:(NSURL *)imageURL
+               URL:(NSURL *)URL; {
     
     if (self = [super init]) {
         _title = title;

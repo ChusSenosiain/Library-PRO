@@ -124,7 +124,7 @@ typedef NS_ENUM(NSUInteger, AFHTTPRequestQueryStringSerializationStyle) {
  
  @discussion To add or remove default request headers, use `setValue:forHTTPHeaderField:`.
  */
-@property (readonly, nonatomic, strong) NSDictionary *HTTPRequestHeaders;
+@property (readonly, strong, nonatomic) NSDictionary *HTTPRequestHeaders;
 
 /**
  Creates and returns a serializer with default configuration.
@@ -176,7 +176,7 @@ forHTTPHeaderField:(NSString *)field;
 /**
  HTTP methods for which serialized requests will encode parameters as a query string. `GET`, `HEAD`, and `DELETE` by default.
  */
-@property (nonatomic, strong) NSSet *HTTPMethodsEncodingParametersInURI;
+@property (strong, nonatomic) NSSet *HTTPMethodsEncodingParametersInURI;
 
 /**
  Set the method of query string serialization according to one of the pre-defined styles.

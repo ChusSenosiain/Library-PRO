@@ -108,8 +108,8 @@ typedef void (^AFURLSessionTaskCompletionHandler)(NSURLResponse *response, id re
 
 @interface AFURLSessionManagerTaskDelegate : NSObject <NSURLSessionTaskDelegate, NSURLSessionDataDelegate, NSURLSessionDownloadDelegate>
 @property (nonatomic, weak) AFURLSessionManager *manager;
-@property (nonatomic, strong) NSMutableData *mutableData;
-@property (nonatomic, strong) NSProgress *progress;
+@property (strong, nonatomic) NSMutableData *mutableData;
+@property (strong, nonatomic) NSProgress *progress;
 @property (nonatomic, copy) NSURL *downloadFileURL;
 @property (nonatomic, copy) AFURLSessionDownloadTaskDidFinishDownloadingBlock downloadTaskDidFinishDownloading;
 @property (nonatomic, copy) AFURLSessionTaskCompletionHandler completionHandler;
@@ -323,12 +323,12 @@ static NSString * const AFNSURLSessionTaskDidSuspendNotification = @"com.alamofi
 #pragma mark -
 
 @interface AFURLSessionManager ()
-@property (readwrite, nonatomic, strong) NSURLSessionConfiguration *sessionConfiguration;
-@property (readwrite, nonatomic, strong) NSOperationQueue *operationQueue;
-@property (readwrite, nonatomic, strong) NSURLSession *session;
-@property (readwrite, nonatomic, strong) NSMutableDictionary *mutableTaskDelegatesKeyedByTaskIdentifier;
+@property (readwrite, strong, nonatomic) NSURLSessionConfiguration *sessionConfiguration;
+@property (readwrite, strong, nonatomic) NSOperationQueue *operationQueue;
+@property (readwrite, strong, nonatomic) NSURLSession *session;
+@property (readwrite, strong, nonatomic) NSMutableDictionary *mutableTaskDelegatesKeyedByTaskIdentifier;
 @property (readonly, nonatomic, copy) NSString *taskDescriptionForSessionTasks;
-@property (readwrite, nonatomic, strong) NSLock *lock;
+@property (readwrite, strong, nonatomic) NSLock *lock;
 @property (readwrite, nonatomic, copy) AFURLSessionDidBecomeInvalidBlock sessionDidBecomeInvalid;
 @property (readwrite, nonatomic, copy) AFURLSessionDidReceiveAuthenticationChallengeBlock sessionDidReceiveAuthenticationChallenge;
 @property (readwrite, nonatomic, copy) AFURLSessionDidFinishEventsForBackgroundURLSessionBlock didFinishEventsForBackgroundURLSession;

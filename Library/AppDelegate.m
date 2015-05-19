@@ -35,12 +35,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
     
-    // Asignamos valor por defecto para último personaje
-    [self setDefaultLastBook];
-    
-    
- 
-    // Model creation
+    // Model 
     MJSCLibrary *library = [[MJSCLibrary alloc] initWithBooks];
     
     // Screen Type: UItableViewController or UICollectionView for iPhone or UISplitView for iPad
@@ -53,8 +48,6 @@
     
     // App aspect
     [self configureAppearance];
-
-    
     [self.window makeKeyAndVisible];
     
     
@@ -83,42 +76,21 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-
--(MJSCBook*) lastBookSelectedInModel:(MJSCLibrary*) library {
-    // Obtener las coordenadas guardadas en user defaults
-    
-    NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
-    
-    NSArray *coords = [def objectForKey:LAST_SELECTED_BOOK_KEY];
-    NSUInteger section = [[coords objectAtIndex:0] integerValue];
-    NSUInteger row = [[coords objectAtIndex:1] integerValue];
-    
-    
-    // segun coordenadas, coger el libro
-    
-    MJSCBook *book = [library bookAtSection:section index:row];
-    // devolverlo
-    
-    return book;
-}
-
-
-
 #pragma park -- App Configuration
 
 -(void)configureForiPadWithModel:(MJSCLibrary*)library {
-    
+    MJSCBook *book = [self lastBookSelectedInLibrary:library];
+
     MJSCLibraryViewController *libraryVC = [[MJSCLibraryViewController alloc] initWithModel:library];
-    MJSCBook *book = [library bookAtSection:0 index:0];
     MJSCBookDetailsViewController *bookDetailsVC = [[MJSCBookDetailsViewController alloc] initWithBook:book];
-    
-    [libraryVC setDelegate:bookDetailsVC];
     
     UISplitViewController *splitVC = [[UISplitViewController alloc] init];
     
+    splitVC.view.backgroundColor = UIColorFromRGB(0x03A9F4);
     splitVC.viewControllers = @[[libraryVC wrappedInNavigation], [bookDetailsVC wrappedInNavigation]];
     
     [splitVC setDelegate:bookDetailsVC];
+    
     [libraryVC setDelegate:bookDetailsVC];
     
     self.window.rootViewController = splitVC;
@@ -126,58 +98,43 @@
 }
 
 -(void)configureForiPhoneWithModel:(MJSCLibrary*)library {
-    
-    
     MJSCLibraryViewController *libraryVC = [[MJSCLibraryViewController alloc] initWithModel:library];
-    
     UINavigationController *navVC = [libraryVC wrappedInNavigation];
-    
     self.window.rootViewController = navVC;
-   
-    
 }
 
 
 -(void)configureAppearance{
-    
-    
     UIColor *background = UIColorFromRGB(0x03A9F4);
-    
     
     [[UINavigationBar appearance] setBarTintColor:background];
     [[UIBarButtonItem appearance] setTitleTextAttributes: @{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-    
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],
                                                            NSFontAttributeName:[UIFont fontWithName:@"Helvetica Neue" size:30]}];
-    
-   
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    
 }
 
 
+# pragma mark - Utils
 
-
-# pragma mark - User defaults
--(void) setDefaultLastBook {
-    
+-(MJSCBook*) lastBookSelectedInLibrary:(MJSCLibrary*) library {
+    // Obtain the last book selected
     NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
     
+    // Is the first time that app starts, assign defaul book (the first one)
     if (![def objectForKey:LAST_SELECTED_BOOK_KEY]) {
-        // Es la primera vez que se ejecuta la App
-        
-        // Metemos valores por defecto
-        
         [def setObject:@[@0,@0] forKey:LAST_SELECTED_BOOK_KEY];
-        
-        // Guardamos
-        
         [def synchronize];
     }
+    
+    NSArray *coords = [def objectForKey:LAST_SELECTED_BOOK_KEY];
+    NSUInteger section = [[coords objectAtIndex:0] integerValue];
+    NSUInteger row = [[coords objectAtIndex:1] integerValue];
+    
+    MJSCBook *book = [library bookAtSection:section index:row];
+    
+    return book;
 }
-
-
-
 
 @end

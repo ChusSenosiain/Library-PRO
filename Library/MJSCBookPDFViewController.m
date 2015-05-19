@@ -13,10 +13,10 @@
 #import "AFNetworking.h"
 #import "Settings.h"
 
-@interface MJSCBookPDFViewController ()
+@interface MJSCBookPDFViewController () <UIWebViewDelegate>
 @property (weak, nonatomic) IBOutlet UIWebView *browser;
-@property (nonatomic, strong) MJSCBook *book;
-@property (nonatomic, strong) AFHTTPRequestOperation *requestOperation;
+@property (strong, nonatomic) MJSCBook *book;
+@property (strong, nonatomic) AFHTTPRequestOperation *requestOperation;
 @end
 
 @implementation MJSCBookPDFViewController
@@ -36,9 +36,7 @@
     [super viewDidLoad];
     
     [self configureView];
-    
     [self syncViewWithModel];
-    
 }
 
 
@@ -46,13 +44,11 @@
     [super viewWillAppear:animated];
     
     // Book change notification
-    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-    [nc addObserver:self
-           selector:@selector(notifyThatBookDidChange:)
-               name:BOOK_DID_CHANGE_NOTIFICATION
-             object:nil];
-    
-    
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter addObserver:self
+                           selector:@selector(notifyThatBookDidChange:)
+                               name:BOOK_DID_CHANGE_NOTIFICATION
+                             object:nil];
 }
 
 -(void) viewWillDisappear:(BOOL)animated{
@@ -62,9 +58,8 @@
     [self cancelCurrentRequest];
     
     // Remove notification oberver
-    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-    [nc removeObserver:self];
-    
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter removeObserver:self];
 }
 
 
@@ -93,9 +88,9 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 
 #pragma mark - notification
 // BOOK_DID_CHANGE_NOTIFICATION
--(void) notifyThatBookDidChange:(NSNotification *)n{
+-(void) notifyThatBookDidChange:(NSNotification *)notification{
     
-    NSDictionary *userInfo = n.userInfo;
+    NSDictionary *userInfo = notification.userInfo;
     
     self.book = [userInfo objectForKey:BOOK_KEY];
     
@@ -130,6 +125,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     hud.color = UIColorFromRGB(0x536DFE);
     
     
+    // PDF Request
      __weak typeof(self) weakSelf = self;
     [self.requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         
@@ -137,7 +133,6 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         hud.hidden = YES;
     
         if ([responseObject isKindOfClass:[NSData class]]) {
-           
             __strong typeof (weakSelf) strongSelf = weakSelf;
             if (strongSelf) {
                 // Show the downloaded PDF

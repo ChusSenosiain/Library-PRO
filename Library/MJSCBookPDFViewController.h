@@ -9,7 +9,7 @@
 @import UIKit;
 @class MJSCBook;
 
-@interface MJSCBookPDFViewController : UIViewController<UIWebViewDelegate>
+@interface MJSCBookPDFViewController : UIViewController
 
 -(id)initWithBook:(MJSCBook *)book;
 

@@ -46,6 +46,7 @@
 /* Begin PBXFileReference section */
 		989425D87DD3D17F44C74702 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB67258B1B08B4DB002B9670 /* Settings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
+		BB6725961B0BA09E002B9670 /* MJSCLibraryViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MJSCLibraryViewControllerDelegate.h; sourceTree = "<group>"; };
 		BB7FC1A31AB451BA0046D195 /* Library.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Library.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB7FC1A71AB451BA0046D195 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BB7FC1A81AB451BA0046D195 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -117,6 +118,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		BB6725971B0BA436002B9670 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				BB6725961B0BA09E002B9670 /* MJSCLibraryViewControllerDelegate.h */,
+			);
+			name = Protocol;
+			sourceTree = "<group>";
+		};
 		BB7FC19A1AB451BA0046D195 = {
 			isa = PBXGroup;
 			children = (
@@ -140,6 +149,7 @@
 		BB7FC1A51AB451BA0046D195 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				BB6725971B0BA436002B9670 /* Protocol */,
 				BBFAAAA21B0772BA007562FA /* Assets */,
 				BB9F731D1B062EE2004B6E3C /* Manager */,
 				BBA81A931B0499E70084CD97 /* Categories */,

@@ -13,29 +13,27 @@
 #import "MJSCLibraryTableViewCell.h"
 #import "MJSCLibraryHeaderCollectionReusableView.h"
 
-
 @interface MJSCLibraryTableViewController ()
 
-@property(nonatomic, strong) MJSCLibrary *library;
+@property(strong, nonatomic) MJSCLibrary *library;
 
 @end
 
 @implementation MJSCLibraryTableViewController
 
 -(id)initWithModel:(MJSCLibrary *)library {
+
     if (self = [super init]) {
         _library = library;
     }
-    
+
     return self;
 }
-
 
 -(void)viewDidLoad {
     [super viewDidLoad];
     
     [self registerNibs];
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -44,22 +42,21 @@
     [self configureView];
 }
 
--(void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
 #pragma mark - TableView DataSource
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    
     return [self.library sectionCount];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
     return [self.library countBooksAtSection:section];
 }
 
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     return [MJSCLibraryTableViewCell height];
 }
 
@@ -76,8 +73,8 @@
 }
 
 
--(NSString *)tableView:(UITableView *)tableView
-titleForHeaderInSection:(NSInteger)section{
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    
     return [self.library sectionTitle:section];
 }
 
@@ -93,7 +90,6 @@ titleForHeaderInSection:(NSInteger)section{
     if ([self.delegate respondsToSelector:@selector(libraryViewController:didSelectBook:indexPath:)]) {
         [self.delegate libraryViewController:self didSelectBook:book indexPath:indexPath];
     }
-    
 }
 
 
@@ -101,12 +97,11 @@ titleForHeaderInSection:(NSInteger)section{
 -(void)registerNibs {
     [self.tableView registerNib:[UINib nibWithNibName:[MJSCLibraryTableViewCell cellId] bundle:nil]
          forCellReuseIdentifier:[MJSCLibraryTableViewCell cellId]];
-    
- }
+}
 
 -(void)configureView {
     self.tableView.backgroundColor = [UIColor whiteColor];
-    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 

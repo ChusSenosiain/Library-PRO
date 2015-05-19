@@ -14,14 +14,13 @@
 #import "MJSCBook.h"
 
 @interface MJSCLibraryCollectionViewController ()
+
 @property (weak, nonatomic) IBOutlet UICollectionView *libraryCollectionView;
-@property (nonatomic, strong) MJSCLibrary *library;
+@property (strong, nonatomic) MJSCLibrary *library;
 
 @end
 
 @implementation MJSCLibraryCollectionViewController
-
-
 
 -(id)initWithModel:(MJSCLibrary*)library {
     
@@ -30,7 +29,6 @@
     }
     
     return self;
-    
 }
 
 - (void)viewDidLoad {
@@ -38,24 +36,21 @@
     [self registerNibs];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
 
 #pragma mark - CollectionView DataSource
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    
     return [self.library sectionCount];
 }
 
-
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    
     return [self.library countBooksAtSection:section];
 }
 
-
--(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
+                 cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     // Get the book
     MJSCBook *book = [self.library bookAtSection:indexPath.section index:indexPath.row];
@@ -65,9 +60,7 @@
     [bookCell configureWithBook:book];
     
     return bookCell;
-
 }
-
 
 -(UICollectionReusableView *) collectionView:(UICollectionView *)collectionView
            viewForSupplementaryElementOfKind:(NSString *)kind
@@ -102,9 +95,9 @@
 }
 
 
-
 #pragma mark - Utils
--(void) registerNibs{
+
+-(void)registerNibs {
     
     // Cell nib
     [self.libraryCollectionView registerNib:[UINib nibWithNibName:[MJSCLibraryCollectionViewCell cellId] bundle:nil]
@@ -118,21 +111,16 @@
 }
 
 
-// Hacer dinámico el tamaño de las celdas
+// Dinamic size of cells
 -(CGSize) collectionView:(UICollectionView *)collectionView
                   layout:(UICollectionViewLayout *)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     float boardWidth = self.libraryCollectionView.frame.size.width;
-    
     float cellWidth = (boardWidth / 3) - 1;
     float cellHeight = cellWidth + (cellWidth / 2);
     
     return CGSizeMake(cellWidth, cellHeight);
 }
-
-
-
-
 
 @end

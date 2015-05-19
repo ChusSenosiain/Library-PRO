@@ -12,13 +12,12 @@
 @implementation MJSCLibraryHeaderCollectionReusableView
 
 
-+(NSString*)headerID{
++(NSString*)headerID {
+    
     return [[self class] description];
 }
 
 - (void)awakeFromNib {
-    // Initialization code
-    
     self.layer.backgroundColor = [[UIColor groupTableViewBackgroundColor] CGColor];
 }
 

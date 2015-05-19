@@ -49,7 +49,7 @@ typedef NS_ENUM(NSUInteger, AFSSLPinningMode) {
 /**
  The certificates used to evaluate server trust according to the SSL pinning mode. By default, this property is set to any (`.cer`) certificates included in the app bundle.
  */
-@property (nonatomic, strong) NSArray *pinnedCertificates;
+@property (strong, nonatomic) NSArray *pinnedCertificates;
 
 /**
  Whether or not to trust servers with an invalid or expired SSL certificates. Defaults to `NO`.

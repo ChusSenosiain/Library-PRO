@@ -103,7 +103,7 @@
 /**
  The run loop modes in which the operation will run on the network thread. By default, this is a single-member set containing `NSRunLoopCommonModes`.
  */
-@property (nonatomic, strong) NSSet *runLoopModes;
+@property (strong, nonatomic) NSSet *runLoopModes;
 
 ///-----------------------------------------
 /// @name Getting URL Connection Information
@@ -112,17 +112,17 @@
 /**
  The request used by the operation's connection.
  */
-@property (readonly, nonatomic, strong) NSURLRequest *request;
+@property (readonly, strong, nonatomic) NSURLRequest *request;
 
 /**
  The last response received by the operation's connection.
  */
-@property (readonly, nonatomic, strong) NSURLResponse *response;
+@property (readonly, strong, nonatomic) NSURLResponse *response;
 
 /**
  The error, if any, that occurred in the lifecycle of the request.
  */
-@property (readonly, nonatomic, strong) NSError *error;
+@property (readonly, strong, nonatomic) NSError *error;
 
 ///----------------------------
 /// @name Getting Response Data
@@ -131,7 +131,7 @@
 /**
  The data received during the request.
  */
-@property (readonly, nonatomic, strong) NSData *responseData;
+@property (readonly, strong, nonatomic) NSData *responseData;
 
 /**
  The string representation of the response data.
@@ -161,7 +161,7 @@
 
  This will be overridden by any shared credentials that exist for the username or password of the request URL, if present.
  */
-@property (nonatomic, strong) NSURLCredential *credential;
+@property (strong, nonatomic) NSURLCredential *credential;
 
 ///-------------------------------
 /// @name Managing Security Policy
@@ -170,7 +170,7 @@
 /**
  The security policy used to evaluate server trust for secure connections.
  */
-@property (nonatomic, strong) AFSecurityPolicy *securityPolicy;
+@property (strong, nonatomic) AFSecurityPolicy *securityPolicy;
 
 ///------------------------
 /// @name Accessing Streams
@@ -181,14 +181,14 @@
 
  This property acts as a proxy to the `HTTPBodyStream` property of `request`.
  */
-@property (nonatomic, strong) NSInputStream *inputStream;
+@property (strong, nonatomic) NSInputStream *inputStream;
 
 /**
  The output stream that is used to write data received until the request is finished.
 
  By default, data is accumulated into a buffer that is stored into `responseData` upon completion of the request, with the intermediary `outputStream` property set to `nil`. When `outputStream` is set, the data will not be accumulated into an internal buffer, and as a result, the `responseData` property of the completed request will be `nil`. The output stream will be scheduled in the network thread runloop upon being set.
  */
-@property (nonatomic, strong) NSOutputStream *outputStream;
+@property (strong, nonatomic) NSOutputStream *outputStream;
 
 ///---------------------------------
 /// @name Managing Callback Queues
@@ -198,7 +198,7 @@
  The dispatch queue for `completionBlock`. If `NULL` (default), the main queue is used.
  */
 #if OS_OBJECT_HAVE_OBJC_SUPPORT
-@property (nonatomic, strong) dispatch_queue_t completionQueue;
+@property (strong, nonatomic) dispatch_queue_t completionQueue;
 #else
 @property (nonatomic, assign) dispatch_queue_t completionQueue;
 #endif
@@ -207,7 +207,7 @@
  The dispatch group for `completionBlock`. If `NULL` (default), a private dispatch group is used.
  */
 #if OS_OBJECT_HAVE_OBJC_SUPPORT
-@property (nonatomic, strong) dispatch_group_t completionGroup;
+@property (strong, nonatomic) dispatch_group_t completionGroup;
 #else
 @property (nonatomic, assign) dispatch_group_t completionGroup;
 #endif
@@ -219,7 +219,7 @@
 /**
  The user info dictionary for the receiver.
  */
-@property (nonatomic, strong) NSDictionary *userInfo;
+@property (strong, nonatomic) NSDictionary *userInfo;
 
 ///------------------------------------------------------
 /// @name Initializing an AFURLConnectionOperation Object

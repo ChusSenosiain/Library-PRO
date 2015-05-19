@@ -35,19 +35,19 @@
 /**
  The last HTTP response received by the operation's connection.
  */
-@property (readonly, nonatomic, strong) NSHTTPURLResponse *response;
+@property (readonly, strong, nonatomic) NSHTTPURLResponse *response;
 
 /**
  Responses sent from the server in data tasks created with `dataTaskWithRequest:success:failure:` and run using the `GET` / `POST` / et al. convenience methods are automatically validated and serialized by the response serializer. By default, this property is set to an AFHTTPResponse serializer, which uses the raw data as its response object. The serializer validates the status code to be in the `2XX` range, denoting success. If the response serializer generates an error in `-responseObjectForResponse:data:error:`, the `failure` callback of the session task or request operation will be executed; otherwise, the `success` callback will be executed.
 
  @warning `responseSerializer` must not be `nil`. Setting a response serializer will clear out any cached value
  */
-@property (nonatomic, strong) AFHTTPResponseSerializer <AFURLResponseSerialization> * responseSerializer;
+@property (strong, nonatomic) AFHTTPResponseSerializer <AFURLResponseSerialization> * responseSerializer;
 
 /**
  An object constructed by the `responseSerializer` from the response and response data. Returns `nil` unless the operation `isFinished`, has a `response`, and has `responseData` with non-zero content length. If an error occurs during serialization, `nil` will be returned, and the `error` property will be populated with the serialization error.
  */
-@property (readonly, nonatomic, strong) id responseObject;
+@property (readonly, strong, nonatomic) id responseObject;
 
 ///-----------------------------------------------------------
 /// @name Setting Completion Block Success / Failure Callbacks

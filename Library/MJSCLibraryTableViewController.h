@@ -7,16 +7,13 @@
 //
 @import UIKit;
 @class MJSCLibrary;
-@class MJSCBook;
-@class MJSCLibraryTableViewController;
 
-#import "MJSCLibraryViewController.h"
+#import "MJSCLibraryViewControllerDelegate.h"
 
 @interface MJSCLibraryTableViewController : UITableViewController
 
-@property(weak, nonatomic) id<MJSCLibraryViewControllerDelegate> delegate;
+@property (weak, nonatomic) id<MJSCLibraryViewControllerDelegate>delegate;
 
 -(id)initWithModel:(MJSCLibrary *)library;
-
 
 @end

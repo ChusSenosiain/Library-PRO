@@ -48,7 +48,7 @@ static NSURLRequest * AFNetworkRequestFromNotification(NSNotification *notificat
 
 @interface AFNetworkActivityIndicatorManager ()
 @property (readwrite, nonatomic, assign) NSInteger activityCount;
-@property (readwrite, nonatomic, strong) NSTimer *activityIndicatorVisibilityTimer;
+@property (readwrite, strong, nonatomic) NSTimer *activityIndicatorVisibilityTimer;
 @property (readonly, nonatomic, getter = isNetworkActivityIndicatorVisible) BOOL networkActivityIndicatorVisible;
 
 - (void)updateNetworkActivityIndicatorVisibility;

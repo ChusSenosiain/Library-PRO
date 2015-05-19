@@ -12,7 +12,7 @@
 @implementation MJSCLibrary
 
 
--(id) initWithBooks {
+-(id)initWithBooks {
     
     if (self = [super init]) {
         // Init with all books
@@ -22,17 +22,17 @@
     return self;
 }
 
--(NSUInteger) sectionCount {
+-(NSUInteger)sectionCount {
     return [self.library count];
 }
 
 
--(NSUInteger) countBooksAtSection:(NSUInteger) section {
+-(NSUInteger)countBooksAtSection:(NSUInteger) section {
     return [[self.library objectForKey:[self sectionKeyForSection:section]] count];
 }
 
 
--(MJSCBook *) bookAtSection:(NSInteger) section
+-(MJSCBook *)bookAtSection:(NSInteger) section
                       index:(NSUInteger) index {
     MJSCBook *book = [[self.library objectForKey:[self sectionKeyForSection:section]] objectAtIndex:index];
     return book;
@@ -48,7 +48,7 @@
 }
 
 
--(NSDictionary*) loadBooks {
+-(NSDictionary*)loadBooks {
     
     NSMutableDictionary *library = [[NSMutableDictionary alloc] init];
     
@@ -78,8 +78,7 @@
 
 #pragma mark - Utils
 
--(NSArray*) createBooks {
-    
+-(NSArray*)createBooks {
     
     NSString *summary = @"Git is the version control system developed by Linus Torvalds for Linux kernel development. It took the open source world by storm since its inception in 2005, and is used by small development shops and giants like Google, Red Hat, and IBM, and of course many open source projects.\nA book by Git experts to turn you into a Git expert.\nIntroduces the world of distributed version control.\nShows how to build a Git development workflow.\n What you’ll learn\nUse Git as a programmer or a project leader\n Become a fluent Git user\n Use distributed features of Git to the full\n Acquire the ability to insert Git in the development workflow\n Migrate programming projects from other SCMs to Git\n Learn how to extend Git\n\n\nWho this book is for\n\nThis book is for all open source developers: you are bound to encounter Git somewhere in the course of your working life. Proprietary software developers will appreciate Git’s enormous scalability, since it is used for the Linux project, which comprises thousands of developers and testers.\n\n\nTable of Contents:\n Getting Started\n Git Basics\n Git Branching\n Git on the Server\n Distributed Git\n Git Tools\n Customizing Git\n Git and Other Systems\n Git Internals";
   

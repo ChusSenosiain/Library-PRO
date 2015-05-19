@@ -15,17 +15,17 @@
 @property(nonatomic, copy) NSString *subtitle;
 @property(nonatomic, copy) NSString *summary;
 @property(nonatomic, copy) NSString *category;
-@property(nonatomic, strong) NSURL *imageURL;
-@property(nonatomic, strong) NSURL *URL;
+@property(strong, nonatomic) NSURL *imageURL;
+@property(strong, nonatomic) NSURL *URL;
 
 
--(id) initWithTitle:(NSString *) title
-           subtitle:(NSString *) subtitle
-             author:(NSString *) author
-            summary:(NSString *) summary
-           category:(NSString *) category
-           imageURL:(NSURL *) imageURL
-                URL:(NSURL *) URL;
+-(id) initWithTitle:(NSString *)title
+           subtitle:(NSString *)subtitle
+             author:(NSString *)author
+            summary:(NSString *)summary
+           category:(NSString *)category
+           imageURL:(NSURL *)imageURL
+                URL:(NSURL *)URL;
 
 
 @end

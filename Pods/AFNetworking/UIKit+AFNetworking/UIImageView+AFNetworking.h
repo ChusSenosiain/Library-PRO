@@ -60,7 +60,7 @@
 
  @discussion Subclasses of `AFImageResponseSerializer` could be used to perform post-processing, such as color correction, face detection, or other effects. See https://github.com/AFNetworking/AFCoreImageSerializer
  */
-@property (nonatomic, strong) id <AFURLResponseSerialization> imageResponseSerializer;
+@property (strong, nonatomic) id <AFURLResponseSerialization> imageResponseSerializer;
 
 ///--------------------
 /// @name Setting Image

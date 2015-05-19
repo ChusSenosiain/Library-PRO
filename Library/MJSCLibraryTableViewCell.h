@@ -15,12 +15,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *bookTitle;
 @property (weak, nonatomic) IBOutlet UILabel *bookAuthor;
 
-
 +(NSString*) cellId;
 +(CGFloat) height;
 
 -(void)configureWithBook:(MJSCBook *)book;
-
-
 
 @end

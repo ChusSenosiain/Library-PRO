@@ -31,7 +31,7 @@
 #import "AFURLRequestSerialization.h"
 
 @interface UIWebView (_AFNetworking)
-@property (readwrite, nonatomic, strong, setter = af_setHTTPRequestOperation:) AFHTTPRequestOperation *af_HTTPRequestOperation;
+@property (readwrite, strong, nonatomic, setter = af_setHTTPRequestOperation:) AFHTTPRequestOperation *af_HTTPRequestOperation;
 @end
 
 @implementation UIWebView (_AFNetworking)

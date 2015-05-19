@@ -14,21 +14,17 @@
 @implementation MJSCLibraryCollectionViewCell
 
 
-+(NSString*)cellId{
++(NSString*)cellId {
     return [[self class] description];
 }
 
 - (void)awakeFromNib {
-    
-    
-    //self.layer.borderWidth = 0.5f;
     self.clipsToBounds = YES;
-    
+
     self.container.clipsToBounds = YES;
     self.container.layer.cornerRadius = 2;
     self.container.layer.borderWidth = 1;
     self.container.layer.borderColor = [UIColorFromRGB(0xB6B6B6) CGColor];
-     
 }
 
 

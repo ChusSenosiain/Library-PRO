@@ -95,26 +95,26 @@
 /**
  The URL used to monitor reachability, and construct requests from relative paths in methods like `requestWithMethod:URLString:parameters:`, and the `GET` / `POST` / et al. convenience methods.
  */
-@property (readonly, nonatomic, strong) NSURL *baseURL;
+@property (readonly, strong, nonatomic) NSURL *baseURL;
 
 /**
  Requests created with `requestWithMethod:URLString:parameters:` & `multipartFormRequestWithMethod:URLString:parameters:constructingBodyWithBlock:` are constructed with a set of default headers using a parameter serialization specified by this property. By default, this is set to an instance of `AFHTTPRequestSerializer`, which serializes query string parameters for `GET`, `HEAD`, and `DELETE` requests, or otherwise URL-form-encodes HTTP message bodies.
 
  @warning `requestSerializer` must not be `nil`.
  */
-@property (nonatomic, strong) AFHTTPRequestSerializer <AFURLRequestSerialization> * requestSerializer;
+@property (strong, nonatomic) AFHTTPRequestSerializer <AFURLRequestSerialization> * requestSerializer;
 
 /**
  Responses sent from the server in data tasks created with `dataTaskWithRequest:success:failure:` and run using the `GET` / `POST` / et al. convenience methods are automatically validated and serialized by the response serializer. By default, this property is set to a JSON serializer, which serializes data from responses with a `application/json` MIME type, and falls back to the raw data object. The serializer validates the status code to be in the `2XX` range, denoting success. If the response serializer generates an error in `-responseObjectForResponse:data:error:`, the `failure` callback of the session task or request operation will be executed; otherwise, the `success` callback will be executed.
 
  @warning `responseSerializer` must not be `nil`.
  */
-@property (nonatomic, strong) AFHTTPResponseSerializer <AFURLResponseSerialization> * responseSerializer;
+@property (strong, nonatomic) AFHTTPResponseSerializer <AFURLResponseSerialization> * responseSerializer;
 
 /**
  The operation queue on which request operations are scheduled and run.
  */
-@property (nonatomic, strong) NSOperationQueue *operationQueue;
+@property (strong, nonatomic) NSOperationQueue *operationQueue;
 
 ///-------------------------------
 /// @name Managing URL Credentials
@@ -132,7 +132,7 @@
 
  @see AFURLConnectionOperation -credential
  */
-@property (nonatomic, strong) NSURLCredential *credential;
+@property (strong, nonatomic) NSURLCredential *credential;
 
 ///-------------------------------
 /// @name Managing Security Policy
@@ -141,7 +141,7 @@
 /**
  The security policy used by created request operations to evaluate server trust for secure connections. `AFHTTPRequestOperationManager` uses the `defaultPolicy` unless otherwise specified.
  */
-@property (nonatomic, strong) AFSecurityPolicy *securityPolicy;
+@property (strong, nonatomic) AFSecurityPolicy *securityPolicy;
 
 ///------------------------------------
 /// @name Managing Network Reachability
@@ -150,7 +150,7 @@
 /**
  The network reachability manager. `AFHTTPRequestOperationManager` uses the `sharedManager` by default.
  */
-@property (readwrite, nonatomic, strong) AFNetworkReachabilityManager *reachabilityManager;
+@property (readwrite, strong, nonatomic) AFNetworkReachabilityManager *reachabilityManager;
 
 ///-------------------------------
 /// @name Managing Callback Queues
@@ -160,7 +160,7 @@
  The dispatch queue for the `completionBlock` of request operations. If `NULL` (default), the main queue is used.
  */
 #if OS_OBJECT_HAVE_OBJC_SUPPORT
-@property (nonatomic, strong) dispatch_queue_t completionQueue;
+@property (strong, nonatomic) dispatch_queue_t completionQueue;
 #else
 @property (nonatomic, assign) dispatch_queue_t completionQueue;
 #endif
@@ -169,7 +169,7 @@
  The dispatch group for the `completionBlock` of request operations. If `NULL` (default), a private dispatch group is used.
  */
 #if OS_OBJECT_HAVE_OBJC_SUPPORT
-@property (nonatomic, strong) dispatch_group_t completionGroup;
+@property (strong, nonatomic) dispatch_group_t completionGroup;
 #else
 @property (nonatomic, assign) dispatch_group_t completionGroup;
 #endif

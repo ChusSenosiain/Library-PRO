@@ -33,7 +33,7 @@
 #endif
 
 @interface AFHTTPRequestOperationManager ()
-@property (readwrite, nonatomic, strong) NSURL *baseURL;
+@property (readwrite, strong, nonatomic) NSURL *baseURL;
 @end
 
 @implementation AFHTTPRequestOperationManager

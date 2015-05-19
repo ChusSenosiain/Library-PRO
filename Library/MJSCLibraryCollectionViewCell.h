@@ -14,10 +14,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *bookTitle;
 @property (weak, nonatomic) IBOutlet UIView *container;
 
-
 -(void)configureWithBook:(MJSCBook *)book;
 
 +(NSString*)cellId;
-
 
 @end

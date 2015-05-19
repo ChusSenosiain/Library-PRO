@@ -15,8 +15,10 @@
 
 
 @interface MJSCLibraryViewController ()
-@property(nonatomic, strong) MJSCLibrary* library;
- @property (nonatomic, retain) UITabBarController *tab;
+
+@property (strong, nonatomic) MJSCLibrary *library;
+@property (nonatomic, retain) UITabBarController *tab;
+
 @end
 
 @implementation MJSCLibraryViewController
@@ -37,12 +39,6 @@
 }
 
 
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
-
 #pragma mark - LibraryViewControllerDelegate
 -(void)libraryViewController:(UIViewController *)libraryVC didSelectBook:(MJSCBook *)book indexPath:(NSIndexPath *)indexPath {
     
@@ -50,20 +46,17 @@
     NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
     NSArray *coords = @[@(indexPath.section), @(indexPath.row)];
     
-    
     [def setObject:coords forKey:LAST_SELECTED_BOOK_KEY];
-    
     [def synchronize];
     
     
     // Send the notificación to MJSCPDFViewController
     NSDictionary *dict = @{BOOK_KEY: book};
-    NSNotification *n = [NSNotification notificationWithName:BOOK_DID_CHANGE_NOTIFICATION object:self userInfo:dict];
+    NSNotification *notification = [NSNotification notificationWithName:BOOK_DID_CHANGE_NOTIFICATION object:self userInfo:dict];
     
-    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-    [nc postNotification:n];
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter postNotification:notification];
 
-    
     // Go to book details
     if ([self.delegate respondsToSelector:@selector(libraryViewController:didSelectBook:indexPath:)]) {
         [self.delegate libraryViewController:self didSelectBook:book indexPath:indexPath];
@@ -71,7 +64,6 @@
         MJSCBookDetailsViewController *bookDetailsVC = [[MJSCBookDetailsViewController alloc] initWithBook:book];
         [self.navigationController pushViewController:bookDetailsVC animated:YES];
     }
- 
     
 }
 

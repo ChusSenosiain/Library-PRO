@@ -77,8 +77,8 @@ static NSString * AFPercentEscapedQueryStringValueFromStringWithEncoding(NSStrin
 #pragma mark -
 
 @interface AFQueryStringPair : NSObject
-@property (readwrite, nonatomic, strong) id field;
-@property (readwrite, nonatomic, strong) id value;
+@property (readwrite, strong, nonatomic) id field;
+@property (readwrite, strong, nonatomic) id value;
 
 - (id)initWithField:(id)field value:(id)value;
 
@@ -182,8 +182,8 @@ static NSArray * AFHTTPRequestSerializerObservedKeyPaths() {
 static void *AFHTTPRequestSerializerObserverContext = &AFHTTPRequestSerializerObserverContext;
 
 @interface AFHTTPRequestSerializer ()
-@property (readwrite, nonatomic, strong) NSMutableSet *mutableObservedChangedKeyPaths;
-@property (readwrite, nonatomic, strong) NSMutableDictionary *mutableHTTPRequestHeaders;
+@property (readwrite, strong, nonatomic) NSMutableSet *mutableObservedChangedKeyPaths;
+@property (readwrite, strong, nonatomic) NSMutableDictionary *mutableHTTPRequestHeaders;
 @property (readwrite, nonatomic, assign) AFHTTPRequestQueryStringSerializationStyle queryStringSerializationStyle;
 @property (readwrite, nonatomic, copy) AFQueryStringSerializationBlock queryStringSerialization;
 @end
@@ -621,11 +621,11 @@ NSTimeInterval const kAFUploadStream3GSuggestedDelay = 0.2;
 
 @interface AFHTTPBodyPart : NSObject
 @property (nonatomic, assign) NSStringEncoding stringEncoding;
-@property (nonatomic, strong) NSDictionary *headers;
+@property (strong, nonatomic) NSDictionary *headers;
 @property (nonatomic, copy) NSString *boundary;
-@property (nonatomic, strong) id body;
+@property (strong, nonatomic) id body;
 @property (nonatomic, assign) unsigned long long bodyContentLength;
-@property (nonatomic, strong) NSInputStream *inputStream;
+@property (strong, nonatomic) NSInputStream *inputStream;
 
 @property (nonatomic, assign) BOOL hasInitialBoundary;
 @property (nonatomic, assign) BOOL hasFinalBoundary;
@@ -640,7 +640,7 @@ NSTimeInterval const kAFUploadStream3GSuggestedDelay = 0.2;
 @interface AFMultipartBodyStream : NSInputStream <NSStreamDelegate>
 @property (nonatomic, assign) NSUInteger numberOfBytesInPacket;
 @property (nonatomic, assign) NSTimeInterval delay;
-@property (nonatomic, strong) NSInputStream *inputStream;
+@property (strong, nonatomic) NSInputStream *inputStream;
 @property (readonly, nonatomic, assign) unsigned long long contentLength;
 @property (readonly, nonatomic, assign, getter = isEmpty) BOOL empty;
 
@@ -655,7 +655,7 @@ NSTimeInterval const kAFUploadStream3GSuggestedDelay = 0.2;
 @property (readwrite, nonatomic, copy) NSMutableURLRequest *request;
 @property (readwrite, nonatomic, assign) NSStringEncoding stringEncoding;
 @property (readwrite, nonatomic, copy) NSString *boundary;
-@property (readwrite, nonatomic, strong) AFMultipartBodyStream *bodyStream;
+@property (readwrite, strong, nonatomic) AFMultipartBodyStream *bodyStream;
 @end
 
 @implementation AFStreamingMultipartFormData
@@ -836,11 +836,11 @@ NSTimeInterval const kAFUploadStream3GSuggestedDelay = 0.2;
 
 @interface AFMultipartBodyStream () <NSCopying>
 @property (readwrite, nonatomic, assign) NSStringEncoding stringEncoding;
-@property (readwrite, nonatomic, strong) NSMutableArray *HTTPBodyParts;
-@property (readwrite, nonatomic, strong) NSEnumerator *HTTPBodyPartEnumerator;
-@property (readwrite, nonatomic, strong) AFHTTPBodyPart *currentHTTPBodyPart;
-@property (readwrite, nonatomic, strong) NSOutputStream *outputStream;
-@property (readwrite, nonatomic, strong) NSMutableData *buffer;
+@property (readwrite, strong, nonatomic) NSMutableArray *HTTPBodyParts;
+@property (readwrite, strong, nonatomic) NSEnumerator *HTTPBodyPartEnumerator;
+@property (readwrite, strong, nonatomic) AFHTTPBodyPart *currentHTTPBodyPart;
+@property (readwrite, strong, nonatomic) NSOutputStream *outputStream;
+@property (readwrite, strong, nonatomic) NSMutableData *buffer;
 @end
 
 @implementation AFMultipartBodyStream

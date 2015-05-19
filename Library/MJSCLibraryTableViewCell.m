@@ -14,21 +14,20 @@
 @implementation MJSCLibraryTableViewCell
 
 
-+(NSString*)cellId{
++(NSString*)cellId {
+    
     return [[self class] description];
 }
 
-+(CGFloat) height{
++(CGFloat) height {
+    
     return 70;
 }
 
 - (void)awakeFromNib {
-    
     self.bookImage.layer.cornerRadius = 2;
     self.bookImage.layer.borderWidth = 1;
     self.bookImage.layer.borderColor = [UIColorFromRGB(0xB6B6B6) CGColor];
-
-    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

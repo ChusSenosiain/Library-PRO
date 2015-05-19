@@ -97,19 +97,19 @@
 /**
  The managed session.
  */
-@property (readonly, nonatomic, strong) NSURLSession *session;
+@property (readonly, strong, nonatomic) NSURLSession *session;
 
 /**
  The operation queue on which delegate callbacks are run.
  */
-@property (readonly, nonatomic, strong) NSOperationQueue *operationQueue;
+@property (readonly, strong, nonatomic) NSOperationQueue *operationQueue;
 
 /**
  Responses sent from the server in data tasks created with `dataTaskWithRequest:success:failure:` and run using the `GET` / `POST` / et al. convenience methods are automatically validated and serialized by the response serializer. By default, this property is set to an instance of `AFJSONResponseSerializer`.
 
  @warning `responseSerializer` must not be `nil`.
  */
-@property (nonatomic, strong) id <AFURLResponseSerialization> responseSerializer;
+@property (strong, nonatomic) id <AFURLResponseSerialization> responseSerializer;
 
 ///-------------------------------
 /// @name Managing Security Policy
@@ -118,7 +118,7 @@
 /**
  The security policy used by created request operations to evaluate server trust for secure connections. `AFURLSessionManager` uses the `defaultPolicy` unless otherwise specified.
  */
-@property (nonatomic, strong) AFSecurityPolicy *securityPolicy;
+@property (strong, nonatomic) AFSecurityPolicy *securityPolicy;
 
 ///--------------------------------------
 /// @name Monitoring Network Reachability
@@ -127,7 +127,7 @@
 /**
  The network reachability manager. `AFURLSessionManager` uses the `sharedManager` by default.
  */
-@property (readwrite, nonatomic, strong) AFNetworkReachabilityManager *reachabilityManager;
+@property (readwrite, strong, nonatomic) AFNetworkReachabilityManager *reachabilityManager;
 
 ///----------------------------
 /// @name Getting Session Tasks
@@ -136,22 +136,22 @@
 /**
  The data, upload, and download tasks currently run by the managed session.
  */
-@property (readonly, nonatomic, strong) NSArray *tasks;
+@property (readonly, strong, nonatomic) NSArray *tasks;
 
 /**
  The data tasks currently run by the managed session.
  */
-@property (readonly, nonatomic, strong) NSArray *dataTasks;
+@property (readonly, strong, nonatomic) NSArray *dataTasks;
 
 /**
  The upload tasks currently run by the managed session.
  */
-@property (readonly, nonatomic, strong) NSArray *uploadTasks;
+@property (readonly, strong, nonatomic) NSArray *uploadTasks;
 
 /**
  The download tasks currently run by the managed session.
  */
-@property (readonly, nonatomic, strong) NSArray *downloadTasks;
+@property (readonly, strong, nonatomic) NSArray *downloadTasks;
 
 ///-------------------------------
 /// @name Managing Callback Queues
@@ -161,7 +161,7 @@
  The dispatch queue for `completionBlock`. If `NULL` (default), the main queue is used.
  */
 #if OS_OBJECT_HAVE_OBJC_SUPPORT
-@property (nonatomic, strong) dispatch_queue_t completionQueue;
+@property (strong, nonatomic) dispatch_queue_t completionQueue;
 #else
 @property (nonatomic, assign) dispatch_queue_t completionQueue;
 #endif
@@ -170,7 +170,7 @@
  The dispatch group for `completionBlock`. If `NULL` (default), a private dispatch group is used.
  */
 #if OS_OBJECT_HAVE_OBJC_SUPPORT
-@property (nonatomic, strong) dispatch_group_t completionGroup;
+@property (strong, nonatomic) dispatch_group_t completionGroup;
 #else
 @property (nonatomic, assign) dispatch_group_t completionGroup;
 #endif
