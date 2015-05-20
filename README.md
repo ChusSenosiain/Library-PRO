@@ -2,7 +2,7 @@
 
 **Includes AFNetworking and MBProgressHUD**
 
-## Descriptión:
+## Description:
 
 A simple project that shows a collection of books. If you select a book you can download and read it.
 
