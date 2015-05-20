@@ -1,6 +1,6 @@
-# Library: Utad Basic iOS Project
+# Library: U-Tad Basic iOS Project
 
-[id]: https://github.com/ChusSenosiain/Library/blob/master/Library/Images.xcassets/AppIcon.appiconset/Icon-72%402x.png 
+![alt tag](https://raw.githubusercontent.com/ChusSenosiain/Library/master/Library/Images.xcassets/AppIcon.appiconset/Icon-72%402x.png)
 
 ## Description:
 
