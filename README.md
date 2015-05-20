@@ -4,10 +4,10 @@
 
 A simple project that shows a collection of 11 PDF books. If you select a book you can download and read it. The books are harcoded.
 
-## External cocoapods libraries;
+## External cocoapods libraries:
 
-**AFNetworking ** 
-**MBProgressHUD **
+- AFNetworking 
+- MBProgressHUD
 
 
 This is a good sample code for:
