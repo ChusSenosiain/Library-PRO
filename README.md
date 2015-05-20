@@ -1,10 +1,14 @@
 # Library: Utad Basic iOS Project
 
-**Includes AFNetworking and MBProgressHUD**
-
 ## Description:
 
-A simple project that shows a collection of books. If you select a book you can download and read it.
+A simple project that shows a collection of 11 PDF books. If you select a book you can download and read it. The books are harcoded.
+
+## External cocoapods libraries;
+
+**AFNetworking ** 
+**MBProgressHUD **
+
 
 This is a good sample code for:
 
@@ -22,3 +26,6 @@ This is a good sample code for:
 - Delegates.
 - NSUserDefaults.
 - Use prefix classes (MJSCStyles)
+
+
+*Icons made by [Freepik] ("http://www.flaticon.com/authors/freepik") from [Flaticon] ("http://www.flaticon.com") is licensed by [Creative Commons BY 3.0][ ("http://creativecommons.org/licenses/by/3.0/")
