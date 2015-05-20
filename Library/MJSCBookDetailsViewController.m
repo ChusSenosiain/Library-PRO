@@ -90,7 +90,7 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
     self.bookImage.layer.borderColor = [[UIColor grayColor] CGColor];
-    self.bookImage.layer.borderWidth = 1;
+    self.bookImage.layer.borderWidth = 0.5;
     self.bookImage.layer.cornerRadius = 2;
     
     self.bookCategory.textColor = [MJSCStyles secondaryTextColor];
