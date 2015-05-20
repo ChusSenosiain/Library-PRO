@@ -82,6 +82,8 @@
 }
 
 
+
+
 #pragma mark - CollectionView Delegate
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -110,17 +112,20 @@
     
 }
 
-
 // Dinamic size of cells
--(CGSize) collectionView:(UICollectionView *)collectionView
-                  layout:(UICollectionViewLayout *)collectionViewLayout
-  sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+- (void)viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
+    
+    UICollectionViewFlowLayout *flowLayout =  (id) self.libraryCollectionView.collectionViewLayout;
     
     float boardWidth = self.libraryCollectionView.frame.size.width;
-    float cellWidth = (boardWidth / 3) - 1;
+    float cellWidth = (boardWidth / 2) - 1;
     float cellHeight = cellWidth + (cellWidth / 2);
     
-    return CGSizeMake(cellWidth, cellHeight);
+    flowLayout.itemSize = CGSizeMake(cellWidth, cellHeight);
+    
+    [flowLayout invalidateLayout];
 }
+
 
 @end

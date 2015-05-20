@@ -23,8 +23,9 @@
 
     self.container.clipsToBounds = YES;
     self.container.layer.cornerRadius = 2;
-    self.container.layer.borderWidth = 1;
-    self.container.layer.borderColor = [[MJSCStyles separatotColor] CGColor];
+    self.container.layer.borderWidth = 0.5;
+    self.container.layer.borderColor = [[MJSCStyles dividerColor] CGColor];
+
 }
 
 

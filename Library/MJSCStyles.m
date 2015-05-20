@@ -19,33 +19,40 @@
 
 +(UIColor *)darkPrimaryColor {
     
-    return UIColorFromRGB(0x03A9F4);
+    return UIColorFromRGB(0x0288D1);
 }
 
 +(UIColor *)lightPrimaryColor {
     
-    return UIColorFromRGB(0x03A9F4);
+    return UIColorFromRGB(0xB3E5FC);
 }
 
 +(UIColor *)accentColor {
     
-    return UIColorFromRGB(0x536DFE);
+    return UIColorFromRGB(0x00BCD4);
 }
 
-+(UIColor *)separatotColor {
++(UIColor *)dividerColor {
     
     return UIColorFromRGB(0xB6B6B6);
 }
 
++(UIColor *)primaryTextColor {
+    
+    return UIColorFromRGB(0x212121);
+}
++(UIColor *)secondaryTextColor {
+    
+    return UIColorFromRGB(0x727272);
+}
+
 +(void)configureAppearance{
     
-    UIColor *background = [self primaryColor];
-    
-    [[UINavigationBar appearance] setBarTintColor:background];
+    [[UINavigationBar appearance] setBarTintColor:[self primaryColor]];
     [[UIBarButtonItem appearance] setTitleTextAttributes: @{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],
-                                                           NSFontAttributeName:[UIFont fontWithName:@"Helvetica Neue" size:30]}];
+                                                           NSFontAttributeName:[UIFont fontWithName:@"Helvetica Neue" size:20]}];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 }
 

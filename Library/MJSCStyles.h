@@ -15,7 +15,9 @@
 +(UIColor *)darkPrimaryColor;
 +(UIColor *)lightPrimaryColor;
 +(UIColor *)accentColor;
-+(UIColor *)separatotColor;
++(UIColor *)dividerColor;
++(UIColor *)primaryTextColor;
++(UIColor *)secondaryTextColor;
 +(void)configureAppearance;
 
 @end

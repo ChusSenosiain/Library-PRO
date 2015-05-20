@@ -11,6 +11,7 @@
 #import "MJSCBookDetailsViewController.h"
 #import "MJSCLibrary.h"
 #import "MJSCLibraryTableViewCell.h"
+#import "MJSCTableViewHeader.h"
 #import "MJSCLibraryHeaderCollectionReusableView.h"
 
 @interface MJSCLibraryTableViewController ()
@@ -60,6 +61,11 @@
     return [MJSCLibraryTableViewCell height];
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    
+    return [MJSCTableViewHeader height];
+}
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     // Get the book
@@ -72,6 +78,14 @@
     return bookCell;
 }
 
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    MJSCTableViewHeader *headerCell = [tableView dequeueReusableCellWithIdentifier:[MJSCTableViewHeader headerID]];
+    
+    headerCell.sectionTitle.text = [self.library sectionTitle:section];
+    
+    return headerCell;
+}
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     
@@ -95,8 +109,15 @@
 
 #pragma mark - Utils
 -(void)registerNibs {
+    
+    // Cell
     [self.tableView registerNib:[UINib nibWithNibName:[MJSCLibraryTableViewCell cellId] bundle:nil]
          forCellReuseIdentifier:[MJSCLibraryTableViewCell cellId]];
+    
+    // Header
+    [self.tableView registerNib:[UINib nibWithNibName:[MJSCTableViewHeader headerID] bundle:nil]
+         forCellReuseIdentifier:[MJSCTableViewHeader headerID]];
+
 }
 
 -(void)configureView {

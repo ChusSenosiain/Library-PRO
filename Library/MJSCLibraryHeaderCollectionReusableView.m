@@ -9,16 +9,16 @@
 #import "MJSCLibraryHeaderCollectionReusableView.h"
 #import "Settings.h"
 
+
 @implementation MJSCLibraryHeaderCollectionReusableView
 
 
 +(NSString*)headerID {
-    
     return [[self class] description];
 }
 
 - (void)awakeFromNib {
-    self.layer.backgroundColor = [[UIColor groupTableViewBackgroundColor] CGColor];
+    self.layer.backgroundColor = [[UIColor whiteColor] CGColor];
 }
 
 @end

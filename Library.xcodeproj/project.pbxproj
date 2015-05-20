@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		28641E80F6BDC0A325484ED8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 989425D87DD3D17F44C74702 /* libPods.a */; };
+		BB59FB2C1B0C9ED4009D9E41 /* MJSCTableViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = BB59FB2A1B0C9ED4009D9E41 /* MJSCTableViewHeader.m */; };
+		BB59FB2D1B0C9ED4009D9E41 /* MJSCTableViewHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB59FB2B1B0C9ED4009D9E41 /* MJSCTableViewHeader.xib */; };
 		BB67259B1B0BC395002B9670 /* MJSCStyles.m in Sources */ = {isa = PBXBuildFile; fileRef = BB67259A1B0BC395002B9670 /* MJSCStyles.m */; };
 		BB7FC1A91AB451BA0046D195 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7FC1A81AB451BA0046D195 /* main.m */; };
 		BB7FC1AC1AB451BA0046D195 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7FC1AB1AB451BA0046D195 /* AppDelegate.m */; };
@@ -46,6 +48,9 @@
 
 /* Begin PBXFileReference section */
 		989425D87DD3D17F44C74702 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB59FB291B0C9ED4009D9E41 /* MJSCTableViewHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJSCTableViewHeader.h; sourceTree = "<group>"; };
+		BB59FB2A1B0C9ED4009D9E41 /* MJSCTableViewHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJSCTableViewHeader.m; sourceTree = "<group>"; };
+		BB59FB2B1B0C9ED4009D9E41 /* MJSCTableViewHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MJSCTableViewHeader.xib; sourceTree = "<group>"; };
 		BB67258B1B08B4DB002B9670 /* Settings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
 		BB6725961B0BA09E002B9670 /* MJSCLibraryViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MJSCLibraryViewControllerDelegate.h; sourceTree = "<group>"; };
 		BB6725991B0BC395002B9670 /* MJSCStyles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJSCStyles.h; sourceTree = "<group>"; };
@@ -133,6 +138,7 @@
 		BB6725981B0BC36F002B9670 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				BB67258B1B08B4DB002B9670 /* Settings.h */,
 				BB6725991B0BC395002B9670 /* MJSCStyles.h */,
 				BB67259A1B0BC395002B9670 /* MJSCStyles.m */,
 			);
@@ -167,7 +173,6 @@
 				BB6725981B0BC36F002B9670 /* Utils */,
 				BB6725971B0BA436002B9670 /* Protocol */,
 				BBFAAAA21B0772BA007562FA /* Assets */,
-				BB9F731D1B062EE2004B6E3C /* Manager */,
 				BBA81A931B0499E70084CD97 /* Categories */,
 				BBA81A7B1B03B7BA0084CD97 /* View */,
 				BBA81A7A1B03B72C0084CD97 /* Controller */,
@@ -175,7 +180,6 @@
 				BB7FC1AD1AB451BA0046D195 /* Images.xcassets */,
 				BB7FC1AF1AB451BA0046D195 /* LaunchScreen.xib */,
 				BB7FC1A61AB451BA0046D195 /* Supporting Files */,
-				BB67258B1B08B4DB002B9670 /* Settings.h */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -218,13 +222,6 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
-		BB9F731D1B062EE2004B6E3C /* Manager */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Manager;
-			sourceTree = "<group>";
-		};
 		BBA81A7A1B03B72C0084CD97 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -257,6 +254,9 @@
 				BBA81AA31B04B9FC0084CD97 /* MJSCLibraryHeaderCollectionReusableView.h */,
 				BBA81AA41B04B9FC0084CD97 /* MJSCLibraryHeaderCollectionReusableView.m */,
 				BBA81AA51B04B9FC0084CD97 /* MJSCLibraryHeaderCollectionReusableView.xib */,
+				BB59FB291B0C9ED4009D9E41 /* MJSCTableViewHeader.h */,
+				BB59FB2A1B0C9ED4009D9E41 /* MJSCTableViewHeader.m */,
+				BB59FB2B1B0C9ED4009D9E41 /* MJSCTableViewHeader.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -375,6 +375,7 @@
 				BBA81A921B0488040084CD97 /* MJSCLibraryCollectionViewCell.xib in Resources */,
 				BB7FC1B11AB451BA0046D195 /* LaunchScreen.xib in Resources */,
 				BBFB08201B0658FB00F61CB5 /* MJSCBookPDFViewController.xib in Resources */,
+				BB59FB2D1B0C9ED4009D9E41 /* MJSCTableViewHeader.xib in Resources */,
 				BBFAAAA41B0772C6007562FA /* no_image.png in Resources */,
 				BB7FC1AE1AB451BA0046D195 /* Images.xcassets in Resources */,
 			);
@@ -432,6 +433,7 @@
 				BBA81A8C1B03BF4E0084CD97 /* MJSCLibraryTableViewCell.m in Sources */,
 				BBA81A871B03BB110084CD97 /* MJSCBookDetailsViewController.m in Sources */,
 				BB7FC1CF1AB452300046D195 /* MJSCLibrary.m in Sources */,
+				BB59FB2C1B0C9ED4009D9E41 /* MJSCTableViewHeader.m in Sources */,
 				BBA81AA61B04B9FC0084CD97 /* MJSCLibraryHeaderCollectionReusableView.m in Sources */,
 				BBA81A911B0488040084CD97 /* MJSCLibraryCollectionViewCell.m in Sources */,
 				BB9F736B1B063FFE004B6E3C /* MJSCLibraryViewController.m in Sources */,
@@ -558,7 +560,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PREFIX_HEADER = Library/Library.pch;
 				INFOPLIST_FILE = Library/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -573,7 +575,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PREFIX_HEADER = Library/Library.pch;
 				INFOPLIST_FILE = Library/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";

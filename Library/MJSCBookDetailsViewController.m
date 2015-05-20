@@ -20,7 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *bookCategory;
 @property (weak, nonatomic) IBOutlet UILabel *bookSummary;
 @property (weak, nonatomic) IBOutlet UIImageView *bookImage;
-@property (weak, nonatomic) IBOutlet UIView *btnRead;
+@property (weak, nonatomic) IBOutlet UIButton *btnRead;
 
 @end
 
@@ -59,9 +59,8 @@
 
 -(void) splitViewController:(UISplitViewController *)splitVC
     willChangeToDisplayMode:(UISplitViewControllerDisplayMode)displayMode{
-    
     if (displayMode != UISplitViewControllerDisplayModeAllVisible) {
-        // We've to put a button on the navigation bar to show the primary controller (left)
+        // We've to put a button on the navigation bar to show the primary controller (on the left)
         self.navigationItem.rightBarButtonItem = splitVC.displayModeButtonItem;
     }
 }
@@ -84,7 +83,9 @@
     [self.bookImage setImageWithURL:self.book.imageURL];
 }
 
+
 -(void)configureView {
+    
     // Disable default behavior for IOS7
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
@@ -92,9 +93,18 @@
     self.bookImage.layer.borderWidth = 1;
     self.bookImage.layer.cornerRadius = 2;
     
+    self.bookCategory.textColor = [MJSCStyles secondaryTextColor];
+    self.bookTitle.textColor = [MJSCStyles primaryTextColor];
+    self.bookAuthor.textColor = [MJSCStyles primaryTextColor];
+    self.bookSummary.textColor = [MJSCStyles primaryTextColor];
+    
     self.btnRead.clipsToBounds = YES;
     self.btnRead.layer.cornerRadius = 4;
-    self.btnRead.backgroundColor = [MJSCStyles accentColor];
+    self.btnRead.layer.borderWidth = 1;
+    self.btnRead.layer.backgroundColor = [[UIColor whiteColor] CGColor];
+    self.btnRead.layer.borderColor = [[MJSCStyles accentColor] CGColor];
+    [self.btnRead setTitleColor:[MJSCStyles accentColor] forState:UIControlStateNormal];
+    [self.btnRead setTitleColor:[MJSCStyles lightPrimaryColor] forState:UIControlStateSelected];
     
 }
 

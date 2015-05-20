@@ -25,13 +25,13 @@
 }
 
 - (void)awakeFromNib {
+    self.bookAuthor.textColor = [MJSCStyles secondaryTextColor];
+    
     self.bookImage.layer.cornerRadius = 2;
-    self.bookImage.layer.borderWidth = 1;
-    self.bookImage.layer.borderColor = [[MJSCStyles separatotColor] CGColor];
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
+    self.bookImage.layer.borderWidth = 0.5;
+    self.bookImage.layer.borderColor = [[MJSCStyles dividerColor] CGColor];
+    
+    [self setSelectionStyle:UITableViewCellSelectionStyleBlue];
 }
 
 
@@ -46,5 +46,8 @@
     [self.bookImage cancelImageRequestOperation];
     self.bookImage.image = nil;
 }
+
+
+
 
 @end

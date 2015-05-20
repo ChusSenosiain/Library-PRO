@@ -123,8 +123,9 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     hud.mode = MBProgressHUDModeAnnularDeterminate;
     hud.labelText = @"Loading...";
     hud.detailsLabelText = @"0 %%";
-    hud.color = [MJSCStyles primaryColor];
-    
+    hud.color = [MJSCStyles accentColor];
+    hud.cornerRadius = 4;
+
     
     // PDF Request
     __weak typeof(self) weakSelf = self;
@@ -170,13 +171,6 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 
 #pragma mark - Utils
 
--(void)cancelCurrentRequest {
-    
-    if (self.requestOperation) {
-        [self.requestOperation cancel];
-        self.requestOperation = nil;
-    }
-}
 
 -(void)configureView {
     // Disable default behavior for IOS7
@@ -185,6 +179,15 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     self.browser.delegate = self;
     // Enable viewports
     self.browser.scalesPageToFit = YES;
+}
+
+
+-(void)cancelCurrentRequest {
+    
+    if (self.requestOperation) {
+        [self.requestOperation cancel];
+        self.requestOperation = nil;
+    }
 }
 
 -(NSString*)cacheFile:(NSURL *)bookURL {
