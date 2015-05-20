@@ -1,14 +1,15 @@
 # Library: Utad Basic iOS Project
 
-**Includes AFNetworking**
-**Includes MBProgressHUD**
+**Includes AFNetworking and MBProgressHUD**
 
 ## Descriptión:
 
-A simple project with an UISplitView and UITabBarController that shows a collection of books. If you select a book you can download and read it.
+A simple project that shows a collection of books. If you select a book you can download and read it.
 
 This is a good sample code for:
 
+- Use of UISplitView.
+- Use of UITabBarController.
 - AFNetworking:
     Download images in UITableView and UICollectionView.
     Download a file.
