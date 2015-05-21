@@ -4,7 +4,7 @@
 
 ## Description:
 
-A simple project that shows a collection of 11 PDF books. If you select a book you can download and read it. The books are harcoded.
+A simple project that shows a collection of 11 PDF books. If you select a book you can download and read it. 
 
 ## External cocoapods libraries:
 
@@ -30,4 +30,4 @@ This is a good sample code for:
 - Use prefix classes (MJSCStyles)
 
 
-Icons made by [Freepik] ("http://www.flaticon.com/authors/freepik") from [Flaticon] ("http://www.flaticon.com") is licensed by [Creative Commons BY 3.0]("http://creativecommons.org/licenses/by/3.0/")
+App Icon made by [Freepik] ("http://www.flaticon.com/authors/freepik") from [Flaticon] ("http://www.flaticon.com") is licensed by [Creative Commons BY 3.0]("http://creativecommons.org/licenses/by/3.0/")
