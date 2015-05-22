@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 María Jesús Senosiain Caamiña. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 @interface MJSCTableViewHeader : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *sectionTitle;

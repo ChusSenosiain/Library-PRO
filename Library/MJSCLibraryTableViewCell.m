@@ -8,7 +8,6 @@
 
 #import "MJSCLibraryTableViewCell.h"
 #import "MJSCBook.h"
-#import "Settings.h"
 #import <AFNetworking/UIKit+AFNetworking.h>
 
 @implementation MJSCLibraryTableViewCell

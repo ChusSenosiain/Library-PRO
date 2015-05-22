@@ -7,7 +7,6 @@
 //
 
 #import "MJSCLibraryCollectionViewCell.h"
-#import "Settings.h"
 #import "MJSCBook.h"
 #import <AFNetworking/UIKit+AFNetworking.h>
 

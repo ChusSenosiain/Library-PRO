@@ -7,8 +7,6 @@
 //
 
 #import "MJSCLibraryHeaderCollectionReusableView.h"
-#import "Settings.h"
-
 
 @implementation MJSCLibraryHeaderCollectionReusableView
 
