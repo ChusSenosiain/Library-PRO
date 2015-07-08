@@ -1,6 +1,5 @@
 // AFNetworkReachabilityManager.m
-//
-// Copyright (c) 2013-2015 AFNetworking (http://afnetworking.com)
+// Copyright (c) 2011–2015 Alamofire Software Foundation (http://alamofire.org/)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -191,6 +190,7 @@ static void AFNetworkReachabilityReleaseCallback(const void *info) {
     __weak __typeof(self)weakSelf = self;
     AFNetworkReachabilityStatusBlock callback = ^(AFNetworkReachabilityStatus status) {
         __strong __typeof(weakSelf)strongSelf = weakSelf;
+
         strongSelf.networkReachabilityStatus = status;
         if (strongSelf.networkReachabilityStatusBlock) {
             strongSelf.networkReachabilityStatusBlock(status);

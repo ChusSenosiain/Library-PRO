@@ -1,6 +1,5 @@
 // AFURLConnectionOperation.h
-//
-// Copyright (c) 2013-2015 AFNetworking (http://afnetworking.com)
+// Copyright (c) 2011–2015 Alamofire Software Foundation (http://alamofire.org/)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -103,7 +102,7 @@
 /**
  The run loop modes in which the operation will run on the network thread. By default, this is a single-member set containing `NSRunLoopCommonModes`.
  */
-@property (strong, nonatomic) NSSet *runLoopModes;
+@property (nonatomic, strong) NSSet *runLoopModes;
 
 ///-----------------------------------------
 /// @name Getting URL Connection Information
@@ -112,17 +111,17 @@
 /**
  The request used by the operation's connection.
  */
-@property (readonly, strong, nonatomic) NSURLRequest *request;
+@property (readonly, nonatomic, strong) NSURLRequest *request;
 
 /**
  The last response received by the operation's connection.
  */
-@property (readonly, strong, nonatomic) NSURLResponse *response;
+@property (readonly, nonatomic, strong) NSURLResponse *response;
 
 /**
  The error, if any, that occurred in the lifecycle of the request.
  */
-@property (readonly, strong, nonatomic) NSError *error;
+@property (readonly, nonatomic, strong) NSError *error;
 
 ///----------------------------
 /// @name Getting Response Data
@@ -131,7 +130,7 @@
 /**
  The data received during the request.
  */
-@property (readonly, strong, nonatomic) NSData *responseData;
+@property (readonly, nonatomic, strong) NSData *responseData;
 
 /**
  The string representation of the response data.
@@ -161,7 +160,7 @@
 
  This will be overridden by any shared credentials that exist for the username or password of the request URL, if present.
  */
-@property (strong, nonatomic) NSURLCredential *credential;
+@property (nonatomic, strong) NSURLCredential *credential;
 
 ///-------------------------------
 /// @name Managing Security Policy
@@ -170,7 +169,7 @@
 /**
  The security policy used to evaluate server trust for secure connections.
  */
-@property (strong, nonatomic) AFSecurityPolicy *securityPolicy;
+@property (nonatomic, strong) AFSecurityPolicy *securityPolicy;
 
 ///------------------------
 /// @name Accessing Streams
@@ -181,14 +180,14 @@
 
  This property acts as a proxy to the `HTTPBodyStream` property of `request`.
  */
-@property (strong, nonatomic) NSInputStream *inputStream;
+@property (nonatomic, strong) NSInputStream *inputStream;
 
 /**
  The output stream that is used to write data received until the request is finished.
 
  By default, data is accumulated into a buffer that is stored into `responseData` upon completion of the request, with the intermediary `outputStream` property set to `nil`. When `outputStream` is set, the data will not be accumulated into an internal buffer, and as a result, the `responseData` property of the completed request will be `nil`. The output stream will be scheduled in the network thread runloop upon being set.
  */
-@property (strong, nonatomic) NSOutputStream *outputStream;
+@property (nonatomic, strong) NSOutputStream *outputStream;
 
 ///---------------------------------
 /// @name Managing Callback Queues
@@ -198,7 +197,7 @@
  The dispatch queue for `completionBlock`. If `NULL` (default), the main queue is used.
  */
 #if OS_OBJECT_HAVE_OBJC_SUPPORT
-@property (strong, nonatomic) dispatch_queue_t completionQueue;
+@property (nonatomic, strong) dispatch_queue_t completionQueue;
 #else
 @property (nonatomic, assign) dispatch_queue_t completionQueue;
 #endif
@@ -207,7 +206,7 @@
  The dispatch group for `completionBlock`. If `NULL` (default), a private dispatch group is used.
  */
 #if OS_OBJECT_HAVE_OBJC_SUPPORT
-@property (strong, nonatomic) dispatch_group_t completionGroup;
+@property (nonatomic, strong) dispatch_group_t completionGroup;
 #else
 @property (nonatomic, assign) dispatch_group_t completionGroup;
 #endif
@@ -219,7 +218,7 @@
 /**
  The user info dictionary for the receiver.
  */
-@property (strong, nonatomic) NSDictionary *userInfo;
+@property (nonatomic, strong) NSDictionary *userInfo;
 
 ///------------------------------------------------------
 /// @name Initializing an AFURLConnectionOperation Object

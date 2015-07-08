@@ -1,6 +1,5 @@
 // AFURLSessionManager.h
-//
-// Copyright (c) 2013-2015 AFNetworking (http://afnetworking.com)
+// Copyright (c) 2011–2015 Alamofire Software Foundation (http://alamofire.org/)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -97,19 +96,19 @@
 /**
  The managed session.
  */
-@property (readonly, strong, nonatomic) NSURLSession *session;
+@property (readonly, nonatomic, strong) NSURLSession *session;
 
 /**
  The operation queue on which delegate callbacks are run.
  */
-@property (readonly, strong, nonatomic) NSOperationQueue *operationQueue;
+@property (readonly, nonatomic, strong) NSOperationQueue *operationQueue;
 
 /**
  Responses sent from the server in data tasks created with `dataTaskWithRequest:success:failure:` and run using the `GET` / `POST` / et al. convenience methods are automatically validated and serialized by the response serializer. By default, this property is set to an instance of `AFJSONResponseSerializer`.
 
  @warning `responseSerializer` must not be `nil`.
  */
-@property (strong, nonatomic) id <AFURLResponseSerialization> responseSerializer;
+@property (nonatomic, strong) id <AFURLResponseSerialization> responseSerializer;
 
 ///-------------------------------
 /// @name Managing Security Policy
@@ -118,7 +117,7 @@
 /**
  The security policy used by created request operations to evaluate server trust for secure connections. `AFURLSessionManager` uses the `defaultPolicy` unless otherwise specified.
  */
-@property (strong, nonatomic) AFSecurityPolicy *securityPolicy;
+@property (nonatomic, strong) AFSecurityPolicy *securityPolicy;
 
 ///--------------------------------------
 /// @name Monitoring Network Reachability
@@ -127,7 +126,7 @@
 /**
  The network reachability manager. `AFURLSessionManager` uses the `sharedManager` by default.
  */
-@property (readwrite, strong, nonatomic) AFNetworkReachabilityManager *reachabilityManager;
+@property (readwrite, nonatomic, strong) AFNetworkReachabilityManager *reachabilityManager;
 
 ///----------------------------
 /// @name Getting Session Tasks
@@ -136,22 +135,22 @@
 /**
  The data, upload, and download tasks currently run by the managed session.
  */
-@property (readonly, strong, nonatomic) NSArray *tasks;
+@property (readonly, nonatomic, strong) NSArray *tasks;
 
 /**
  The data tasks currently run by the managed session.
  */
-@property (readonly, strong, nonatomic) NSArray *dataTasks;
+@property (readonly, nonatomic, strong) NSArray *dataTasks;
 
 /**
  The upload tasks currently run by the managed session.
  */
-@property (readonly, strong, nonatomic) NSArray *uploadTasks;
+@property (readonly, nonatomic, strong) NSArray *uploadTasks;
 
 /**
  The download tasks currently run by the managed session.
  */
-@property (readonly, strong, nonatomic) NSArray *downloadTasks;
+@property (readonly, nonatomic, strong) NSArray *downloadTasks;
 
 ///-------------------------------
 /// @name Managing Callback Queues
@@ -161,7 +160,7 @@
  The dispatch queue for `completionBlock`. If `NULL` (default), the main queue is used.
  */
 #if OS_OBJECT_HAVE_OBJC_SUPPORT
-@property (strong, nonatomic) dispatch_queue_t completionQueue;
+@property (nonatomic, strong) dispatch_queue_t completionQueue;
 #else
 @property (nonatomic, assign) dispatch_queue_t completionQueue;
 #endif
@@ -170,7 +169,7 @@
  The dispatch group for `completionBlock`. If `NULL` (default), a private dispatch group is used.
  */
 #if OS_OBJECT_HAVE_OBJC_SUPPORT
-@property (strong, nonatomic) dispatch_group_t completionGroup;
+@property (nonatomic, strong) dispatch_group_t completionGroup;
 #else
 @property (nonatomic, assign) dispatch_group_t completionGroup;
 #endif

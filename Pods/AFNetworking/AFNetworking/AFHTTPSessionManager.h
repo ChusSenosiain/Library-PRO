@@ -1,6 +1,5 @@
 // AFHTTPSessionManager.h
-//
-// Copyright (c) 2013-2015 AFNetworking (http://afnetworking.com)
+// Copyright (c) 2011–2015 Alamofire Software Foundation (http://alamofire.org/)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -85,21 +84,21 @@
 /**
  The URL used to monitor reachability, and construct requests from relative paths in methods like `requestWithMethod:URLString:parameters:`, and the `GET` / `POST` / et al. convenience methods.
  */
-@property (readonly, strong, nonatomic) NSURL *baseURL;
+@property (readonly, nonatomic, strong) NSURL *baseURL;
 
 /**
  Requests created with `requestWithMethod:URLString:parameters:` & `multipartFormRequestWithMethod:URLString:parameters:constructingBodyWithBlock:` are constructed with a set of default headers using a parameter serialization specified by this property. By default, this is set to an instance of `AFHTTPRequestSerializer`, which serializes query string parameters for `GET`, `HEAD`, and `DELETE` requests, or otherwise URL-form-encodes HTTP message bodies.
 
  @warning `requestSerializer` must not be `nil`.
  */
-@property (strong, nonatomic) AFHTTPRequestSerializer <AFURLRequestSerialization> * requestSerializer;
+@property (nonatomic, strong) AFHTTPRequestSerializer <AFURLRequestSerialization> * requestSerializer;
 
 /**
  Responses sent from the server in data tasks created with `dataTaskWithRequest:success:failure:` and run using the `GET` / `POST` / et al. convenience methods are automatically validated and serialized by the response serializer. By default, this property is set to an instance of `AFJSONResponseSerializer`.
 
  @warning `responseSerializer` must not be `nil`.
  */
-@property (strong, nonatomic) AFHTTPResponseSerializer <AFURLResponseSerialization> * responseSerializer;
+@property (nonatomic, strong) AFHTTPResponseSerializer <AFURLResponseSerialization> * responseSerializer;
 
 ///---------------------
 /// @name Initialization

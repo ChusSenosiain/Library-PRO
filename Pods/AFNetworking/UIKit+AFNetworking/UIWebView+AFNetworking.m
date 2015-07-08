@@ -1,6 +1,5 @@
 // UIWebView+AFNetworking.m
-//
-// Copyright (c) 2013-2015 AFNetworking (http://afnetworking.com)
+// Copyright (c) 2011–2015 Alamofire Software Foundation (http://alamofire.org/)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -31,7 +30,7 @@
 #import "AFURLRequestSerialization.h"
 
 @interface UIWebView (_AFNetworking)
-@property (readwrite, strong, nonatomic, setter = af_setHTTPRequestOperation:) AFHTTPRequestOperation *af_HTTPRequestOperation;
+@property (readwrite, nonatomic, strong, setter = af_setHTTPRequestOperation:) AFHTTPRequestOperation *af_HTTPRequestOperation;
 @end
 
 @implementation UIWebView (_AFNetworking)
@@ -140,7 +139,7 @@
         if ([strongSelf.delegate respondsToSelector:@selector(webViewDidFinishLoad:)]) {
             [strongSelf.delegate webViewDidFinishLoad:strongSelf];
         }
-        
+
 #pragma clang diagnostic pop
     } failure:^(AFHTTPRequestOperation * __unused operation, NSError *error) {
         if (failure) {

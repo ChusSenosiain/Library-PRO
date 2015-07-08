@@ -1,6 +1,5 @@
 // AFURLConnectionOperation.m
-//
-// Copyright (c) 2013-2015 AFNetworking (http://afnetworking.com)
+// Copyright (c) 2011–2015 Alamofire Software Foundation (http://alamofire.org/)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -136,12 +135,12 @@ static inline BOOL AFStateTransitionIsValid(AFOperationState fromState, AFOperat
 
 @interface AFURLConnectionOperation ()
 @property (readwrite, nonatomic, assign) AFOperationState state;
-@property (readwrite, strong, nonatomic) NSRecursiveLock *lock;
-@property (readwrite, strong, nonatomic) NSURLConnection *connection;
-@property (readwrite, strong, nonatomic) NSURLRequest *request;
-@property (readwrite, strong, nonatomic) NSURLResponse *response;
-@property (readwrite, strong, nonatomic) NSError *error;
-@property (readwrite, strong, nonatomic) NSData *responseData;
+@property (readwrite, nonatomic, strong) NSRecursiveLock *lock;
+@property (readwrite, nonatomic, strong) NSURLConnection *connection;
+@property (readwrite, nonatomic, strong) NSURLRequest *request;
+@property (readwrite, nonatomic, strong) NSURLResponse *response;
+@property (readwrite, nonatomic, strong) NSError *error;
+@property (readwrite, nonatomic, strong) NSData *responseData;
 @property (readwrite, nonatomic, copy) NSString *responseString;
 @property (readwrite, nonatomic, assign) NSStringEncoding responseStringEncoding;
 @property (readwrite, nonatomic, assign) long long totalBytesRead;

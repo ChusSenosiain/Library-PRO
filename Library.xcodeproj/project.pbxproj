@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		28641E80F6BDC0A325484ED8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 989425D87DD3D17F44C74702 /* libPods.a */; };
+		7CD1163E5CF4A806109EAE5D /* libPods-Library.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 475EFEDAECF2E8013457E940 /* libPods-Library.a */; };
 		BB59FB2C1B0C9ED4009D9E41 /* MJSCTableViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = BB59FB2A1B0C9ED4009D9E41 /* MJSCTableViewHeader.m */; };
 		BB59FB2D1B0C9ED4009D9E41 /* MJSCTableViewHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB59FB2B1B0C9ED4009D9E41 /* MJSCTableViewHeader.xib */; };
 		BB67259B1B0BC395002B9670 /* MJSCStyles.m in Sources */ = {isa = PBXBuildFile; fileRef = BB67259A1B0BC395002B9670 /* MJSCStyles.m */; };
@@ -47,6 +48,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		373417B12E4558A950FD5DC1 /* Pods-Library.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Library.release.xcconfig"; path = "Pods/Target Support Files/Pods-Library/Pods-Library.release.xcconfig"; sourceTree = "<group>"; };
+		43472850B9E9CA2CFBA3AA21 /* Pods-Library.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Library.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Library/Pods-Library.debug.xcconfig"; sourceTree = "<group>"; };
+		475EFEDAECF2E8013457E940 /* libPods-Library.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Library.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		989425D87DD3D17F44C74702 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB59FB291B0C9ED4009D9E41 /* MJSCTableViewHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJSCTableViewHeader.h; sourceTree = "<group>"; };
 		BB59FB2A1B0C9ED4009D9E41 /* MJSCTableViewHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJSCTableViewHeader.m; sourceTree = "<group>"; };
@@ -105,6 +109,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				28641E80F6BDC0A325484ED8 /* libPods.a in Frameworks */,
+				7CD1163E5CF4A806109EAE5D /* libPods-Library.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,6 +128,8 @@
 			children = (
 				CE6B06AFBB4ED9145BBF1647 /* Pods.debug.xcconfig */,
 				CE7AAFBF695A4401EE0E18AD /* Pods.release.xcconfig */,
+				43472850B9E9CA2CFBA3AA21 /* Pods-Library.debug.xcconfig */,
+				373417B12E4558A950FD5DC1 /* Pods-Library.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -282,6 +289,7 @@
 			isa = PBXGroup;
 			children = (
 				989425D87DD3D17F44C74702 /* libPods.a */,
+				475EFEDAECF2E8013457E940 /* libPods-Library.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -418,7 +426,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Library/Pods-Library-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -554,7 +562,7 @@
 		};
 		BB7FC1C11AB451BA0046D195 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CE6B06AFBB4ED9145BBF1647 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 43472850B9E9CA2CFBA3AA21 /* Pods-Library.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -569,7 +577,7 @@
 		};
 		BB7FC1C21AB451BA0046D195 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CE7AAFBF695A4401EE0E18AD /* Pods.release.xcconfig */;
+			baseConfigurationReference = 373417B12E4558A950FD5DC1 /* Pods-Library.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
