@@ -66,3 +66,9 @@
 #define COCOAPODS_VERSION_MINOR_Parse 7
 #define COCOAPODS_VERSION_PATCH_Parse 5
 
+// vfrReader
+#define COCOAPODS_POD_AVAILABLE_vfrReader
+#define COCOAPODS_VERSION_MAJOR_vfrReader 2
+#define COCOAPODS_VERSION_MINOR_vfrReader 8
+#define COCOAPODS_VERSION_PATCH_vfrReader 6
+

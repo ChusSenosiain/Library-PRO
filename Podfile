@@ -5,6 +5,7 @@ target 'Library' do
   pod 'AFNetworking', '~> 2.0'
   pod 'MBProgressHUD', '~> 0.8'
   pod 'Parse', '~> 1.7.4'
+  pod 'vfrReader', '~> 2.7'
 end
 
 

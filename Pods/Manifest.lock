@@ -24,16 +24,19 @@ PODS:
   - MBProgressHUD (0.9.1)
   - Parse (1.7.5):
     - Bolts/Tasks (>= 1.2.0)
+  - vfrReader (2.8.6)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - MBProgressHUD (~> 0.8)
   - Parse (~> 1.7.4)
+  - vfrReader (~> 2.7)
 
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
   Bolts: d176cb1e0012175589e389a9db49b85e27787576
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   Parse: 7c0f115eff3e0cea3fac08d50bda47154edb8832
+  vfrReader: 94ea739a545e39093c93802ca1c5b203a5df46b1
 
 COCOAPODS: 0.37.1

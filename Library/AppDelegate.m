@@ -18,6 +18,7 @@
 
 #import "UIViewController+Combinators.h"
 
+#import <Parse/Parse.h>
 
 
 @interface AppDelegate ()
@@ -34,6 +35,9 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
+    
+    // Init parse
+    [self configureParse];
     
     // Model 
     MJSCLibrary *library = [[MJSCLibrary alloc] initWithBooks];
@@ -103,6 +107,11 @@
     self.window.rootViewController = navVC;
 }
 
+
+-(void)configureParse {
+    [Parse setApplicationId:@"ZKJq1pKzGnS0FNVo5XceDodJvXlKmqOJbXQt0npf"
+                  clientKey:@"IpqLgPBbfBC0YP135Pfkr4k5Hrn79ZjcwdwcyLaj"];
+}
 
 
 

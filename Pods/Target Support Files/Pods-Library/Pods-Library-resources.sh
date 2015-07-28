@@ -57,6 +57,42 @@ install_resource()
       ;;
   esac
 }
+if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_resource "vfrReader/Graphics/Reader-Button-H.png"
+  install_resource "vfrReader/Graphics/Reader-Button-H@2x.png"
+  install_resource "vfrReader/Graphics/Reader-Button-N.png"
+  install_resource "vfrReader/Graphics/Reader-Button-N@2x.png"
+  install_resource "vfrReader/Graphics/Reader-Email.png"
+  install_resource "vfrReader/Graphics/Reader-Email@2x.png"
+  install_resource "vfrReader/Graphics/Reader-Export.png"
+  install_resource "vfrReader/Graphics/Reader-Export@2x.png"
+  install_resource "vfrReader/Graphics/Reader-Mark-N.png"
+  install_resource "vfrReader/Graphics/Reader-Mark-N@2x.png"
+  install_resource "vfrReader/Graphics/Reader-Mark-Y.png"
+  install_resource "vfrReader/Graphics/Reader-Mark-Y@2x.png"
+  install_resource "vfrReader/Graphics/Reader-Print.png"
+  install_resource "vfrReader/Graphics/Reader-Print@2x.png"
+  install_resource "vfrReader/Graphics/Reader-Thumbs.png"
+  install_resource "vfrReader/Graphics/Reader-Thumbs@2x.png"
+fi
+if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_resource "vfrReader/Graphics/Reader-Button-H.png"
+  install_resource "vfrReader/Graphics/Reader-Button-H@2x.png"
+  install_resource "vfrReader/Graphics/Reader-Button-N.png"
+  install_resource "vfrReader/Graphics/Reader-Button-N@2x.png"
+  install_resource "vfrReader/Graphics/Reader-Email.png"
+  install_resource "vfrReader/Graphics/Reader-Email@2x.png"
+  install_resource "vfrReader/Graphics/Reader-Export.png"
+  install_resource "vfrReader/Graphics/Reader-Export@2x.png"
+  install_resource "vfrReader/Graphics/Reader-Mark-N.png"
+  install_resource "vfrReader/Graphics/Reader-Mark-N@2x.png"
+  install_resource "vfrReader/Graphics/Reader-Mark-Y.png"
+  install_resource "vfrReader/Graphics/Reader-Mark-Y@2x.png"
+  install_resource "vfrReader/Graphics/Reader-Print.png"
+  install_resource "vfrReader/Graphics/Reader-Print@2x.png"
+  install_resource "vfrReader/Graphics/Reader-Thumbs.png"
+  install_resource "vfrReader/Graphics/Reader-Thumbs@2x.png"
+fi
 
 rsync -avr --copy-links --no-relative --exclude '*/.svn/*' --files-from="$RESOURCES_TO_COPY" / "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
 if [[ "${ACTION}" == "install" ]]; then
