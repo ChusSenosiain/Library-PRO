@@ -33,5 +33,23 @@
 }
 
 
+-(id)initWithDictionary:(NSDictionary *)dictionary {
+    
+    if (self = [super init]) {
+        
+        _title = [dictionary objectForKey:@"title"];
+        _subtitle = [dictionary objectForKey:@"subtitle"];
+        _author = [dictionary objectForKey:@"author"];
+        _summary = [dictionary objectForKey:@"summary"];
+        _category = [dictionary objectForKey:@"category"];
+        _imageURL = [dictionary objectForKey:@"imageURL"];
+        _URL = [dictionary objectForKey:@"URL"];
+        
+    }
+    
+    return self;
+    
+}
+
 
 @end

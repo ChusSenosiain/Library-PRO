@@ -21,7 +21,7 @@
 #import <Parse/Parse.h>
 
 
-@interface AppDelegate ()
+@interface AppDelegate () <MJSCLibraryDelegate>
 
 
 @property(nonatomic,strong)UITabBarController *tabBarController;
@@ -36,11 +36,13 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
     
-    // Init parse
-    [self configureParse];
+    // Model
+    MJSCLibrary *library = [[MJSCLibrary alloc] init];
+    library.delegate = self;
     
-    // Model 
-    MJSCLibrary *library = [[MJSCLibrary alloc] initWithBooks];
+    
+    [library loadBooks];
+    
     
     // Screen Type: UItableViewController or UICollectionView for iPhone or UISplitView for iPad
     UIDevice *dev = [UIDevice currentDevice];
@@ -108,13 +110,6 @@
 }
 
 
--(void)configureParse {
-    [Parse setApplicationId:@"ZKJq1pKzGnS0FNVo5XceDodJvXlKmqOJbXQt0npf"
-                  clientKey:@"IpqLgPBbfBC0YP135Pfkr4k5Hrn79ZjcwdwcyLaj"];
-}
-
-
-
 # pragma mark - Utils
 
 -(MJSCBook*) lastBookSelectedInLibrary:(MJSCLibrary*) library {
@@ -134,6 +129,13 @@
     MJSCBook *book = [library bookAtSection:section index:row];
     
     return book;
+}
+
+
+-(void)libraryDidFinishLoad {
+    
+    NSLog(@"Termine la cargaaaa");
+    
 }
 
 @end

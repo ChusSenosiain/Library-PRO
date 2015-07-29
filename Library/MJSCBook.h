@@ -28,4 +28,7 @@
                 URL:(NSURL *)URL;
 
 
+-(id)initWithDictionary:(NSDictionary *)dictionary;
+
+
 @end

@@ -10,7 +10,7 @@
 @class MJSCLibrary;
 @class MJSCBook;
 
-#import "MJScLibraryViewControllerDelegate.h"
+#import "MJSCLibraryViewControllerDelegate.h"
 
 #define BOOK_DID_CHANGE_NOTIFICATION @"bookDidChange"
 #define BOOK_KEY @"book"

@@ -9,13 +9,23 @@
 @import Foundation;
 @class MJSCBook;
 
+@protocol MJSCLibraryDelegate <NSObject>
+
+@optional
+
+-(void)libraryDidFinishLoad;
+
+@end
+
+
 @interface MJSCLibrary : NSObject
 
 @property (nonatomic, copy) NSDictionary *library;
 @property (nonatomic, readonly) NSUInteger sectionCount;
 
 
--(id) initWithBooks;
+@property (weak, nonatomic) id<MJSCLibraryDelegate> delegate;
+
 
 -(MJSCBook *)bookAtSection:(NSInteger)section
                       index:(NSUInteger)index;
@@ -23,5 +33,8 @@
 -(NSUInteger)countBooksAtSection:(NSUInteger)section;
 
 -(NSString *)sectionTitle:(NSUInteger)section;
+
+
+-(void)loadBooks;
 
 @end
