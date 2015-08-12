@@ -12,6 +12,7 @@
 		BB265E761B7BDBD4008D0E40 /* _Note.m in Sources */ = {isa = PBXBuildFile; fileRef = BB265E701B7BDBD4008D0E40 /* _Note.m */; };
 		BB265E771B7BDBD4008D0E40 /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = BB265E721B7BDBD4008D0E40 /* Book.m */; };
 		BB265E781B7BDBD4008D0E40 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = BB265E741B7BDBD4008D0E40 /* Note.m */; };
+		BB265E7B1B7BE121008D0E40 /* MJSCCoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = BB265E7A1B7BE121008D0E40 /* MJSCCoreDataStack.m */; };
 		BB59FB2C1B0C9ED4009D9E41 /* MJSCTableViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = BB59FB2A1B0C9ED4009D9E41 /* MJSCTableViewHeader.m */; };
 		BB59FB2D1B0C9ED4009D9E41 /* MJSCTableViewHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB59FB2B1B0C9ED4009D9E41 /* MJSCTableViewHeader.xib */; };
 		BB67259B1B0BC395002B9670 /* MJSCStyles.m in Sources */ = {isa = PBXBuildFile; fileRef = BB67259A1B0BC395002B9670 /* MJSCStyles.m */; };
@@ -67,6 +68,8 @@
 		BB265E721B7BDBD4008D0E40 /* Book.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Book.m; sourceTree = "<group>"; };
 		BB265E731B7BDBD4008D0E40 /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
 		BB265E741B7BDBD4008D0E40 /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
+		BB265E791B7BE121008D0E40 /* MJSCCoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJSCCoreDataStack.h; sourceTree = "<group>"; };
+		BB265E7A1B7BE121008D0E40 /* MJSCCoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJSCCoreDataStack.m; sourceTree = "<group>"; };
 		BB59FB291B0C9ED4009D9E41 /* MJSCTableViewHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJSCTableViewHeader.h; sourceTree = "<group>"; };
 		BB59FB2A1B0C9ED4009D9E41 /* MJSCTableViewHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJSCTableViewHeader.m; sourceTree = "<group>"; };
 		BB59FB2B1B0C9ED4009D9E41 /* MJSCTableViewHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MJSCTableViewHeader.xib; sourceTree = "<group>"; };
@@ -250,6 +253,8 @@
 				BB7FC1CD1AB452300046D195 /* MJSCLibrary.h */,
 				BB7FC1CE1AB452300046D195 /* MJSCLibrary.m */,
 				BB265E3E1B7BCBF0008D0E40 /* MJSCLibraryModel.xcdatamodeld */,
+				BB265E791B7BE121008D0E40 /* MJSCCoreDataStack.h */,
+				BB265E7A1B7BE121008D0E40 /* MJSCCoreDataStack.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -486,6 +491,7 @@
 				BB67259B1B0BC395002B9670 /* MJSCStyles.m in Sources */,
 				BB265E781B7BDBD4008D0E40 /* Note.m in Sources */,
 				BBFB081F1B0658FB00F61CB5 /* MJSCBookPDFViewController.m in Sources */,
+				BB265E7B1B7BE121008D0E40 /* MJSCCoreDataStack.m in Sources */,
 				BB7FC1A91AB451BA0046D195 /* main.m in Sources */,
 				BB265E751B7BDBD4008D0E40 /* _Book.m in Sources */,
 				BBA81A7E1B03B9A90084CD97 /* MJSCLibraryTableViewController.m in Sources */,
