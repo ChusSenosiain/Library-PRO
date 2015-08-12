@@ -27,6 +27,10 @@
 @property(strong, nonatomic) NSURL *imageURL;
 @property(strong, nonatomic) NSURL *URL;
 
+@property(nonatomic, strong) NSDate *updatedAt;
+@property(nonatomic, strong) NSDate *createdAt;
+
+
 @property (weak, nonatomic) id<MJSCBookDelegate> delegate;
 
 

@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		28641E80F6BDC0A325484ED8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 989425D87DD3D17F44C74702 /* libPods.a */; };
-		7CD1163E5CF4A806109EAE5D /* libPods-Library.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 475EFEDAECF2E8013457E940 /* libPods-Library.a */; };
+		BB265E401B7BCBF0008D0E40 /* MJSCLibraryModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BB265E3E1B7BCBF0008D0E40 /* MJSCLibraryModel.xcdatamodeld */; };
+		BB265E5D1B7BD2C4008D0E40 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = BB265E5A1B7BD2C4008D0E40 /* Note.m */; };
+		BB265E5E1B7BD2C4008D0E40 /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = BB265E5C1B7BD2C4008D0E40 /* Book.m */; };
+		BB265E691B7BD6D3008D0E40 /* _Book.m in Sources */ = {isa = PBXBuildFile; fileRef = BB265E661B7BD6D3008D0E40 /* _Book.m */; };
+		BB265E6A1B7BD6D3008D0E40 /* _Note.m in Sources */ = {isa = PBXBuildFile; fileRef = BB265E681B7BD6D3008D0E40 /* _Note.m */; };
 		BB59FB2C1B0C9ED4009D9E41 /* MJSCTableViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = BB59FB2A1B0C9ED4009D9E41 /* MJSCTableViewHeader.m */; };
 		BB59FB2D1B0C9ED4009D9E41 /* MJSCTableViewHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB59FB2B1B0C9ED4009D9E41 /* MJSCTableViewHeader.xib */; };
 		BB67259B1B0BC395002B9670 /* MJSCStyles.m in Sources */ = {isa = PBXBuildFile; fileRef = BB67259A1B0BC395002B9670 /* MJSCStyles.m */; };
@@ -36,6 +39,7 @@
 		BBFAAAA41B0772C6007562FA /* no_image.png in Resources */ = {isa = PBXBuildFile; fileRef = BBFAAAA31B0772C6007562FA /* no_image.png */; };
 		BBFB081F1B0658FB00F61CB5 /* MJSCBookPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBFB081D1B0658FB00F61CB5 /* MJSCBookPDFViewController.m */; };
 		BBFB08201B0658FB00F61CB5 /* MJSCBookPDFViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBFB081E1B0658FB00F61CB5 /* MJSCBookPDFViewController.xib */; };
+		C95595471B6DE1581DF1F75A /* libPods-Library.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 475EFEDAECF2E8013457E940 /* libPods-Library.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +57,16 @@
 		43472850B9E9CA2CFBA3AA21 /* Pods-Library.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Library.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Library/Pods-Library.debug.xcconfig"; sourceTree = "<group>"; };
 		475EFEDAECF2E8013457E940 /* libPods-Library.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Library.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		989425D87DD3D17F44C74702 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB265E3F1B7BCBF0008D0E40 /* MJSCLibraryModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MJSCLibraryModel.xcdatamodel; sourceTree = "<group>"; };
+		BB265E591B7BD2C4008D0E40 /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
+		BB265E5A1B7BD2C4008D0E40 /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
+		BB265E5B1B7BD2C4008D0E40 /* Book.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Book.h; sourceTree = "<group>"; };
+		BB265E5C1B7BD2C4008D0E40 /* Book.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Book.m; sourceTree = "<group>"; };
+		BB265E651B7BD6D3008D0E40 /* _Book.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Book.h; sourceTree = SOURCE_ROOT; };
+		BB265E661B7BD6D3008D0E40 /* _Book.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Book.m; sourceTree = SOURCE_ROOT; };
+		BB265E671B7BD6D3008D0E40 /* _Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Note.h; sourceTree = SOURCE_ROOT; };
+		BB265E681B7BD6D3008D0E40 /* _Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Note.m; sourceTree = SOURCE_ROOT; };
+		BB265E6B1B7BD946008D0E40 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		BB59FB291B0C9ED4009D9E41 /* MJSCTableViewHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJSCTableViewHeader.h; sourceTree = "<group>"; };
 		BB59FB2A1B0C9ED4009D9E41 /* MJSCTableViewHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJSCTableViewHeader.m; sourceTree = "<group>"; };
 		BB59FB2B1B0C9ED4009D9E41 /* MJSCTableViewHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MJSCTableViewHeader.xib; sourceTree = "<group>"; };
@@ -111,8 +125,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				28641E80F6BDC0A325484ED8 /* libPods.a in Frameworks */,
-				7CD1163E5CF4A806109EAE5D /* libPods-Library.a in Frameworks */,
+				C95595471B6DE1581DF1F75A /* libPods-Library.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,10 +237,19 @@
 		BB7FC1C61AB451EA0046D195 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BB265E651B7BD6D3008D0E40 /* _Book.h */,
+				BB265E661B7BD6D3008D0E40 /* _Book.m */,
+				BB265E671B7BD6D3008D0E40 /* _Note.h */,
+				BB265E681B7BD6D3008D0E40 /* _Note.m */,
+				BB265E591B7BD2C4008D0E40 /* Note.h */,
+				BB265E5A1B7BD2C4008D0E40 /* Note.m */,
+				BB265E5B1B7BD2C4008D0E40 /* Book.h */,
+				BB265E5C1B7BD2C4008D0E40 /* Book.m */,
 				BB7FC1CA1AB452240046D195 /* MJSCBook.h */,
 				BB7FC1CB1AB452240046D195 /* MJSCBook.m */,
 				BB7FC1CD1AB452300046D195 /* MJSCLibrary.h */,
 				BB7FC1CE1AB452300046D195 /* MJSCLibrary.m */,
+				BB265E3E1B7BCBF0008D0E40 /* MJSCLibraryModel.xcdatamodeld */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -301,6 +323,7 @@
 		F5533C704632B4F35F95ED8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BB265E6B1B7BD946008D0E40 /* CoreData.framework */,
 				989425D87DD3D17F44C74702 /* libPods.a */,
 				475EFEDAECF2E8013457E940 /* libPods-Library.a */,
 			);
@@ -449,11 +472,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB265E691B7BD6D3008D0E40 /* _Book.m in Sources */,
 				BB7FC1CC1AB452240046D195 /* MJSCBook.m in Sources */,
 				BB7FC1AC1AB451BA0046D195 /* AppDelegate.m in Sources */,
 				BBA81A8C1B03BF4E0084CD97 /* MJSCLibraryTableViewCell.m in Sources */,
 				BBA81A871B03BB110084CD97 /* MJSCBookDetailsViewController.m in Sources */,
 				BB7FC1CF1AB452300046D195 /* MJSCLibrary.m in Sources */,
+				BB265E6A1B7BD6D3008D0E40 /* _Note.m in Sources */,
 				BB59FB2C1B0C9ED4009D9E41 /* MJSCTableViewHeader.m in Sources */,
 				BBA81AA61B04B9FC0084CD97 /* MJSCLibraryHeaderCollectionReusableView.m in Sources */,
 				BBA81A911B0488040084CD97 /* MJSCLibraryCollectionViewCell.m in Sources */,
@@ -462,8 +487,11 @@
 				BBFB081F1B0658FB00F61CB5 /* MJSCBookPDFViewController.m in Sources */,
 				BB7FC1A91AB451BA0046D195 /* main.m in Sources */,
 				BBA81A7E1B03B9A90084CD97 /* MJSCLibraryTableViewController.m in Sources */,
+				BB265E5D1B7BD2C4008D0E40 /* Note.m in Sources */,
+				BB265E401B7BCBF0008D0E40 /* MJSCLibraryModel.xcdatamodeld in Sources */,
 				BBA81A991B049A810084CD97 /* UIViewController+Combinators.m in Sources */,
 				BBA81A821B03BA4F0084CD97 /* MJSCLibraryCollectionViewController.m in Sources */,
+				BB265E5E1B7BD2C4008D0E40 /* Book.m in Sources */,
 				BB89DEBA1B68D5010024C62D /* MJSCBackendManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -669,6 +697,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		BB265E3E1B7BCBF0008D0E40 /* MJSCLibraryModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				BB265E3F1B7BCBF0008D0E40 /* MJSCLibraryModel.xcdatamodel */,
+			);
+			currentVersion = BB265E3F1B7BCBF0008D0E40 /* MJSCLibraryModel.xcdatamodel */;
+			path = MJSCLibraryModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = BB7FC19B1AB451BA0046D195 /* Project object */;
 }
