@@ -19,7 +19,7 @@
 @implementation MJSCBackendManager
 
 
--(AFHTTPRequestOperation *)downloadBooksWithcompletionBlock:(void(^)(NSArray *books, NSError *error))completion {
+-(AFHTTPRequestOperation *)downloadBooks:(void(^)(NSArray *books, NSError *error))completion {
     
     AFHTTPRequestOperationManager *manager = [self prepareRequestOperationManager];
     AFHTTPRequestOperation *operation;
@@ -68,7 +68,18 @@
     NSString *bookDetailURL = [NSString stringWithFormat:@"%@%@%@", PARSE_BOOK_URL, @"/", bookId];
     
     operation = [manager GET:bookDetailURL parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        completion(nil, nil);
+        
+        
+        NSString *resposeString = [operation responseString];
+        
+        NSDictionary *json = [NSJSONSerialization
+                              JSONObjectWithData:[resposeString dataUsingEncoding:NSUTF8StringEncoding]
+                              options:kNilOptions
+                              error:nil];
+        
+        MJSCBook *book = [[MJSCBook alloc] initWithDictionary:json];
+        
+        completion(book, nil);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         completion(nil, error);

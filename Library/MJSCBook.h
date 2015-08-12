@@ -9,7 +9,16 @@
 @import Foundation;
 @import UIKit;
 
+@protocol MJSCBookDelegate <NSObject>
+
+@optional
+
+-(void)bookDidFinishLoad;
+
+@end
+
 @interface MJSCBook : NSObject
+@property(nonatomic, copy) NSString *bookID;
 @property(nonatomic, copy) NSString *author;
 @property(nonatomic, copy) NSString *title;
 @property(nonatomic, copy) NSString *subtitle;
@@ -18,17 +27,23 @@
 @property(strong, nonatomic) NSURL *imageURL;
 @property(strong, nonatomic) NSURL *URL;
 
+@property (weak, nonatomic) id<MJSCBookDelegate> delegate;
 
--(id) initWithTitle:(NSString *)title
-           subtitle:(NSString *)subtitle
-             author:(NSString *)author
-            summary:(NSString *)summary
-           category:(NSString *)category
-           imageURL:(NSURL *)imageURL
-                URL:(NSURL *)URL;
+
+-(id)initWithTitle:(NSString *)title
+          subtitle:(NSString *)subtitle
+            author:(NSString *)author
+           summary:(NSString *)summary
+          category:(NSString *)category
+          imageURL:(NSURL *)imageURL
+               URL:(NSURL *)URL
+            bookID:(NSString *)bookID;
 
 
 -(id)initWithDictionary:(NSDictionary *)dictionary;
+
+
+-(void)loadBookDetails:(NSString *)bookID;
 
 
 @end

@@ -8,8 +8,8 @@
 
 #import "MJSCBookDetailsViewController.h"
 #import "MJSCBookPDFViewController.h"
-#import "MJSCBook.h"
 #import "MJSCLibraryViewController.h"
+#import "MJSCBackendManager.h"
 #import <AFNetworking/UIKit+AFNetworking.h>
 
 @interface MJSCBookDetailsViewController () 
@@ -30,6 +30,7 @@
     
     if (self = [super init]) {
         _book = book;
+        _book.delegate = self;
     }
     
     return self;
@@ -37,9 +38,7 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
     [self configureView];
-    [self syncViewWithModel];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -69,7 +68,19 @@
 
 -(void)libraryViewController:(UIViewController *)libraryVC didSelectBook:(MJSCBook *)book indexPath:(NSIndexPath *)indexPath {
     self.book = book;
+    self.book.delegate = self;
+    
+    // TODO cancelar anterior descarga
+    
+    [self.book loadBookDetails:self.book.bookID];
+}
+
+
+#pragma mark - MJSCBookDelegate
+
+-(void)bookDidFinishLoad {
     [self syncViewWithModel];
+    
 }
 
 #pragma mark - Utils
@@ -106,6 +117,14 @@
     [self.btnRead setTitleColor:[MJSCStyles accentColor] forState:UIControlStateNormal];
     [self.btnRead setTitleColor:[MJSCStyles lightPrimaryColor] forState:UIControlStateSelected];
     
+    
+    if (self.book) {
+        [self.book loadBookDetails:self.book.bookID];
+    }
+    
+    
 }
+
+
 
 @end

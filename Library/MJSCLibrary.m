@@ -46,7 +46,7 @@
     MJSCBackendManager *backManager = [[MJSCBackendManager alloc] init];
     
     __weak typeof(self) weakSelf = self;
-    [backManager downloadBooksWithcompletionBlock:^(NSArray *books, NSError *error) {
+    [backManager downloadBooks:^(NSArray *books, NSError *error) {
         
             if (!error) {
                 

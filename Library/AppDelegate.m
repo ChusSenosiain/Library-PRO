@@ -18,7 +18,6 @@
 
 #import "UIViewController+Combinators.h"
 
-#import <Parse/Parse.h>
 
 
 @interface AppDelegate () <MJSCLibraryDelegate>
@@ -36,20 +35,12 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
     
-    // Model
-    MJSCLibrary *library = [[MJSCLibrary alloc] init];
-    library.delegate = self;
-    
-    
-    [library loadBooks];
-    
-    
     // Screen Type: UItableViewController or UICollectionView for iPhone or UISplitView for iPad
     UIDevice *dev = [UIDevice currentDevice];
     if ([dev userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        [self configureForiPadWithModel:library];
+        [self configureForiPad];
     } else {
-        [self configureForiPhoneWithModel:library];
+        [self configureForiPhone];
     }
     
     // App aspect
@@ -85,11 +76,10 @@
 
 #pragma park -- App Configuration
 
--(void)configureForiPadWithModel:(MJSCLibrary*)library {
-    MJSCBook *book = [self lastBookSelectedInLibrary:library];
-
-    MJSCLibraryViewController *libraryVC = [[MJSCLibraryViewController alloc] initWithModel:library];
-    MJSCBookDetailsViewController *bookDetailsVC = [[MJSCBookDetailsViewController alloc] initWithBook:book];
+-(void)configureForiPad {
+    
+    MJSCLibraryViewController *libraryVC = [[MJSCLibraryViewController alloc] init];
+    MJSCBookDetailsViewController *bookDetailsVC = [[MJSCBookDetailsViewController alloc] init];
     
     UISplitViewController *splitVC = [[UISplitViewController alloc] init];
     
@@ -103,8 +93,8 @@
 
 }
 
--(void)configureForiPhoneWithModel:(MJSCLibrary*)library {
-    MJSCLibraryViewController *libraryVC = [[MJSCLibraryViewController alloc] initWithModel:library];
+-(void)configureForiPhone {
+    MJSCLibraryViewController *libraryVC = [[MJSCLibraryViewController alloc] init];
     UINavigationController *navVC = [libraryVC wrappedInNavigation];
     self.window.rootViewController = navVC;
 }
@@ -131,11 +121,5 @@
     return book;
 }
 
-
--(void)libraryDidFinishLoad {
-    
-    NSLog(@"Termine la cargaaaa");
-    
-}
 
 @end

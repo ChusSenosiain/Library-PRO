@@ -7,8 +7,8 @@
 //
 
 #import "MJSCBookPDFViewController.h"
-#import "MJSCLibraryViewController.h"
 #import "MJSCBook.h"
+#import "MJSCLibraryViewController.h"
 #import "MBProgressHUD.h"
 #import "AFNetworking.h"
 
@@ -28,7 +28,6 @@
     
     return self;
 }
-
 
 
 - (void)viewDidLoad {
@@ -84,6 +83,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     }
     
 }
+
 
 #pragma mark - notification
 // BOOK_DID_CHANGE_NOTIFICATION

@@ -6,16 +6,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Library/MJSCBookDetailsViewController.m"
+            timestampString = "461096994.691725"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "-libraryViewController:didSelectBook:indexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Library/MJSCLibrary.m"
-            timestampString = "459864602.111948"
+            filePath = "Library/MJSCBookDetailsViewController.m"
+            timestampString = "461097183.655853"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
-            landmarkName = "-loadBooks"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "-initWithBook:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

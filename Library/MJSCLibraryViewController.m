@@ -7,7 +7,6 @@
 //
 
 #import "MJSCLibraryViewController.h"
-#import "MJSCLibrary.h"
 #import "MJSCLibraryTableViewController.h"
 #import "MJSCLibraryCollectionViewController.h"
 #import "MJSCBookDetailsViewController.h"
@@ -34,12 +33,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
+    
+    self.library = [[MJSCLibrary alloc] init];
+
+    self.library.delegate = self;
+    
+    [self loadBooks];
+}
+
+
+#pragma mark - MJSCLibraryDelegate
+
+-(void)libraryDidFinishLoad {
     [self configureView];
 }
 
 
-#pragma mark - LibraryViewControllerDelegate
+#pragma mark - MJSCLibraryViewControllerDelegate
 -(void)libraryViewController:(UIViewController *)libraryVC didSelectBook:(MJSCBook *)book indexPath:(NSIndexPath *)indexPath {
     
     // Save the book selected in user preferences
@@ -103,10 +113,14 @@
     // Set the VCs to the tab bar
     self.tab.viewControllers = @[libraryTableVC, libraryCollectionVC];
     
-    
     // Ad the tabbar to the view
     [self.view addSubview:self.tab.view];
     
+}
+
+
+-(void)loadBooks {
+    [self.library loadBooks];
 }
 
 @end

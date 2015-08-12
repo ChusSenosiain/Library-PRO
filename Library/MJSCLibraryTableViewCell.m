@@ -38,6 +38,8 @@
     self.bookTitle.text = book.title;
     self.bookAuthor.text = book.author;
     [self.bookImage setImageWithURL:book.imageURL];
+    
+    
 }
 
 -(void)prepareForReuse {
