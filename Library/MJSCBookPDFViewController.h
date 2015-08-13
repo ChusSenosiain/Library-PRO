@@ -7,10 +7,10 @@
 //
 
 @import UIKit;
-@class MJSCBook;
+@class Book;
 
 @interface MJSCBookPDFViewController : UIViewController
 
--(id)initWithBook:(MJSCBook *)book;
+-(id)initWithBook:(Book *)book;
 
 @end

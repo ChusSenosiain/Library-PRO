@@ -14,7 +14,7 @@
 
 @interface MJSCBookDetailsViewController () 
 
-@property (strong, nonatomic) MJSCBook *book;
+@property (strong, nonatomic) Book *book;
 @property (weak, nonatomic) IBOutlet UILabel *bookTitle;
 @property (weak, nonatomic) IBOutlet UILabel *bookAuthor;
 @property (weak, nonatomic) IBOutlet UILabel *bookCategory;
@@ -26,11 +26,10 @@
 
 @implementation MJSCBookDetailsViewController
 
--(id)initWithBook:(MJSCBook *)book {
+-(id)initWithBook:(Book *)book {
     
     if (self = [super init]) {
         _book = book;
-        _book.delegate = self;
     }
     
     return self;
@@ -66,22 +65,16 @@
 
 #pragma mark - MJSCLibraryViewControllerDelegate
 
--(void)libraryViewController:(UIViewController *)libraryVC didSelectBook:(MJSCBook *)book indexPath:(NSIndexPath *)indexPath {
+-(void)libraryViewController:(UIViewController *)libraryVC didSelectBook:(Book *)book indexPath:(NSIndexPath *)indexPath {
     self.book = book;
-    self.book.delegate = self;
     
     // TODO cancelar anterior descarga
     
-    [self.book loadBookDetails:self.book.bookID];
-}
-
-
-#pragma mark - MJSCBookDelegate
-
--(void)bookDidFinishLoad {
-    [self syncViewWithModel];
+    // TODO obtener detalles del libro
     
+
 }
+
 
 #pragma mark - Utils
 
@@ -91,7 +84,7 @@
     self.bookCategory.text = self.book.category;
     self.bookSummary.text = self.book.summary;
     
-    [self.bookImage setImageWithURL:self.book.imageURL];
+    [self.bookImage setImageWithURL:[NSURL URLWithString:self.book.imageURL]];
 }
 
 
@@ -119,7 +112,9 @@
     
     
     if (self.book) {
-        [self.book loadBookDetails:self.book.bookID];
+       
+        // TODO: load books details
+        
     }
     
     

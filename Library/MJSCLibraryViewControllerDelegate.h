@@ -6,14 +6,14 @@
 //  Copyright (c) 2015 María Jesús Senosiain Caamiña. All rights reserved.
 //
 
-@class MJSCBook;
+@class Book;
 
 @protocol MJSCLibraryViewControllerDelegate <NSObject>
 
 @optional
 
 -(void)libraryViewController:(UIViewController *)libraryVC
-               didSelectBook:(MJSCBook *)book
+               didSelectBook:(Book *)book
                    indexPath:(NSIndexPath *)indexPath;
 
 @end

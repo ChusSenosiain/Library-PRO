@@ -7,13 +7,14 @@
 //
 
 @import Foundation;
-@class MJSCBook;
+@class Book;
 
 @protocol MJSCLibraryDelegate <NSObject>
 
 @optional
 
 -(void)libraryDidFinishLoad;
+-(void)bookDidFinishLoad:(Book *)book;
 
 @end
 
@@ -27,8 +28,8 @@
 @property (weak, nonatomic) id<MJSCLibraryDelegate> delegate;
 
 
--(MJSCBook *)bookAtSection:(NSInteger)section
-                      index:(NSUInteger)index;
+-(Book *)bookAtSection:(NSInteger)section
+                 index:(NSUInteger)index;
 
 -(NSUInteger)countBooksAtSection:(NSUInteger)section;
 
@@ -36,5 +37,7 @@
 
 
 -(void)loadBooks;
+
+-(void)loadBookDetails:(NSString *)bookID;
 
 @end

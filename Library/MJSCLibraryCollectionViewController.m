@@ -11,7 +11,7 @@
 #import "MJSCLibraryHeaderCollectionReusableView.h"
 #import "MJSCBookDetailsViewController.h"
 #import "MJSCLibrary.h"
-#import "MJSCBook.h"
+#import "Book.h"
 
 @interface MJSCLibraryCollectionViewController ()
 
@@ -53,7 +53,7 @@
                  cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     // Get the book
-    MJSCBook *book = [self.library bookAtSection:indexPath.section index:indexPath.row];
+    Book *book = [self.library bookAtSection:indexPath.section index:indexPath.row];
     
     // Create the cell and load the book data
     MJSCLibraryCollectionViewCell *bookCell = [collectionView dequeueReusableCellWithReuseIdentifier:[MJSCLibraryCollectionViewCell cellId] forIndexPath:indexPath];
@@ -89,7 +89,7 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     // Get the book
-    MJSCBook *book = [self.library bookAtSection:indexPath.section index:indexPath.row];
+    Book *book = [self.library bookAtSection:indexPath.section index:indexPath.row];
     
     if ([self.delegate respondsToSelector:@selector(libraryViewController:didSelectBook:indexPath:)]) {
         [self.delegate libraryViewController:self didSelectBook:book indexPath:indexPath];

@@ -24,5 +24,7 @@
 
 
 
+-(void)updateBookWithDictionary:(NSDictionary*)dictionary;
+
 
 @end

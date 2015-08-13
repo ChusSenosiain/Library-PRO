@@ -17,8 +17,9 @@
 
 +(MJSCCoreDataStack *)sharedInstance;
 
-- (instancetype)init __attribute__((unavailable("init not available, use shareInstace...")));
-- (void)saveContext;
-- (NSURL *)applicationDocumentsDirectory;
+-(instancetype)init __attribute__((unavailable("init not available, use shareInstace...")));
+-(void)saveContext;
+-(NSURL *)applicationDocumentsDirectory;
+-(void)autoSave:(BOOL)autosave;
 
 @end

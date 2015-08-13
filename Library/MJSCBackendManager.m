@@ -8,7 +8,8 @@
 
 #import "MJSCBackendManager.h"
 #import <AFNetworking/AFNetworking.h>
-#import "MJSCBook.h"
+#import "Book.h"
+#import "MJSCCoreDataStack.h"
 
 #define PARSE_BOOK_URL @"https://api.parse.com/1/classes/Book"
 
@@ -19,8 +20,8 @@
 @implementation MJSCBackendManager
 
 
--(AFHTTPRequestOperation *)downloadBooks:(NSDate *)updatedDate
-                         completionBlock:(void(^)(NSArray *books, NSError *error))completion {
+-(AFHTTPRequestOperation *) downloadBooks:(NSDate *)updatedDate
+                          completionBlock:(void(^)(NSArray *books, NSError *error))completion {
     
     AFHTTPRequestOperationManager *manager = [self prepareRequestOperationManager];
     AFHTTPRequestOperation *operation;
@@ -43,9 +44,9 @@
         NSDictionary *whereClausule = [[NSDictionary alloc] initWithObjectsAndKeys:dateCompare, @"updatedAt", nil];
         
         params = [[NSDictionary alloc] initWithObjectsAndKeys:@"title,author,imageURL,category", @"keys"
-                 , whereClausule, @"where"
-                 , @"updatedAt", @"order", nil];
-
+                  , whereClausule, @"where"
+                  , @"updatedAt", @"order", nil];
+        
     } else {
         params = [[NSDictionary alloc] initWithObjectsAndKeys:@"title,author,imageURL,category", @"keys"
                   , @"updatedAt", @"order", nil];
@@ -56,26 +57,19 @@
         NSString *responseString = [operation responseString];
         
         NSDictionary *json = [NSJSONSerialization
-                         JSONObjectWithData:[responseString dataUsingEncoding:NSUTF8StringEncoding]
-                         options:kNilOptions
-                         error:nil];
+                              JSONObjectWithData:[responseString dataUsingEncoding:NSUTF8StringEncoding]
+                              options:kNilOptions
+                              error:nil];
         
         
-        NSArray *JSONBooks = [json objectForKey:@"results"];
-        NSMutableArray *books = [NSMutableArray array];
-        
-        for (NSDictionary *book in JSONBooks) {
-            MJSCBook *parsedBook = [[MJSCBook alloc] initWithDictionary:book];
-            [books addObject:parsedBook];
-        }
-        
+        NSArray *books = [json objectForKey:@"results"];
         completion(books, nil);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         completion(nil, error);
     }];
     
-
+    
     
     return operation;
     
@@ -83,10 +77,8 @@
 
 
 
-
-
 -(AFHTTPRequestOperation *)downloadBookDetail:(NSString *) bookId
-                              completionBlock:(void(^)(MJSCBook *book, NSError *error))completion {
+                              completionBlock:(void(^)(NSDictionary *book, NSError *error))completion {
     
     
     AFHTTPRequestOperationManager *manager = [self prepareRequestOperationManager];
@@ -99,12 +91,10 @@
         
         NSString *resposeString = [operation responseString];
         
-        NSDictionary *json = [NSJSONSerialization
+        NSDictionary *book = [NSJSONSerialization
                               JSONObjectWithData:[resposeString dataUsingEncoding:NSUTF8StringEncoding]
                               options:kNilOptions
                               error:nil];
-        
-        MJSCBook *book = [[MJSCBook alloc] initWithDictionary:json];
         
         completion(book, nil);
         
@@ -114,7 +104,7 @@
     
     
     return operation;
-
+    
     
 }
 
@@ -148,7 +138,7 @@
     
 }
 
-        
+
 
 
 

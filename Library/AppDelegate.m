@@ -11,7 +11,7 @@
 #import "MJSCLibraryTableViewController.h"
 #import "MJSCLibraryCollectionViewController.h"
 #import "MJSCBookDetailsViewController.h"
-#import "MJSCBook.h"
+#import "Book.h"
 #import "Settings.h"
 #import "MJSCCoreDataStack.h"
 #import "MJSCLibraryViewController.h"
@@ -100,7 +100,7 @@
 
 # pragma mark - Utils
 
--(MJSCBook*) lastBookSelectedInLibrary:(MJSCLibrary*) library {
+-(Book*) lastBookSelectedInLibrary:(MJSCLibrary*) library {
     // Obtain the last book selected
     NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
     
@@ -114,7 +114,7 @@
     NSUInteger section = [[coords objectAtIndex:0] integerValue];
     NSUInteger row = [[coords objectAtIndex:1] integerValue];
     
-    MJSCBook *book = [library bookAtSection:section index:row];
+    Book *book = [library bookAtSection:section index:row];
     
     return book;
 }

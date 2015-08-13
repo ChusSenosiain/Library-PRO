@@ -7,7 +7,7 @@
 //
 
 #import "MJSCLibraryTableViewCell.h"
-#import "MJSCBook.h"
+#import "Book.h"
 #import <AFNetworking/UIKit+AFNetworking.h>
 
 @implementation MJSCLibraryTableViewCell
@@ -34,10 +34,10 @@
 }
 
 
--(void)configureWithBook:(MJSCBook *)book {
+-(void)configureWithBook:(Book *)book {
     self.bookTitle.text = book.title;
     self.bookAuthor.text = book.author;
-    [self.bookImage setImageWithURL:book.imageURL];
+    [self.bookImage setImageWithURL:[NSURL URLWithString:book.imageURL]];
     
     
 }

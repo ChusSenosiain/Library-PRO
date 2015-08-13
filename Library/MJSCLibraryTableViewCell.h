@@ -7,7 +7,7 @@
 //
 
 @import UIKit;
-@class MJSCBook;
+@class Book;
 
 @interface MJSCLibraryTableViewCell : UITableViewCell
 
@@ -18,6 +18,6 @@
 +(NSString*) cellId;
 +(CGFloat) height;
 
--(void)configureWithBook:(MJSCBook *)book;
+-(void)configureWithBook:(Book *)book;
 
 @end

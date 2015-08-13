@@ -7,14 +7,14 @@
 //
 
 @import UIKit;
-@class MJSCBook;
+@class Book;
 
 @interface MJSCLibraryCollectionViewCell : UICollectionViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *bookImage;
 @property (weak, nonatomic) IBOutlet UILabel *bookTitle;
 @property (weak, nonatomic) IBOutlet UIView *container;
 
--(void)configureWithBook:(MJSCBook *)book;
+-(void)configureWithBook:(Book *)book;
 
 +(NSString*)cellId;
 

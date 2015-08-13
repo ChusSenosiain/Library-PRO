@@ -8,8 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <AFNetworking/AFNetworking.h>
-@class MJSCBook;
-
+@class Book;
 
 @interface MJSCBackendManager : NSObject
 
@@ -17,6 +16,6 @@
                           completionBlock:(void(^)(NSArray *books, NSError *error))completion;
 
 -(AFHTTPRequestOperation *)downloadBookDetail:(NSString *) bookId
-          completionBlock:(void(^)(MJSCBook *book, NSError *error))completion;
+          completionBlock:(void(^)(NSDictionary *book, NSError *error))completion;
 
 @end

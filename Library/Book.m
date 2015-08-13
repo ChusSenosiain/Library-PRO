@@ -49,14 +49,22 @@
     
     Book *book = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(self.class) inManagedObjectContext:context];
     
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"];
+    
+    NSString *createdAtStringFormat = [dictionary objectForKey:@"createdAt"];
+    NSString *updatedAtStringFormat = [dictionary objectForKey:@"updatedAt"];
+    
+    NSDate *createdAt = [dateFormatter dateFromString:createdAtStringFormat];
+    NSDate *updatedAt = [dateFormatter dateFromString:updatedAtStringFormat];
+
+    
     book.author = [dictionary objectForKey:@"author"];
     book.bookID = [dictionary objectForKey:@"objectId"];
     book.category = [dictionary objectForKey:@"category"];
-    
-    // TODO, ver como se cargan las fechas desde un dicctionario
-    //book.createdAt = createdAt;
-    //book.updatedAt = updatedAt;
-    
+    book.createdAt = createdAt;
+    book.updatedAt = updatedAt;
     book.imageURL = [dictionary objectForKey:@"imageURL"];
     book.path = nil;
     book.subtitle = [dictionary objectForKey:@"subtitle"];
@@ -68,6 +76,37 @@
 
     
 }
+
+
+-(void)updateBookWithDictionary:(NSDictionary*)dictionary {
+    
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"];
+    
+    NSString *createdAtStringFormat = [dictionary objectForKey:@"createdAt"];
+    NSString *updatedAtStringFormat = [dictionary objectForKey:@"updatedAt"];
+    
+    NSDate *createdAt = [dateFormatter dateFromString:createdAtStringFormat];
+    NSDate *updatedAt = [dateFormatter dateFromString:updatedAtStringFormat];
+    
+    
+    self.author = [dictionary objectForKey:@"author"];
+    self.bookID = [dictionary objectForKey:@"objectId"];
+    self.category = [dictionary objectForKey:@"category"];
+    self.createdAt = createdAt;
+    self.updatedAt = updatedAt;
+    self.imageURL = [dictionary objectForKey:@"imageURL"];
+    self.path = nil;
+    self.subtitle = [dictionary objectForKey:@"subtitle"];
+    self.summary = [dictionary objectForKey:@"summary"];
+    self.title = [dictionary objectForKey:@"title"];
+    self.url = [dictionary objectForKey:@"URL"];
+    
+    
+}
+
+
 
 
 

@@ -7,20 +7,20 @@
 //
 
 #import "MJSCBookPDFViewController.h"
-#import "MJSCBook.h"
+#import "Book.h"
 #import "MJSCLibraryViewController.h"
 #import "MBProgressHUD.h"
 #import "AFNetworking.h"
 
 @interface MJSCBookPDFViewController () <UIWebViewDelegate>
 @property (weak, nonatomic) IBOutlet UIWebView *browser;
-@property (strong, nonatomic) MJSCBook *book;
+@property (strong, nonatomic) Book *book;
 @property (strong, nonatomic) AFHTTPRequestOperation *requestOperation;
 @end
 
 @implementation MJSCBookPDFViewController
 
--(id)initWithBook:(MJSCBook *)book {
+-(id)initWithBook:(Book *)book {
     
     if (self = [super init]) {
         _book = book;
@@ -107,15 +107,17 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     // Cancel the request if it exists
     [self cancelCurrentRequest];
     
+    
     // If the PDF exists in cache load the PDF on browser and return
-    if ([self fileExists:[self cacheFile:self.book.URL]]) {
-        NSURL *url = [NSURL URLWithString:[self cacheFile:self.book.URL]];
+    if ([self fileExists:[self cacheFile:self.book.url]]) {
+        NSURL *url = [NSURL URLWithString:[self cacheFile:self.book.url]];
         [self.browser loadRequest:[NSURLRequest requestWithURL:url]];
         return;
     }
+     
     
     // Create the request
-    NSURLRequest *request = [NSURLRequest requestWithURL:self.book.URL];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.book.url]];
     self.requestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     
     // Configure the download progress control
@@ -141,7 +143,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 [strongSelf.browser loadData:responseObject MIMEType:@"application/pdf" textEncodingName:nil baseURL:nil];
                 
                 // Save it in cache
-                [responseObject writeToFile:[strongSelf cacheFile:strongSelf.book.URL] atomically:YES];
+                [responseObject writeToFile:[strongSelf cacheFile:strongSelf.book.url] atomically:YES];
             }
             
         } else {
@@ -190,8 +192,11 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     }
 }
 
--(NSString*)cacheFile:(NSURL *)bookURL {
-    NSString *fileName = [bookURL lastPathComponent];
+-(NSString*)cacheFile:(NSString *)bookURL {
+    
+    NSURL *url = [NSURL URLWithString:bookURL];
+    
+    NSString *fileName = [url lastPathComponent];
     NSString *cacheDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject];
     
     return [[cacheDir stringByAppendingString:@"/" ] stringByAppendingString:fileName];

@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 María Jesús Senosiain Caamiña. All rights reserved.
 //
 
-#import "MJSCBook.h"
+#import "Book.h"
 #import "MJSCLibraryTableViewController.h"
 #import "MJSCBookDetailsViewController.h"
 #import "MJSCLibrary.h"
@@ -69,7 +69,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     // Get the book
-    MJSCBook *book = [self.library bookAtSection:indexPath.section index:indexPath.row];
+    Book *book = [self.library bookAtSection:indexPath.section index:indexPath.row];
     
     // Create the cell and load the book data
     MJSCLibraryTableViewCell *bookCell =[tableView dequeueReusableCellWithIdentifier:[MJSCLibraryTableViewCell cellId] forIndexPath:indexPath];
@@ -98,7 +98,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     // Get the book
-    MJSCBook *book = [self.library bookAtSection:indexPath.section index:indexPath.row];
+    Book *book = [self.library bookAtSection:indexPath.section index:indexPath.row];
     
     // Set the book and indexpath to the delegate
     if ([self.delegate respondsToSelector:@selector(libraryViewController:didSelectBook:indexPath:)]) {

@@ -7,7 +7,6 @@
 //
 
 #import "MJSCLibrary.h"
-#import "MJSCBook.h"
 #import "MJSCBackendManager.h"
 #import "Book.h"
 #import "MJSCCoreDataStack.h"
@@ -26,10 +25,10 @@
 }
 
 
--(MJSCBook *)bookAtSection:(NSInteger) section
+-(Book *)bookAtSection:(NSInteger) section
                       index:(NSUInteger) index {
-    MJSCBook *book = [[self.library objectForKey:[self sectionKeyForSection:section]] objectAtIndex:index];
-    return book;
+    return [[self.library objectForKey:[self sectionKeyForSection:section]] objectAtIndex:index];
+
 }
 
 
@@ -42,33 +41,152 @@
 }
 
 
--(void)loadBooks {
+-(void)loadBookDetails:(NSString *)bookID{
     
+    // If the book doesn't exist or hasn't details, load it from Parse
     MJSCBackendManager *backManager = [[MJSCBackendManager alloc] init];
     
-    // Load books of core data by updatedDate
+    __weak typeof(self) weakSelf = self;
+    
+    [backManager downloadBookDetail:bookID completionBlock:^(NSDictionary *book, NSError *error) {
+        if (weakSelf) {
+            __strong typeof (weakSelf) strongSelf = weakSelf;
+            
+            NSString *bookId = [book objectForKey:@"objectId"];
+            Book *coreDataBook = [strongSelf loadBookWithDetailsFromCoreData:bookId];
+            
+            // Save book details on CoreData
+            if (!error) {
+                [coreDataBook updateBookWithDictionary:book];
+                MJSCCoreDataStack *coreDataStack = [MJSCCoreDataStack sharedInstance];
+                [coreDataStack saveContext];
+                
+            } else {
+                NSLog(@"There was an error downloading book details");
+            }
+            
+            if ([strongSelf.delegate respondsToSelector:@selector(bookDidFinishLoad:)]) {
+                [strongSelf.delegate bookDidFinishLoad:coreDataBook];
+            }
+        }
+        
+    }];
+    
+}
+
+-(Book*)loadBookWithDetailsFromCoreData:(NSString *)bookID {
+    
+    MJSCCoreDataStack *coreDataStack = [MJSCCoreDataStack sharedInstance];
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:NSStringFromClass([Book class])];
+    request.predicate = [NSPredicate predicateWithFormat:@"bookID == %@", bookID];
+    
+    NSArray *books = [coreDataStack.managedObjectContext executeFetchRequest:request error:nil];
+    
+    return [books objectAtIndex:0];
+    
+}
+
+-(NSArray*)loadBooksFromCoreData {
+    
+    // Load books of CoreData by updatedDate
     MJSCCoreDataStack *coreDataStack = [MJSCCoreDataStack sharedInstance];
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:NSStringFromClass([Book class])];
     request.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:@"updatedAt" ascending:NO]];
     
-    NSArray *books = [coreDataStack.managedObjectContext executeFetchRequest:request error:nil];
+    NSArray *coreDataBooks = [coreDataStack.managedObjectContext executeFetchRequest:request error:nil];
+
+    return coreDataBooks;
     
-    // Get the most recent update date
-    NSDate *lastUpdate = [[books objectAtIndex:0] updatedAt];
+}
+
+
+-(NSArray*)loadAllBooksIDsFromCoreData {
     
+    // Load books of CoreData by updatedDate
+    MJSCCoreDataStack *coreDataStack = [MJSCCoreDataStack sharedInstance];
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:NSStringFromClass([Book class])];
+    [request setPropertiesToFetch:@[@"bookID"]];
+    request.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:@"updatedAt" ascending:NO]];
+    
+    NSArray *coreDataBooks = [coreDataStack.managedObjectContext executeFetchRequest:request error:nil];
+    
+    return coreDataBooks;
+    
+}
+
+
+-(NSDate*)lastUpdateBookDateOnCoreData {
+    
+    // Load books of CoreData by updatedDate
+    MJSCCoreDataStack *coreDataStack = [MJSCCoreDataStack sharedInstance];
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:NSStringFromClass([Book class])];
+    [request setPropertiesToFetch:@[@"updatedAt"]];
+    request.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:@"updatedAt" ascending:NO]];
+    [request setFetchLimit:1];
+    
+    return [[[coreDataStack.managedObjectContext executeFetchRequest:request error:nil] firstObject] updatedAt];
+    
+}
+
+-(void)loadBooks {
+    
+   
+    // Load books of CoreData by updatedDate
+    NSDate *lastLocalUpdatedBookDate = [self lastUpdateBookDateOnCoreData];
+   
     // If there are no books, gets all the books. If there're books in core data, gets the
     // most recent updated books and update core data's books
+    MJSCBackendManager *backManager = [[MJSCBackendManager alloc] init];
     __weak typeof(self) weakSelf = self;
-    [backManager downloadBooks:lastUpdate completionBlock:^(NSArray *books, NSError *error) {
+    [backManager downloadBooks:lastLocalUpdatedBookDate completionBlock:^(NSArray *books, NSError *error) {
         
             if (!error) {
                 
-                NSMutableDictionary *tempLibrary = [[NSMutableDictionary alloc] init];
-                
                 MJSCCoreDataStack *coreDataStack = [MJSCCoreDataStack sharedInstance];
                 
-                // Create the library grouy by categories
-                for (MJSCBook *book in books) {
+                NSArray *bookIdsInBackend = [books valueForKey:@"objectId"];
+                
+                
+                NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+                [fetchRequest setEntity:
+                 [NSEntityDescription entityForName:@"Book" inManagedObjectContext:coreDataStack.managedObjectContext]];
+                [fetchRequest setPredicate: [NSPredicate predicateWithFormat:@"(bookID IN %@)", bookIdsInBackend]];
+                
+                // make sure the results are sorted as well
+                [fetchRequest setSortDescriptors:
+                 @[[[NSSortDescriptor alloc] initWithKey: @"updatedAt" ascending:NO]]];
+                
+                
+                NSError *error;
+                NSArray *bookMatchesInCoreDataById = [coreDataStack.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+                
+                NSArray *coreDataBooksID = [bookMatchesInCoreDataById valueForKey:@"bookID"];
+                
+                __strong typeof (weakSelf) strongSelf = weakSelf;
+                for (NSString *bookIdInBackend in bookIdsInBackend) {
+                    
+                    NSInteger index = [bookIdsInBackend indexOfObject:bookIdInBackend];
+                    NSDictionary *bookDictionary = [books objectAtIndex:index];
+                    
+                    if ([coreDataBooksID containsObject:bookIdInBackend]) {
+                        Book *book = [strongSelf loadBookWithDetailsFromCoreData:bookIdInBackend];
+                        [book updateBookWithDictionary:bookDictionary];
+                    
+                    } else {
+                        // No existe, crear NSManagedObject
+                        [Book bookWithContext:coreDataStack.managedObjectContext dictionary:bookDictionary];
+                    }
+                }
+                
+                [coreDataStack saveContext];
+                
+                
+                NSArray *finalBooks = [strongSelf loadBooksFromCoreData];
+                
+                NSMutableDictionary *tempLibrary = [[NSMutableDictionary alloc] init];
+                
+                // Create the library group by categories
+                for (Book *book in finalBooks) {
                     
                     // Search the category in the dictionary
                     NSString *category = [book category];
@@ -89,13 +207,8 @@
                     // Add the category with it's books to the library
                     [tempLibrary setObject:array forKeyedSubscript:category];
                     
-                    
-                    //AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-                    Book *coreBook = [Book bookWithContext:coreDataStack.managedObjectContext author:book.author bookID:book.bookID category:book.category createdAt:[NSDate date] imageURL:[book.imageURL absoluteString] path:@"test" subtitle:book.subtitle summary:book.summary title:book.title updatedAt:[NSDate date] url:[book.URL absoluteString]];
-                    
-                    [coreDataStack saveContext];
-                    
                 }
+                
                
                 if (weakSelf) {
                     __strong typeof (weakSelf) strongSelf = weakSelf;

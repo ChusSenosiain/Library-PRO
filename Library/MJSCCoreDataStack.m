@@ -29,13 +29,16 @@
     return inst;
 }
 
-- (instancetype)init {
+
+-(void)autoSave:(BOOL)autosave {
     
-    if (self == [super init]) {
+    self.autosave = autosave;
+    
+    if (autosave) {
         self.autosave = YES;
-        [self performSelector:@selector(saveContext) withObject:nil afterDelay:SAVE_RATE];    }
+        [self performSelector:@selector(saveContext) withObject:nil afterDelay:SAVE_RATE];
+    }
     
-    return self;
 }
 
 #pragma mark - Core Data stack

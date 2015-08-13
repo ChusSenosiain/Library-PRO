@@ -50,7 +50,7 @@
 
 
 #pragma mark - MJSCLibraryViewControllerDelegate
--(void)libraryViewController:(UIViewController *)libraryVC didSelectBook:(MJSCBook *)book indexPath:(NSIndexPath *)indexPath {
+-(void)libraryViewController:(UIViewController *)libraryVC didSelectBook:(Book *)book indexPath:(NSIndexPath *)indexPath {
     
     // Save the book selected in user preferences
     NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
