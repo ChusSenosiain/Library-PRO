@@ -93,7 +93,7 @@
 
 
 
--(AFHTTPRequestOperationManager *) prepareRequestOperationManager {
+-(AFHTTPRequestOperationManager *)prepareRequestOperationManager {
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
@@ -102,6 +102,22 @@
     
     
     return manager;
+    
+}
+
+
+-(void)cancelOperation:(AFHTTPRequestOperation*)operation {
+    
+    [operation cancel];
+    operation = nil;
+}
+
+
+-(void)cancelAllRequestOperations {
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    [manager.operationQueue cancelAllOperations];
     
 }
 
