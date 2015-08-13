@@ -13,7 +13,8 @@
 
 @interface MJSCBackendManager : NSObject
 
--(AFHTTPRequestOperation *) downloadBooks:(void(^)(NSArray *books, NSError *error))completion;
+-(AFHTTPRequestOperation *) downloadBooks:(NSDate *)updatedDate
+                          completionBlock:(void(^)(NSArray *books, NSError *error))completion;
 
 -(AFHTTPRequestOperation *)downloadBookDetail:(NSString *) bookId
           completionBlock:(void(^)(MJSCBook *book, NSError *error))completion;

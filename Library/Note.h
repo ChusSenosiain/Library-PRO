@@ -1,6 +1,6 @@
 #import "_Note.h"
 
-@interface Note : _Note {}
+@interface Note : _Note
 
 
 

@@ -32,6 +32,7 @@
     // Start Core data
     [MJSCCoreDataStack sharedInstance];
     
+    
     // Screen Type: UItableViewController or UICollectionView for iPhone or UISplitView for iPad
     UIDevice *dev = [UIDevice currentDevice];
     if ([dev userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
@@ -117,7 +118,6 @@
     
     return book;
 }
-
 
 
 

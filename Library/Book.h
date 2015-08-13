@@ -1,6 +1,6 @@
 #import "_Book.h"
 
-@interface Book : _Book {}
+@interface Book : _Book
 
 
 +(instancetype)bookWithContext:(NSManagedObjectContext*)context

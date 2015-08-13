@@ -19,15 +19,38 @@
 @implementation MJSCBackendManager
 
 
--(AFHTTPRequestOperation *)downloadBooks:(void(^)(NSArray *books, NSError *error))completion {
+-(AFHTTPRequestOperation *)downloadBooks:(NSDate *)updatedDate
+                         completionBlock:(void(^)(NSArray *books, NSError *error))completion {
     
     AFHTTPRequestOperationManager *manager = [self prepareRequestOperationManager];
     AFHTTPRequestOperation *operation;
     
     
-    NSDictionary *params = [[NSDictionary alloc] initWithObjectsAndKeys:@"title,author,imageURL,category", @"keys", nil];
+    NSDictionary *params;
     
+    // Download the books that are updated
+    NSString *queryDate = nil;
+    
+    if (updatedDate) {
+        
+        /*2015-07-29T07:19:59.376Z*/
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"];
+        
+        queryDate = [dateFormatter stringFromDate:updatedDate];
+        
+        NSDictionary *dateCompare = [[NSDictionary alloc] initWithObjectsAndKeys:queryDate, @"$gt", nil];
+        NSDictionary *whereClausule = [[NSDictionary alloc] initWithObjectsAndKeys:dateCompare, @"updatedAt", nil];
+        
+        params = [[NSDictionary alloc] initWithObjectsAndKeys:@"title,author,imageURL,category", @"keys"
+                 , whereClausule, @"where"
+                 , @"updatedAt", @"order", nil];
 
+    } else {
+        params = [[NSDictionary alloc] initWithObjectsAndKeys:@"title,author,imageURL,category", @"keys"
+                  , @"updatedAt", @"order", nil];
+    }
+    
     operation = [manager GET:PARSE_BOOK_URL parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         NSString *responseString = [operation responseString];
@@ -58,8 +81,12 @@
     
 }
 
+
+
+
+
 -(AFHTTPRequestOperation *)downloadBookDetail:(NSString *) bookId
-          completionBlock:(void(^)(MJSCBook *book, NSError *error))completion {
+                              completionBlock:(void(^)(MJSCBook *book, NSError *error))completion {
     
     
     AFHTTPRequestOperationManager *manager = [self prepareRequestOperationManager];
