@@ -13,10 +13,12 @@
 @interface MJSCCoreDataStack ()
 
 @property (nonatomic) BOOL autosave;
+@property (nonatomic, strong) NSURL *dbURL;
 
 @end
 
 @implementation MJSCCoreDataStack
+
 
 + (MJSCCoreDataStack *)sharedInstance {
     static  MJSCCoreDataStack *inst = nil;
@@ -29,6 +31,17 @@
     return inst;
 }
 
+-(instancetype)init {
+    
+    if (self = [super init]) {
+        _dbURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Library.sqlite"];
+    }
+    
+    return self;
+}
+
+
+
 
 -(void)autoSave:(BOOL)autosave {
     
@@ -39,6 +52,34 @@
         [self performSelector:@selector(saveContext) withObject:nil afterDelay:SAVE_RATE];
     }
     
+}
+
+
+/**
+ *  Delete sqllite file, remove context an store coordinator
+ */
+- (void)zapAllData {
+    
+    
+    NSError *err = nil;
+    for (NSPersistentStore *store in self.persistentStoreCoordinator.persistentStores) {
+        if (![self.persistentStoreCoordinator removePersistentStore:store error:&err]) {
+            NSLog(@"Error while removing store %@ from store coordinator %@", store, self.persistentStoreCoordinator);
+        }
+    }
+    
+    if (![[NSFileManager defaultManager] removeItemAtURL:self.dbURL error:&err]) {
+        NSLog(@"Error removing %@: %@", self.dbURL, err);
+    }
+    // The Core Data stack does not like you removing the file under it. If you want to delete the file
+    // you should tear down the stack, delete the file and then reconstruct the stack.
+    // Part of the problem is that the stack keeps a cache of the data that is in the file. When you
+    // remove the file you don't have a way to clear that cache and you are then putting
+    // Core Data into an unknown and unstable state.
+    _managedObjectContext = nil;
+    _persistentStoreCoordinator = nil;
+    
+    [self managedObjectContext]; // this will rebuild the stack
 }
 
 #pragma mark - Core Data stack
@@ -71,7 +112,6 @@
     // Create the coordinator and store
     
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Library.sqlite"];
     NSError *error = nil;
     NSString *failureReason = @"There was an error creating or loading the application's saved data.";
     
@@ -79,7 +119,7 @@
     NSDictionary *options =@{NSMigratePersistentStoresAutomaticallyOption: @YES,
                              NSInferMappingModelAutomaticallyOption : @YES};
     
-    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:&error]) {
+    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:self.dbURL options:options error:&error]) {
         // Report any error we got.
         NSMutableDictionary *dict = [NSMutableDictionary dictionary];
         dict[NSLocalizedDescriptionKey] = @"Failed to initialize the application's saved data";

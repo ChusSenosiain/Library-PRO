@@ -33,6 +33,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.libraryCollectionView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
     [self registerNibs];
 }
 

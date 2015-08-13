@@ -21,5 +21,5 @@
 -(void)saveContext;
 -(NSURL *)applicationDocumentsDirectory;
 -(void)autoSave:(BOOL)autosave;
-
+- (void)zapAllData;
 @end

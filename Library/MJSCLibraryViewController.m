@@ -31,6 +31,7 @@
     return self;
 }
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -38,7 +39,16 @@
 
     self.library.delegate = self;
     
+
+}
+
+
+-(void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+    
     [self loadBooks];
+    
 }
 
 
@@ -82,8 +92,8 @@
 -(void)configureView{
     
     // Disable default behavior for IOS7
-    self.edgesForExtendedLayout = UIRectEdgeNone;
-    
+    //self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.edgesForExtendedLayout = UIRectEdgeAll;
     self.title = @"Library";
   
     // Vcs
