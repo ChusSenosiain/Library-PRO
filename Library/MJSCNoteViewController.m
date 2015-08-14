@@ -107,10 +107,11 @@
 
 #pragma mark - MJSCNotesMapViewControllerDelegate
 -(void)didSelectLocation:(CLLocation *)location withAddress:(NSString *)address {
+    
     self.location = location;
     self.address = address;
     
-    self.adress.text = [self.note address];
+    self.adress.text = self.address;
 }
 
 

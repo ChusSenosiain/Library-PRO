@@ -67,6 +67,45 @@
 }
 
 
+-(IBAction)share:(id)sender{
+    
+    
+    UIAlertController *notebookDialog = [UIAlertController alertControllerWithTitle:@"Share a comment" message:@"Share a comment about this book" preferredStyle:UIAlertControllerStyleAlert];
+    
+    
+    __weak typeof (self) weakSelf = self;
+    [notebookDialog addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        
+        UITextField *commentTextFiled = notebookDialog.textFields.firstObject;
+        
+        NSString *textToShare = commentTextFiled.text;
+        NSArray *activityItems = @[textToShare];
+        UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
+        activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact, UIActivityTypePrint, UIActivityTypePostToTwitter, UIActivityTypePostToWeibo];
+        
+        if (weakSelf) {
+            __strong typeof (weakSelf) strongSelf = weakSelf;
+            [strongSelf presentViewController:activityVC animated:TRUE completion:nil];
+        }
+        
+    }]];
+    
+    [notebookDialog addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [notebookDialog dismissViewControllerAnimated:YES completion:nil];
+    }]];
+    
+    [notebookDialog addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder = @"Comment";
+    }];
+    
+    
+    [self presentViewController:notebookDialog animated:YES completion:nil];
+    
+
+
+}
+
+
 
 
 #pragma mark - UISplitViewControllerDelegate
@@ -135,7 +174,8 @@
     
     
     UIBarButtonItem *showNotesButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(showNotes:)];
-    self.navigationItem.rightBarButtonItem = showNotesButton;
+    UIBarButtonItem *shareButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(share:)];
+    self.navigationItem.rightBarButtonItems = @[showNotesButton, shareButton];
 
     
     if (self.book) {
@@ -147,7 +187,5 @@
     
     
 }
-
-
 
 @end
