@@ -9,18 +9,21 @@
 #import "MJSCBookDetailsViewController.h"
 #import "MJSCBookPDFViewController.h"
 #import "MJSCLibraryViewController.h"
-#import "MJSCBackendManager.h"
+#import "MJSCNetworkManager.h"
 #import <AFNetworking/UIKit+AFNetworking.h>
+#import "MJSCNotesviewController.h"
 
 @interface MJSCBookDetailsViewController () 
 
 @property (strong, nonatomic) Book *book;
+@property (strong, nonatomic) MJSCBookManager *bookManager;
 @property (weak, nonatomic) IBOutlet UILabel *bookTitle;
 @property (weak, nonatomic) IBOutlet UILabel *bookAuthor;
 @property (weak, nonatomic) IBOutlet UILabel *bookCategory;
 @property (weak, nonatomic) IBOutlet UILabel *bookSummary;
 @property (weak, nonatomic) IBOutlet UIImageView *bookImage;
 @property (weak, nonatomic) IBOutlet UIButton *btnRead;
+
 
 @end
 
@@ -37,6 +40,9 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    self.bookManager = [[MJSCBookManager alloc] init];
+    self.bookManager.delegate = self;
     [self configureView];
 }
 
@@ -53,6 +59,15 @@
     [self.navigationController pushViewController:pdfVC animated:YES];
 }
 
+
+- (IBAction)showNotes:(id)sender {
+    MJSCNotesViewController *notesVC = [[MJSCNotesViewController alloc] initWithBook:self.book];
+    [self.navigationController pushViewController:notesVC animated:YES];
+}
+
+
+
+
 #pragma mark - UISplitViewControllerDelegate
 
 -(void) splitViewController:(UISplitViewController *)splitVC
@@ -67,12 +82,18 @@
 
 -(void)libraryViewController:(UIViewController *)libraryVC didSelectBook:(Book *)book indexPath:(NSIndexPath *)indexPath {
     self.book = book;
+    // cancelar anterior descarga
+    [self.bookImage cancelImageRequestOperation];
     
-    // TODO cancelar anterior descarga
-    
-    // TODO obtener detalles del libro
-    
+    // Obtener detalles del libro
+    [self.bookManager loadBookDetails:[self.book bookID]];
 
+}
+
+#pragma mark - MJSCBookManagerDelegate
+-(void)bookDidFinishLoad:(Book *)book {
+    self.book = book;
+    [self syncViewWithModel];
 }
 
 
@@ -111,9 +132,15 @@
     [self.btnRead setTitleColor:[MJSCStyles lightPrimaryColor] forState:UIControlStateSelected];
     
     
+    
+    UIBarButtonItem *showNotesButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(showNotes:)];
+    self.navigationItem.rightBarButtonItem = showNotesButton;
+
+    
     if (self.book) {
-       
         // TODO: load books details
+        [self syncViewWithModel];
+        [self.bookManager loadBookDetails:[self.book bookID]];
         
     }
     

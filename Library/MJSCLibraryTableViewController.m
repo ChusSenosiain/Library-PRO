@@ -9,20 +9,20 @@
 #import "Book.h"
 #import "MJSCLibraryTableViewController.h"
 #import "MJSCBookDetailsViewController.h"
-#import "MJSCLibrary.h"
+#import "MJSCBookManager.h"
 #import "MJSCLibraryTableViewCell.h"
 #import "MJSCTableViewHeader.h"
 #import "MJSCLibraryHeaderCollectionReusableView.h"
 
 @interface MJSCLibraryTableViewController ()
 
-@property(strong, nonatomic) MJSCLibrary *library;
+@property(strong, nonatomic) MJSCBookManager *library;
 
 @end
 
 @implementation MJSCLibraryTableViewController
 
--(id)initWithModel:(MJSCLibrary *)library {
+-(id)initWithModel:(MJSCBookManager *)library {
 
     if (self = [super init]) {
         _library = library;

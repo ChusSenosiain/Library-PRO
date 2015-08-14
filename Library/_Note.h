@@ -11,6 +11,7 @@ extern const struct NoteAttributes {
 	__unsafe_unretained NSString *latitude;
 	__unsafe_unretained NSString *longitude;
 	__unsafe_unretained NSString *text;
+	__unsafe_unretained NSString *title;
 	__unsafe_unretained NSString *updatedAt;
 } NoteAttributes;
 
@@ -69,6 +70,10 @@ extern const struct NoteRelationships {
 
 //- (BOOL)validateText:(id*)value_ error:(NSError**)error_;
 
+@property (nonatomic, strong) NSString* title;
+
+//- (BOOL)validateTitle:(id*)value_ error:(NSError**)error_;
+
 @property (nonatomic, strong) NSDate* updatedAt;
 
 //- (BOOL)validateUpdatedAt:(id*)value_ error:(NSError**)error_;
@@ -110,6 +115,9 @@ extern const struct NoteRelationships {
 
 - (NSString*)primitiveText;
 - (void)setPrimitiveText:(NSString*)value;
+
+- (NSString*)primitiveTitle;
+- (void)setPrimitiveTitle:(NSString*)value;
 
 - (NSDate*)primitiveUpdatedAt;
 - (void)setPrimitiveUpdatedAt:(NSDate*)value;

@@ -9,16 +9,16 @@
 @import UIKit;
 @class MJSCBook;
 
-#import "MJSCLibrary.h"
+#import "MJSCBookManager.h"
 #import "MJSCLibraryViewControllerDelegate.h"
 
 #define BOOK_DID_CHANGE_NOTIFICATION @"bookDidChange"
 #define BOOK_KEY @"book"
 
-@interface MJSCLibraryViewController : UIViewController <MJSCLibraryViewControllerDelegate, MJSCLibraryDelegate>
+@interface MJSCLibraryViewController : UIViewController <MJSCLibraryViewControllerDelegate, MJSCBookManagerDelegate>
 
 @property (weak, nonatomic) id<MJSCLibraryViewControllerDelegate>delegate;
 
--(id)initWithModel:(MJSCLibrary *)library;
+-(id)initWithModel:(MJSCBookManager *)library;
 
 @end

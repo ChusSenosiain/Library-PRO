@@ -12,6 +12,7 @@
                       latitude:(NSNumber*)latitude
                      longitude:(NSNumber*)longitude
                           text:(NSString*)text
+                         title:(NSString*)title
                      updatedAt:(NSDate*)updatedAt;
 
 @end

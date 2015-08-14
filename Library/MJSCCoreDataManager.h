@@ -13,14 +13,14 @@
 
 @interface MJSCCoreDataManager : NSObject
 
-@property(nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
-
--(Book*)loadBookWithDetails:(NSString *)bookID;
--(NSArray*)loadAllBooks:(BOOL)withDetails;
--(NSArray*)loadAllBooksIDs;
+-(Book*)bookWithDetails:(NSString *)bookID;
+-(NSArray*)allBooks:(BOOL)withDetails;
+-(NSArray*)allBooksIDs;
 -(NSDate*)lastUpdatedBookDate;
+-(NSArray*)booksIDsIncludedInBookIDList:(NSArray *)booksIDs;
 
--(NSArray*)loadBookNotes:(Book *)book;
+-(NSArray*)bookNotes:(Book *)book;
+-(NSFetchedResultsController*)fetchedResultsControllerBookNotes:(Book *) book;
 
 
 @end

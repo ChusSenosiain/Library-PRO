@@ -8,7 +8,7 @@
 
 @import UIKit;
 @import Foundation;
-@class MJSCLibrary;
+@class MJSCBookManager;
 
 #import "MJSCLibraryViewControllerDelegate.h"
 
@@ -16,6 +16,6 @@
 
 @property (weak, nonatomic) id<MJSCLibraryViewControllerDelegate>delegate;
 
--(id)initWithModel:(MJSCLibrary*)library;
+-(id)initWithModel:(MJSCBookManager*)library;
 
 @end

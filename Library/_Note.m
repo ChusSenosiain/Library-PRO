@@ -11,6 +11,7 @@ const struct NoteAttributes NoteAttributes = {
 	.latitude = @"latitude",
 	.longitude = @"longitude",
 	.text = @"text",
+	.title = @"title",
 	.updatedAt = @"updatedAt",
 };
 
@@ -130,6 +131,8 @@ const struct NoteRelationships NoteRelationships = {
 }
 
 @dynamic text;
+
+@dynamic title;
 
 @dynamic updatedAt;
 

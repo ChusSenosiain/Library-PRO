@@ -31,7 +31,7 @@
 
 
 
--(Book*)loadBookWithDetails:(NSString *)bookID {
+-(Book*)bookWithDetails:(NSString *)bookID {
     
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:NSStringFromClass([Book class])];
     request.predicate = [NSPredicate predicateWithFormat:@"bookID == %@", bookID];
@@ -40,24 +40,36 @@
     
 }
 
--(NSArray*)loadAllBooks:(BOOL)withDetails {
+-(NSArray*)allBooks:(BOOL)withDetails {
     
-
+    
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:NSStringFromClass([Book class])];
     request.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:@"updatedAt" ascending:NO]];
     
-   return [self.coreDataStack.managedObjectContext executeFetchRequest:request error:nil];
-
+    return [self.coreDataStack.managedObjectContext executeFetchRequest:request error:nil];
+    
 }
 
--(NSArray*)loadAllBooksIDs {
+-(NSArray*)allBooksIDs {
     
-
+    
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:NSStringFromClass([Book class])];
     [request setPropertiesToFetch:@[@"bookID"]];
     request.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:@"updatedAt" ascending:NO]];
     
     return [self.coreDataStack.managedObjectContext executeFetchRequest:request error:nil];
+    
+}
+
+
+-(NSArray*)booksIDsIncludedInBookIDList:(NSArray *)booksIDs {
+    
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:NSStringFromClass([Book class])];
+    [request setPredicate: [NSPredicate predicateWithFormat:@"(bookID IN %@)", booksIDs]];
+    [request setSortDescriptors:@[[[NSSortDescriptor alloc] initWithKey: @"updatedAt" ascending:NO]]];
+    
+    return [self.coreDataStack.managedObjectContext executeFetchRequest:request error:nil];
+    
     
 }
 
@@ -74,16 +86,24 @@
 }
 
 
--(NSArray*)loadBookNotes:(Book *)book {
+-(NSArray*)bookNotes:(Book *)book{
     
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:NSStringFromClass([Note class])];
     request.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:@"updatedAt" ascending:NO]];
-    request.predicate = [NSPredicate predicateWithFormat:@"book = %@", book];
+    request.predicate = [NSPredicate predicateWithFormat:@"note_book = %@", book];
     
-    //self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.coreDataStack.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
-    
-   
     return [self.coreDataStack.managedObjectContext executeFetchRequest:request error:nil];
+    
+}
+
+
+-(NSFetchedResultsController*)fetchedResultsControllerBookNotes:(Book *) book {
+    
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:NSStringFromClass([Note class])];
+    request.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:@"updatedAt" ascending:NO]];
+    request.predicate = [NSPredicate predicateWithFormat:@"note_book = %@", book];
+    
+    return [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.coreDataStack.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
     
 }
 

@@ -1,5 +1,5 @@
 //
-//  MJSCBackendManager.h
+//  MJSCNetworkManager.h
 //  Library
 //
 //  Created by María Jesús Senosiain Caamiña on 29/07/15.
@@ -10,7 +10,7 @@
 #import <AFNetworking/AFNetworking.h>
 @class Book;
 
-@interface MJSCBackendManager : NSObject
+@interface MJSCNetworkManager : NSObject
 
 -(AFHTTPRequestOperation *) downloadBooks:(NSDate *)updatedDate
                           completionBlock:(void(^)(NSArray *books, NSError *error))completion;

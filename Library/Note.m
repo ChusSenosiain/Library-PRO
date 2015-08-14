@@ -16,7 +16,8 @@
                       latitude:(NSNumber*)latitude
                      longitude:(NSNumber*)longitude
                           text:(NSString*)text
-                     updatedAt:(NSDate*)updatedAt {
+                         title:(NSString*)title
+                     updatedAt:(NSDate*)updatedAt{
     
     
     
@@ -24,6 +25,7 @@
     note.address = address;
     note.bookPage = bookPage;
     note.createdAt = createdAt;
+    note.title = title;
     
     // TODO: ver como se carga la imagen, aquí pongo un string pero es un NSData
     //note.image = image;

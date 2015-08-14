@@ -1,12 +1,12 @@
 //
-//  MJSCBackendManager.m
+//  MJSCNetworkManager.m
 //  Library
 //
 //  Created by María Jesús Senosiain Caamiña on 29/07/15.
 //  Copyright (c) 2015 María Jesús Senosiain Caamiña. All rights reserved.
 //
 
-#import "MJSCBackendManager.h"
+#import "MJSCNetworkManager.h"
 #import <AFNetworking/AFNetworking.h>
 #import "Book.h"
 #import "MJSCCoreDataStack.h"
@@ -17,7 +17,7 @@
 #define PARSE_REST_API_KEY @"CTbE9vEIJD0plhtFrx8VVucBxgiky5TIMUtJSChx"
 
 
-@implementation MJSCBackendManager
+@implementation MJSCNetworkManager
 
 
 -(AFHTTPRequestOperation *) downloadBooks:(NSDate *)updatedDate

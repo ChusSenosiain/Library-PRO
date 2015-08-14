@@ -15,14 +15,14 @@
 
 @interface MJSCLibraryViewController ()
 
-@property (strong, nonatomic) MJSCLibrary *library;
+@property (strong, nonatomic) MJSCBookManager *library;
 @property (nonatomic, retain) UITabBarController *tab;
 
 @end
 
 @implementation MJSCLibraryViewController
 
--(id)initWithModel:(MJSCLibrary *)library {
+-(id)initWithModel:(MJSCBookManager *)library {
     
     if (self = [super init]) {
         _library = library;
@@ -35,7 +35,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.library = [[MJSCLibrary alloc] init];
+    self.library = [[MJSCBookManager alloc] init];
 
     self.library.delegate = self;
     

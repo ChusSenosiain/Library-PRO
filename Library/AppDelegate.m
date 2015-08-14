@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "MJSCLibrary.h"
+#import "MJSCBookManager.h"
 #import "MJSCLibraryTableViewController.h"
 #import "MJSCLibraryCollectionViewController.h"
 #import "MJSCBookDetailsViewController.h"
@@ -100,7 +100,7 @@
 
 # pragma mark - Utils
 
--(Book*) lastBookSelectedInLibrary:(MJSCLibrary*) library {
+-(Book*) lastBookSelectedInLibrary:(MJSCBookManager*) library {
     // Obtain the last book selected
     NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
     

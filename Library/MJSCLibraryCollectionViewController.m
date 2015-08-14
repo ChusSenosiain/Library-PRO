@@ -10,19 +10,19 @@
 #import "MJSCLibraryCollectionViewCell.h"
 #import "MJSCLibraryHeaderCollectionReusableView.h"
 #import "MJSCBookDetailsViewController.h"
-#import "MJSCLibrary.h"
+#import "MJSCBookManager.h"
 #import "Book.h"
 
 @interface MJSCLibraryCollectionViewController ()
 
 @property (weak, nonatomic) IBOutlet UICollectionView *libraryCollectionView;
-@property (strong, nonatomic) MJSCLibrary *library;
+@property (strong, nonatomic) MJSCBookManager *library;
 
 @end
 
 @implementation MJSCLibraryCollectionViewController
 
--(id)initWithModel:(MJSCLibrary*)library {
+-(id)initWithModel:(MJSCBookManager*)library {
     
     if (self = [super init]) {
         _library = library;
