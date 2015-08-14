@@ -1,5 +1,5 @@
 //
-//  MJSCNotesViewController.h
+//  MJSCNotesTableViewController.h
 //  Library
 //
 //  Created by María Jesús Senosiain Caamiña on 14/08/15.
@@ -8,12 +8,14 @@
 
 @import UIKit;
 @class Book;
+#import "MJSCCoreDataTableViewController.h"
 #import "MJSCNoteViewControllerDelegate.h"
 
-@interface MJSCNotesViewController : UIViewController<MJSCNoteViewControllerDelegate>
+@interface MJSCNotesTableViewController : MJSCCoreDataTableViewController
 
 @property(weak, nonatomic)id<MJSCNoteViewControllerDelegate>delegate;
 
--(id)initWithBook:(Book *)book;
+-(id)initWithBook:(Book*)book;
+
 
 @end

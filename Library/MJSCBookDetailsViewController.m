@@ -11,7 +11,7 @@
 #import "MJSCLibraryViewController.h"
 #import "MJSCNetworkManager.h"
 #import <AFNetworking/UIKit+AFNetworking.h>
-#import "MJSCNotesviewController.h"
+#import "MJSCNotesViewController.h"
 
 @interface MJSCBookDetailsViewController () 
 
@@ -61,8 +61,9 @@
 
 
 - (IBAction)showNotes:(id)sender {
-    MJSCNotesViewController *notesVC = [[MJSCNotesViewController alloc] initWithBook:self.book];
-    [self.navigationController pushViewController:notesVC animated:YES];
+    
+    MJSCNotesViewController *notesTableVC = [[MJSCNotesViewController alloc] initWithBook:self.book];
+    [self.navigationController pushViewController:notesTableVC animated:YES];
 }
 
 

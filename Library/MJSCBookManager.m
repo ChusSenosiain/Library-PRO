@@ -90,6 +90,12 @@
     // Search the last updated date
     __block MJSCCoreDataManager *coreManager = [[MJSCCoreDataManager alloc] init];
     NSDate *lastLocalUpdatedBookDate = [coreManager lastUpdatedBookDate];
+    NSArray *coreDataBooks = [coreManager allBooks:NO];
+    
+    if ([self.delegate respondsToSelector:@selector(libraryDidFinishLoad)]) {
+        [self.delegate libraryDidFinishLoad];
+    }
+    
     
     // If there are no books, gets all the books. If there're books in core data, gets the
     // most recent updated books and update core data's books

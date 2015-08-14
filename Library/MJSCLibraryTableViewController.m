@@ -123,6 +123,10 @@
 }
 
 -(void)configureView {
+    
+    // Disable default behavior for IOS7
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    
     self.tableView.backgroundColor = [UIColor whiteColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }

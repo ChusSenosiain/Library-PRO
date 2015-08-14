@@ -13,7 +13,7 @@
 @interface MJSCNoteViewController : UIViewController
 
 -(id)initWithBook:(Book*)book
-             page:(NSInteger)page;
+             page:(NSUInteger)page;
 
 
 -(id)initWithNote:(Note*)note;

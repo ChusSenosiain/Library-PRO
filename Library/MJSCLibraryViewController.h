@@ -7,7 +7,6 @@
 //
 
 @import UIKit;
-@class MJSCBook;
 
 #import "MJSCBookManager.h"
 #import "MJSCLibraryViewControllerDelegate.h"

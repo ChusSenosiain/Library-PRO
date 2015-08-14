@@ -103,7 +103,7 @@
     request.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:@"updatedAt" ascending:NO]];
     request.predicate = [NSPredicate predicateWithFormat:@"note_book = %@", book];
     
-    return [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.coreDataStack.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+    return [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.coreDataStack.managedObjectContext sectionNameKeyPath:@"updatedAt" cacheName:nil];
     
 }
 
