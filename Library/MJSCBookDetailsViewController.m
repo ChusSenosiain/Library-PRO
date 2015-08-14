@@ -76,15 +76,16 @@
     __weak typeof (self) weakSelf = self;
     [notebookDialog addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         
-        UITextField *commentTextFiled = notebookDialog.textFields.firstObject;
-        
-        NSString *textToShare = commentTextFiled.text;
-        NSArray *activityItems = @[textToShare];
-        UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
-        activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact, UIActivityTypePrint, UIActivityTypePostToTwitter, UIActivityTypePostToWeibo];
-        
         if (weakSelf) {
+            
             __strong typeof (weakSelf) strongSelf = weakSelf;
+            
+            UITextField *commentTextFiled = notebookDialog.textFields.firstObject;
+            NSString *textToShare = [NSString stringWithFormat:@"%@: %@", self.book.title, commentTextFiled.text];
+            NSArray *activityItems = @[textToShare];
+            UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
+            activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact, UIActivityTypePrint, UIActivityTypePostToTwitter, UIActivityTypePostToWeibo];
+            
             [strongSelf presentViewController:activityVC animated:TRUE completion:nil];
         }
         
