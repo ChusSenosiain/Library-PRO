@@ -100,7 +100,7 @@
             
             if (weakSelf) {
                 __strong typeof(weakSelf) strongSelf = weakSelf;
-                strongSelf.address = [NSString stringWithFormat:@"Calle %@ de la ciudad %@",
+                strongSelf.address = [NSString stringWithFormat:@"%@, %@",
                                 [placemark thoroughfare],
                                 [placemark locality]];
                 
@@ -111,8 +111,10 @@
 }
 
 -(void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
-    
+ 
+    // TODO: extraer nota y ir al detalle de la nota
     Note *note = nil;
+    
     
     if ([self.delegate respondsToSelector:@selector(didSelectNoteOnMap:)]) {
         [self.delegate didSelectNoteOnMap:note];
@@ -128,6 +130,8 @@
     if ([self.delegate respondsToSelector:@selector(didSelectLocation:withAddress:)]) {
         [self.delegate didSelectLocation:self.location withAddress:self.address];
     }
+    
+    [self.navigationController popViewControllerAnimated:YES];
     
 }
 
@@ -157,21 +161,24 @@
         MJSCCoreDataManager *coreManager = [[MJSCCoreDataManager alloc] init];
         NSArray *notes = [coreManager bookNotes:self.book];
         
+        
         for (Note *note in notes) {
-            [self addNoteToMap:note applyZoom:NO];
+             [self addNoteToMap:note applyZoom:NO];
         }
         
-        // Hacer zoom al cuadro
+        [self.map showAnnotations:self.map.annotations animated:YES];
         
+    } else {
         
-    } else if (self.note) {
+        UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveLocation:)];
+        self.navigationItem.rightBarButtonItem = saveButton;
+
         self.map.userTrackingMode = MKUserTrackingModeNone;
+        
         [self addNoteToMap:self.note applyZoom:YES];
     }
     
     
-    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveLocation:)];
-    self.navigationItem.rightBarButtonItem = saveButton;
 
 
 }
@@ -179,6 +186,10 @@
 
 -(void)addNoteToMap:(Note *)note
           applyZoom:(BOOL)applyZoom{
+    
+    if (!note) {
+        return;
+    }
     
     CLLocation *location = [[CLLocation alloc] initWithLatitude:[note.latitude doubleValue] longitude:[note.longitude doubleValue]];
     MKAnnotationView *annotation = [[MKAnnotationView alloc] init];
@@ -189,7 +200,6 @@
     
     
     [self.map addAnnotation:pointAnotation];
-    
     
     if (applyZoom) {
         

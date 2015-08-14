@@ -74,7 +74,10 @@
     
     // Prepare Vcs to the etabbar
     notesTableVC.tabBarItem.image = [UIImage imageNamed:@"Table"];
+    notesTableVC.tabBarItem.title = @"Table";
     notesMapVC.tabBarItem.image = [UIImage imageNamed:@"ic_map"];
+    notesMapVC.tabBarItem.title = @"Map";
+    
     
     self.tab = [[UITabBarController alloc] init];
     
