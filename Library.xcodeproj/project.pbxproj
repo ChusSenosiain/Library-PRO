@@ -71,6 +71,7 @@
 		43472850B9E9CA2CFBA3AA21 /* Pods-Library.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Library.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Library/Pods-Library.debug.xcconfig"; sourceTree = "<group>"; };
 		475EFEDAECF2E8013457E940 /* libPods-Library.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Library.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		989425D87DD3D17F44C74702 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB1635C91B7E950700FED8ED /* MJSCParseConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJSCParseConfig.h; sourceTree = "<group>"; };
 		BB265E3F1B7BCBF0008D0E40 /* MJSCLibraryModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MJSCLibraryModel.xcdatamodel; sourceTree = "<group>"; };
 		BB265E6B1B7BD946008D0E40 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		BB265E6D1B7BDBD4008D0E40 /* _Book.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Book.h; sourceTree = "<group>"; };
@@ -214,6 +215,7 @@
 		BB6725981B0BC36F002B9670 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				BB1635C91B7E950700FED8ED /* MJSCParseConfig.h */,
 				BB67258B1B08B4DB002B9670 /* Settings.h */,
 				BB6725991B0BC395002B9670 /* MJSCStyles.h */,
 				BB67259A1B0BC395002B9670 /* MJSCStyles.m */,

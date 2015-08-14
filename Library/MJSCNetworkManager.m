@@ -10,11 +10,9 @@
 #import <AFNetworking/AFNetworking.h>
 #import "Book.h"
 #import "MJSCCoreDataStack.h"
+#import "MJSCParseConfig.h"
 
 #define PARSE_BOOK_URL @"https://api.parse.com/1/classes/Book"
-
-#define PARSE_APP_ID @"ZKJq1pKzGnS0FNVo5XceDodJvXlKmqOJbXQt0npf"
-#define PARSE_REST_API_KEY @"CTbE9vEIJD0plhtFrx8VVucBxgiky5TIMUtJSChx"
 
 
 @implementation MJSCNetworkManager
