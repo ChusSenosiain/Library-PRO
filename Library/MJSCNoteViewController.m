@@ -7,16 +7,19 @@
 //
 
 #import "MJSCNoteViewController.h"
+#import "MJSCNotesMapViewController.h"
 #import "Book.h"
 #import "Note.h"
 #import "MJSCCoreDataStack.h"
 
-@interface MJSCNoteViewController ()
+@interface MJSCNoteViewController ()<MJSCNotesMapViewControllerDelegate>
 
 @property (strong, nonatomic) Book *book;
 @property (assign, nonatomic) NSUInteger page;
 @property (strong, nonatomic) Note *note;
 @property (strong, nonatomic) MJSCCoreDataStack *coreStack;
+@property (strong, nonatomic) CLLocation *location;
+@property (strong, nonatomic) NSString *address;
 
 @property (weak, nonatomic) IBOutlet UITextField *noteTitle;
 @property (weak, nonatomic) IBOutlet UITextView *noteText;
@@ -25,6 +28,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *updatedDate;
 @property (weak, nonatomic) IBOutlet UILabel *bookAuthor;
 @property (weak, nonatomic) IBOutlet UILabel *noteAddress;
+@property (weak, nonatomic) IBOutlet UIButton *btnMap;
+
 
 @end
 
@@ -52,18 +57,12 @@
 }
 
 
-
 -(void)viewDidLoad {
     [super viewDidLoad];
     
     self.coreStack = [MJSCCoreDataStack sharedInstance];
     
     [self configureView];
-}
-
--(void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 
@@ -76,7 +75,14 @@
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy'/'MM'/'dd' at 'HH':'mm'"];
-
+    
+    UIImage *image = [UIImage imageNamed:@"ic_place"];
+    
+    [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [self.btnMap setImage:image forState:UIControlStateNormal];
+    [self.btnMap setTitle:@"Address" forState:UIControlStateNormal];
+    [self.btnMap setTintColor:[UIColor blueColor]];
+    
     
     if (self.note) {
         
@@ -85,7 +91,7 @@
         
         self.bookTitle.text = [self.note.note_book title];
         self.noteAddress.text = [self.note address];
-        self.bookPage.text = [NSString stringWithFormat:@"%li", self.page];
+        self.bookPage.text = [NSString stringWithFormat:@"%i", self.page];
         
         
         self.updatedDate.text = [dateFormatter stringFromDate:[self.note updatedAt]];
@@ -94,7 +100,7 @@
     } else if (self.book) {
         
         self.bookTitle.text = [self.book title];
-        self.bookPage.text = [NSString stringWithFormat:@"%li", self.page];
+        self.bookPage.text = [NSString stringWithFormat:@"%i", self.page];
        
         self.updatedDate.text = [dateFormatter stringFromDate:[NSDate date]];
         self.bookAuthor.text = [self.book author];
@@ -109,6 +115,14 @@
     
 }
 
+#pragma mark - MJSCNotesMapViewControllerDelegate
+-(void)didSelectLocation:(CLLocation *)location withAddress:(NSString *)address {
+    self.location = location;
+    self.address = address;
+}
+
+
+# pragma mark - Actions
 
 -(IBAction)saveNote:(id)sender {
     
@@ -134,6 +148,8 @@
     self.note.text = self.noteText.text;
     self.note.updatedAt = [NSDate date];
     self.note.bookPage = [NSNumber numberWithLong:(self.page)];
+    self.note.latitude = [NSNumber numberWithDouble:self.location.coordinate.latitude];
+    self.note.longitude = [NSNumber numberWithDouble:self.location.coordinate.longitude];
 
     [self.coreStack saveContext];
 
@@ -142,10 +158,15 @@
 }
 
 
--(void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-    self.note = nil;
+- (IBAction)showNoteInMap:(id)sender {
+    
+    
+    MJSCNotesMapViewController *noteMapVC = [[MJSCNotesMapViewController alloc] initWithNote:self.note];
+    noteMapVC.delegate = self;
+    [self.navigationController  pushViewController:noteMapVC animated:YES];
+    
 }
+
 
 
 @end

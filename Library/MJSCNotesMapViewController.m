@@ -11,15 +11,19 @@
 #import "Book.h"
 #import "MJSCCoreDataManager.h"
 
-@import CoreLocation;
+
 @import MapKit;
 
 
-@interface MJSCNotesMapViewController ()<CLLocationManagerDelegate, MKMapViewDelegate>
+@interface MJSCNotesMapViewController ()<MKMapViewDelegate>
 @property(strong, nonatomic) Note *note;
 @property(strong, nonatomic) Book *book;
 @property(strong, nonatomic) CLLocationManager *locationManager;
+@property(strong, nonatomic) CLLocation *location;
+@property(copy, nonatomic) NSString *address;
+
 @property (weak, nonatomic) IBOutlet MKMapView *map;
+
 @end
 
 @implementation MJSCNotesMapViewController
@@ -43,12 +47,24 @@
 }
 
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self configureView];
+}
+
+-(void)viewWillAppear:(BOOL)animated {
     
+    [super viewWillAppear:animated];
+    
+    // Indicar posición del usuario
+    self.map.showsUserLocation = YES;
+    self.map.userTrackingMode = MKUserTrackingModeFollow;
+    
+    self.map.pitchEnabled = YES; // para inclinar
+    self.map.delegate = self;
+    
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -57,45 +73,83 @@
 }
 
 
-#pragma mark - CLLocationManagerDelegate
--(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+-(void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
     
-    
+    self.map.userTrackingMode = MKUserTrackingModeNone;
+    self.map.delegate = nil;
     
 }
+
+
 
 
 #pragma mark - MKMapViewDelegate
 
+-(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
+    
+    self.location = userLocation.location;
+    
+    // Geocodificación inversa
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    
+    __weak typeof (self) weakSelf = self;
+    [geocoder reverseGeocodeLocation:self.location completionHandler:^(NSArray *placemarks, NSError *error) {
+        if ([placemarks count] > 0) {
+            CLPlacemark *placemark = [placemarks firstObject];
+            
+            if (weakSelf) {
+                __strong typeof(weakSelf) strongSelf = weakSelf;
+                strongSelf.address = [NSString stringWithFormat:@"Calle %@ de la ciudad %@",
+                                [placemark thoroughfare],
+                                [placemark locality]];
+                
+            }
+        }
+    }];
+
+}
 
 -(void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
-
+    
+    Note *note = nil;
+    
+    if ([self.delegate respondsToSelector:@selector(didSelectNoteOnMap:)]) {
+        [self.delegate didSelectNoteOnMap:note];
+    }
     
 }
 
+
+#pragma mark - Actions
+
+-(IBAction)saveLocation:(id)sender {
+    
+    if ([self.delegate respondsToSelector:@selector(didSelectLocation:withAddress:)]) {
+        [self.delegate didSelectLocation:self.location withAddress:self.address];
+    }
+    
+}
 
 #pragma mark - Utils
 
 -(void)configureView {
     
-    
     self.locationManager = [[CLLocationManager alloc] init];
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    self.locationManager.delegate = self;
+    /*self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    self.locationManager.delegate = self; */
     
     // Pedir permisos al usuario
-    [self.locationManager requestWhenInUseAuthorization];
+    
+    // Check for iOS 8. Without this guard the code will crash with "unknown selector" on iOS 7.
+    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+        [self.locationManager requestWhenInUseAuthorization];
+    }
     
     // Comenzar el servicio de localizacion
-    [self.locationManager startUpdatingLocation];
+    /*[self.locationManager startUpdatingLocation];*/
     
     
-    // Indicar posición del usuario
-    self.map.showsUserLocation = YES;
-  
-    self.map.pitchEnabled = YES; // para inclinar
-    self.map.delegate = self;
-
     
     if (self.book) {
         
@@ -111,9 +165,13 @@
         
         
     } else if (self.note) {
+        self.map.userTrackingMode = MKUserTrackingModeNone;
         [self addNoteToMap:self.note applyZoom:YES];
     }
     
+    
+    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveLocation:)];
+    self.navigationItem.rightBarButtonItem = saveButton;
 
 
 }

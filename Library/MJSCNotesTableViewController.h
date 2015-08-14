@@ -8,12 +8,22 @@
 
 @import UIKit;
 @class Book;
+@class Note;
+
 #import "MJSCCoreDataTableViewController.h"
-#import "MJSCNoteViewControllerDelegate.h"
+
+@protocol MJSCNotesTableViewControllerDelegate <NSObject>
+
+@optional
+
+-(void)didSelectNote:(Note *)note;
+
+@end
+
 
 @interface MJSCNotesTableViewController : MJSCCoreDataTableViewController
 
-@property(weak, nonatomic)id<MJSCNoteViewControllerDelegate>delegate;
+@property(weak, nonatomic)id<MJSCNotesTableViewControllerDelegate>delegate;
 
 -(id)initWithBook:(Book*)book;
 

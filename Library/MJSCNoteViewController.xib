@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MJSCNoteViewController">
@@ -9,7 +10,7 @@
                 <outlet property="bookAuthor" destination="uRL-Mu-oWA" id="b0F-Xp-dIB"/>
                 <outlet property="bookPage" destination="KlI-TQ-Vxe" id="rk6-sz-cfC"/>
                 <outlet property="bookTitle" destination="3yx-LB-bHx" id="FfP-7E-PmP"/>
-                <outlet property="noteAddress" destination="QOy-Da-AnM" id="oBF-Hd-9V3"/>
+                <outlet property="btnMap" destination="gzS-gy-MkL" id="s1v-pT-uto"/>
                 <outlet property="noteText" destination="vcP-5y-9IM" id="vXD-Xx-pHM"/>
                 <outlet property="noteTitle" destination="93f-dG-Xgx" id="ge3-wg-gRK"/>
                 <outlet property="updatedDate" destination="LNb-Pa-gKo" id="a5f-nG-I7x"/>
@@ -63,19 +64,22 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QOy-Da-AnM">
-                    <rect key="frame" x="15" y="563" width="197" height="21"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gzS-gy-MkL">
+                    <rect key="frame" x="8" y="559" width="79" height="24"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="197" id="q0p-iA-nyL"/>
+                        <constraint firstAttribute="width" constant="79" id="k5V-lF-d8p"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                    <state key="normal" image="ic_place">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="showNoteInMap:" destination="-1" eventType="touchUpInside" id="uks-9W-GFs"/>
+                    </connections>
+                </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UpdatedDate" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LNb-Pa-gKo">
-                    <rect key="frame" x="481" y="563" width="137" height="21"/>
+                    <rect key="frame" x="443" y="562" width="137" height="21"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="137" id="Rbw-hl-GQi"/>
+                        <constraint firstAttribute="width" constant="137" id="g0A-NR-3HO"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -84,7 +88,6 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="QOy-Da-AnM" firstAttribute="leading" secondItem="vcP-5y-9IM" secondAttribute="leading" id="3mu-AF-k1M"/>
                 <constraint firstItem="KlI-TQ-Vxe" firstAttribute="baseline" secondItem="uRL-Mu-oWA" secondAttribute="baseline" id="8K9-rd-wyP"/>
                 <constraint firstItem="vcP-5y-9IM" firstAttribute="top" secondItem="93f-dG-Xgx" secondAttribute="bottom" constant="8" symbolic="YES" id="C4a-pz-Lqv"/>
                 <constraint firstItem="93f-dG-Xgx" firstAttribute="top" secondItem="uRL-Mu-oWA" secondAttribute="bottom" constant="8" symbolic="YES" id="E64-6d-fC0"/>
@@ -93,14 +96,18 @@
                 <constraint firstItem="vcP-5y-9IM" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="JPT-6p-Ijy"/>
                 <constraint firstItem="93f-dG-Xgx" firstAttribute="leading" secondItem="uRL-Mu-oWA" secondAttribute="leading" id="Pte-YV-lVe"/>
                 <constraint firstItem="3yx-LB-bHx" firstAttribute="leading" secondItem="uRL-Mu-oWA" secondAttribute="leading" id="VBl-8h-F9a"/>
+                <constraint firstAttribute="trailing" secondItem="LNb-Pa-gKo" secondAttribute="trailing" constant="20" id="Wfe-zA-xAb"/>
                 <constraint firstItem="93f-dG-Xgx" firstAttribute="leading" secondItem="vcP-5y-9IM" secondAttribute="leading" id="Yb3-Xg-jZQ"/>
-                <constraint firstAttribute="trailing" secondItem="LNb-Pa-gKo" secondAttribute="trailing" constant="-18" id="fKW-xQ-cB6"/>
+                <constraint firstItem="LNb-Pa-gKo" firstAttribute="bottom" secondItem="gzS-gy-MkL" secondAttribute="bottom" id="f91-i7-xWz"/>
+                <constraint firstItem="gzS-gy-MkL" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leadingMargin" id="hNG-gP-ZQF"/>
                 <constraint firstItem="uRL-Mu-oWA" firstAttribute="top" secondItem="3yx-LB-bHx" secondAttribute="bottom" constant="5" id="jR7-S9-pus"/>
-                <constraint firstItem="QOy-Da-AnM" firstAttribute="baseline" secondItem="LNb-Pa-gKo" secondAttribute="baseline" id="kt0-Ov-9u5"/>
                 <constraint firstItem="3yx-LB-bHx" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="18" id="lpz-lS-3nr"/>
                 <constraint firstItem="KlI-TQ-Vxe" firstAttribute="trailing" secondItem="93f-dG-Xgx" secondAttribute="trailing" id="prJ-My-tdB"/>
-                <constraint firstAttribute="bottom" secondItem="QOy-Da-AnM" secondAttribute="bottom" constant="16" id="s0v-cp-uNB"/>
+                <constraint firstAttribute="bottom" secondItem="gzS-gy-MkL" secondAttribute="bottom" constant="17" id="vs0-Gs-YOx"/>
             </constraints>
         </view>
     </objects>
+    <resources>
+        <image name="ic_place" width="24" height="24"/>
+    </resources>
 </document>

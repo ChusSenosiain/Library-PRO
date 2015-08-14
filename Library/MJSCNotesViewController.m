@@ -12,7 +12,7 @@
 #import "MJSCNoteViewController.h"
 #import "Book.h"
 
-@interface MJSCNotesViewController ()
+@interface MJSCNotesViewController () <MJSCNotesMapViewControllerDelegate, MJSCNotesTableViewControllerDelegate>
 @property (nonatomic, retain) UITabBarController *tab;
 @property (strong, nonatomic) Book *book;
 @end
@@ -44,15 +44,14 @@
     
 }
 
-#pragma mark - MJSCNoteViewControllerDelegate
+#pragma mark - MJSCNoteTableViewControllerDelegate
 -(void)didSelectNote:(Note *)note {
-    
-    if ([self.delegate respondsToSelector:@selector(didSelectNote:)]) {
-        [self.delegate didSelectNote:note];
-    } else {
-        MJSCNoteViewController *noteVC = [[MJSCNoteViewController alloc] initWithNote:note];
-        [self.navigationController pushViewController:noteVC animated:YES];
-    }
+    [self showNoteDetails:note];
+}
+
+#pragma mark - MJSCNoteMapViewControllerDelegate
+-(void)didSelectNoteOnMap:(Note *)note {
+    [self showNoteDetails:note];
 }
 
 
@@ -69,8 +68,8 @@
     MJSCNotesMapViewController *notesMapVC = [[MJSCNotesMapViewController alloc] initWithBook:self.book];
     
     // Set the MJSCNoteViewControllerDelegate Delegate
-    [notesTableVC setDelegate:self];
-    [notesMapVC setDelegate:self];
+    notesTableVC.delegate = self;
+    notesMapVC.delegate = self;
     
     
     // Prepare Vcs to the etabbar
@@ -100,6 +99,12 @@
     self.navigationItem.rightBarButtonItem = addButton;
 
     
+}
+
+
+-(void)showNoteDetails:(Note *)note {
+    MJSCNoteViewController *noteVC = [[MJSCNoteViewController alloc] initWithNote:note];
+    [self.navigationController pushViewController:noteVC animated:YES];
 }
 
 

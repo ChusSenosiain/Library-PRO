@@ -7,14 +7,26 @@
 //
 
 @import UIKit;
+@import CoreLocation;
 @class Note;
 @class Book;
 
-#import "MJSCNoteViewControllerDelegate.h"
+@protocol MJSCNotesMapViewControllerDelegate <NSObject>
+
+@optional
+
+-(void)didSelectLocation:(CLLocation *)location
+             withAddress:(NSString *) address;
+
+
+-(void)didSelectNoteOnMap:(Note *)note;
+
+@end
 
 @interface MJSCNotesMapViewController : UIViewController
 
-@property(weak, nonatomic)id<MJSCNoteViewControllerDelegate>delegate;
+@property(weak, nonatomic)id<MJSCNotesMapViewControllerDelegate>delegate;
+
 
 -(id)initWithNote:(Note *)note;
 -(id)initWithBook:(Book *)book;

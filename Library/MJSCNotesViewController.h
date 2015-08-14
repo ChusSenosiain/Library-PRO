@@ -8,11 +8,9 @@
 
 @import UIKit;
 @class Book;
-#import "MJSCNoteViewControllerDelegate.h"
 
-@interface MJSCNotesViewController : UIViewController<MJSCNoteViewControllerDelegate>
 
-@property(weak, nonatomic)id<MJSCNoteViewControllerDelegate>delegate;
+@interface MJSCNotesViewController : UIViewController
 
 -(id)initWithBook:(Book *)book;
 
