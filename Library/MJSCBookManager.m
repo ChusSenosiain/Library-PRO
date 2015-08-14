@@ -19,53 +19,34 @@
 @implementation MJSCBookManager
 
 
-
--(NSUInteger)sectionCount {
-    return [self.library count];
-}
-
-
--(NSUInteger)countBooksAtSection:(NSUInteger) section {
-    return [[self.library objectForKey:[self sectionKeyForSection:section]] count];
-}
-
-
--(Book *)bookAtSection:(NSInteger) section
-                 index:(NSUInteger) index {
-    return [[self.library objectForKey:[self sectionKeyForSection:section]] objectAtIndex:index];
-    
-}
-
-
--(NSString *)sectionTitle:(NSUInteger)section {
-    return [self sectionKeyForSection:section];
-}
-
--(NSString *)sectionKeyForSection:(NSUInteger)section {
-    return [[self.library allKeys] objectAtIndex:section];
-}
-
-
 -(void)loadBookDetails:(NSString *)bookID{
     
     // If the book doesn't exist or hasn't details, load it from Parse
     MJSCNetworkManager *netManager = [[MJSCNetworkManager alloc] init];
     
+    MJSCCoreDataManager *coreManager = [[MJSCCoreDataManager alloc] init];
+    
+    __block Book *coreDataBook = [coreManager bookWithDetails:bookID];
+    
+    // First return the coreData book
+    if ([self.delegate respondsToSelector:@selector(bookDidFinishLoad:)]) {
+        [self.delegate bookDidFinishLoad:coreDataBook];
+    }
+    
+    // Then search it on network and update it
     __weak typeof(self) weakSelf = self;
     
     [netManager downloadBookDetail:bookID completionBlock:^(NSDictionary *book, NSError *error) {
         if (weakSelf) {
             __strong typeof (weakSelf) strongSelf = weakSelf;
             
-            NSString *bookId = [book objectForKey:@"objectId"];
-            
-            MJSCCoreDataManager *coreManager = [[MJSCCoreDataManager alloc] init];
-            
-            Book *coreDataBook = [coreManager bookWithDetails:bookId];
-            
             // Save book details on CoreData
             if (!error) {
                 [coreDataBook updateBookWithDictionary:book];
+                
+                if (!coreDataBook.category) {
+                    coreDataBook.category = @"Sin categoría";
+                }
                 
                 MJSCCoreDataStack *coreDataStack = [MJSCCoreDataStack sharedInstance];
                 [coreDataStack saveContext];
@@ -115,63 +96,36 @@
                 
                 NSDictionary *bookDictionary = [books objectAtIndex:index];
                 
+                Book *book = nil;
+                
                 if ([coreDataBooksID containsObject:bookIdInBackend]) {
                     // The book is in coreData, update it
-                    Book *book = [coreManager bookWithDetails:bookIdInBackend];
+                    book = [coreManager bookWithDetails:bookIdInBackend];
                     [book updateBookWithDictionary:bookDictionary];
                     
                 } else {
                     // The book isn't in coreDAta, create it
-                    [Book bookWithContext:coreDataStack.managedObjectContext dictionary:bookDictionary];
+                    book =[Book bookWithContext:coreDataStack.managedObjectContext dictionary:bookDictionary];
                 }
+                
+                if (!book.category) {
+                    book.category = @"Sin categoría";
+                }
+                
             }
             
             [coreDataStack saveContext];
             
         }
         
-        
-        
         if (weakSelf) {
             
             __strong typeof (weakSelf) strongSelf = weakSelf;
-            // Extract all books from CoreData
-            NSArray *finalBooks = [coreManager allBooks:NO];
-            
-            NSMutableDictionary *tempLibrary = [[NSMutableDictionary alloc] init];
-            
-            // Create the library group by categories
-            for (Book *book in finalBooks) {
-                
-                // Search the category in the dictionary
-                NSString *category = [book category];
-                if (!category) {
-                    category = @"Sin categoria";
-                }
-                
-                NSMutableArray *array = [tempLibrary objectForKey:category];
-                
-                // The category doesn't existe, create it
-                if (!array) {
-                    array = [[NSMutableArray alloc] init];
-                }
-                
-                // Add the book to the category
-                [array addObject:book];
-                
-                // Add the category with it's books to the library
-                [tempLibrary setObject:array forKeyedSubscript:category];
-                
-            }
-            
-            strongSelf.library = [tempLibrary copy];
             
             if ([strongSelf.delegate respondsToSelector:@selector(libraryDidFinishLoad)]) {
                 [strongSelf.delegate libraryDidFinishLoad];
             }
         }
-        
-        
         
     }];
 }

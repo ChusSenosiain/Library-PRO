@@ -11,28 +11,23 @@
 #import "MJSCLibraryHeaderCollectionReusableView.h"
 #import "MJSCBookDetailsViewController.h"
 #import "MJSCBookManager.h"
+#import "MJSCCoreDataManager.h"
 #import "Book.h"
 
 @interface MJSCLibraryCollectionViewController ()
 
 @property (weak, nonatomic) IBOutlet UICollectionView *libraryCollectionView;
-@property (strong, nonatomic) MJSCBookManager *library;
 
 @end
 
 @implementation MJSCLibraryCollectionViewController
 
--(id)initWithModel:(MJSCBookManager*)library {
-    
-    if (self = [super init]) {
-        _library = library;
-    }
-    
-    return self;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    MJSCCoreDataManager *coreManager = [[MJSCCoreDataManager alloc] init];
+    self.fetchedResultsController = [coreManager fetchedResultsControllerBooks];
     self.libraryCollectionView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
     [self registerNibs];
 }
@@ -40,21 +35,12 @@
 
 #pragma mark - CollectionView DataSource
 
--(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    
-    return [self.library sectionCount];
-}
-
--(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    
-    return [self.library countBooksAtSection:section];
-}
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
                  cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     // Get the book
-    Book *book = [self.library bookAtSection:indexPath.section index:indexPath.row];
+    Book *book = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
     // Create the cell and load the book data
     MJSCLibraryCollectionViewCell *bookCell = [collectionView dequeueReusableCellWithReuseIdentifier:[MJSCLibraryCollectionViewCell cellId] forIndexPath:indexPath];
@@ -75,7 +61,7 @@
                                                            withReuseIdentifier:[MJSCLibraryHeaderCollectionReusableView headerID]
                                                                   forIndexPath:indexPath];
         
-        [sectionHeader.sectionTitle setText:[self.library sectionTitle:indexPath.section]];
+        [sectionHeader.sectionTitle setText:[[[self.fetchedResultsController sections] objectAtIndex:indexPath.section] name]];
         
     }
     
@@ -90,7 +76,7 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     // Get the book
-    Book *book = [self.library bookAtSection:indexPath.section index:indexPath.row];
+    Book *book = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
     if ([self.delegate respondsToSelector:@selector(libraryViewController:didSelectBook:indexPath:)]) {
         [self.delegate libraryViewController:self didSelectBook:book indexPath:indexPath];

@@ -21,20 +21,7 @@
 
 @interface MJSCBookManager : NSObject
 
-@property (nonatomic, copy) NSDictionary *library;
-@property (nonatomic, readonly) NSUInteger sectionCount;
-
-
 @property (weak, nonatomic) id<MJSCBookManagerDelegate> delegate;
-
-
--(Book *)bookAtSection:(NSInteger)section
-                 index:(NSUInteger)index;
-
--(NSUInteger)countBooksAtSection:(NSUInteger)section;
-
--(NSString *)sectionTitle:(NSUInteger)section;
-
 
 -(void)loadBooks;
 

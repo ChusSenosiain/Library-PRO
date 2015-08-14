@@ -83,11 +83,6 @@
     return headerCell;
 }
 
--(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    
-    return [self.library sectionTitle:section];
-}
-
 
 #pragma mark - TablewView Delegate
 

@@ -11,11 +11,11 @@
 @class MJSCBookManager;
 
 #import "MJSCLibraryViewControllerDelegate.h"
+#import "MJSCCoreDataCollectionViewController.h"
 
-@interface MJSCLibraryCollectionViewController : UIViewController<UICollectionViewDataSource>
+@interface MJSCLibraryCollectionViewController : MJSCCoreDataCollectionViewController <UICollectionViewDelegate>
 
 @property (weak, nonatomic) id<MJSCLibraryViewControllerDelegate>delegate;
 
--(id)initWithModel:(MJSCBookManager*)library;
 
 @end

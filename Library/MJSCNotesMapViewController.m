@@ -192,7 +192,6 @@
     }
     
     CLLocation *location = [[CLLocation alloc] initWithLatitude:[note.latitude doubleValue] longitude:[note.longitude doubleValue]];
-    MKAnnotationView *annotation = [[MKAnnotationView alloc] init];
     MKPointAnnotation *pointAnotation = [[MKPointAnnotation alloc] init];
     
     pointAnotation.coordinate = location.coordinate;

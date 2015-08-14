@@ -10,54 +10,27 @@
 #import "MJSCLibraryTableViewController.h"
 #import "MJSCLibraryCollectionViewController.h"
 #import "MJSCBookDetailsViewController.h"
+#import "MJSCBookManager.h"
 #import "Settings.h"
 
 
 @interface MJSCLibraryViewController ()
 
-@property (strong, nonatomic) MJSCBookManager *library;
+@property (strong, nonatomic) MJSCBookManager *bookManager;
 @property (nonatomic, retain) UITabBarController *tab;
 
 @end
 
 @implementation MJSCLibraryViewController
 
--(id)initWithModel:(MJSCBookManager *)library {
-    
-    if (self = [super init]) {
-        _library = library;
-    }
-    
-    return self;
-}
-
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
-    
-    self.library = [[MJSCBookManager alloc] init];
-
-    self.library.delegate = self;
-    
-
-}
-
-
--(void)viewWillAppear:(BOOL)animated {
-    
-    [super viewWillAppear:animated];
-    
     [self loadBooks];
-    
-}
-
-
-#pragma mark - MJSCLibraryDelegate
-
--(void)libraryDidFinishLoad {
     [self configureView];
-}
 
+}
 
 #pragma mark - MJSCLibraryViewControllerDelegate
 -(void)libraryViewController:(UIViewController *)libraryVC didSelectBook:(Book *)book indexPath:(NSIndexPath *)indexPath {
@@ -97,8 +70,8 @@
     self.title = @"Library";
   
     // Vcs
-    MJSCLibraryTableViewController *libraryTableVC = [[MJSCLibraryTableViewController alloc] initWithModel:self.library];
-    MJSCLibraryCollectionViewController *libraryCollectionVC = [[MJSCLibraryCollectionViewController alloc] initWithModel:self.library];
+    MJSCLibraryTableViewController *libraryTableVC = [[MJSCLibraryTableViewController alloc] init];
+    MJSCLibraryCollectionViewController *libraryCollectionVC = [[MJSCLibraryCollectionViewController alloc] init];
     
     // Set the LibraryViewController Delegate
     [libraryTableVC setDelegate:self];
@@ -130,7 +103,8 @@
 
 
 -(void)loadBooks {
-    [self.library loadBooks];
+    self.bookManager = [[MJSCBookManager alloc] init];
+    [self.bookManager loadBooks];
 }
 
 @end

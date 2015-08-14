@@ -114,8 +114,11 @@
     NSUInteger section = [[coords objectAtIndex:0] integerValue];
     NSUInteger row = [[coords objectAtIndex:1] integerValue];
     
-    Book *book = [library bookAtSection:section index:row];
+    //Book *book = [library bookAtSection:section index:row];
     
+    // TODO: ver que carajo hago con esto
+    
+    Book *book = nil;
     return book;
 }
 
