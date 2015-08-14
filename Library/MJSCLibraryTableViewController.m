@@ -13,6 +13,7 @@
 #import "MJSCLibraryTableViewCell.h"
 #import "MJSCTableViewHeader.h"
 #import "MJSCLibraryHeaderCollectionReusableView.h"
+#import "MJSCCoreDataManager.h"
 
 @interface MJSCLibraryTableViewController ()
 
@@ -34,6 +35,10 @@
 -(void)viewDidLoad {
     [super viewDidLoad];
     
+    
+    MJSCCoreDataManager *coreManager = [[MJSCCoreDataManager alloc] init];
+    self.fetchedResultsController = [coreManager fetchedResultsControllerBooks];
+    
     self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
     
     [self registerNibs];
@@ -46,17 +51,6 @@
 }
 
 #pragma mark - TableView DataSource
-
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    
-    return [self.library sectionCount];
-}
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
-    return [self.library countBooksAtSection:section];
-}
-
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -71,7 +65,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     // Get the book
-    Book *book = [self.library bookAtSection:indexPath.section index:indexPath.row];
+    Book *book = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
     // Create the cell and load the book data
     MJSCLibraryTableViewCell *bookCell =[tableView dequeueReusableCellWithIdentifier:[MJSCLibraryTableViewCell cellId] forIndexPath:indexPath];
@@ -84,7 +78,7 @@
 {
     MJSCTableViewHeader *headerCell = [tableView dequeueReusableCellWithIdentifier:[MJSCTableViewHeader headerID]];
     
-    headerCell.sectionTitle.text = [self.library sectionTitle:section];
+    headerCell.sectionTitle.text = [[[self.fetchedResultsController sections] objectAtIndex:section] name];
     
     return headerCell;
 }
@@ -100,7 +94,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     // Get the book
-    Book *book = [self.library bookAtSection:indexPath.section index:indexPath.row];
+    Book *book = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
     // Set the book and indexpath to the delegate
     if ([self.delegate respondsToSelector:@selector(libraryViewController:didSelectBook:indexPath:)]) {

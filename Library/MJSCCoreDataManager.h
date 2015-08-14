@@ -21,6 +21,6 @@
 
 -(NSArray*)bookNotes:(Book *)book;
 -(NSFetchedResultsController*)fetchedResultsControllerBookNotes:(Book *) book;
-
+-(NSFetchedResultsController*)fetchedResultsControllerBooks;
 
 @end
