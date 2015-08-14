@@ -112,7 +112,7 @@
 -(NSFetchedResultsController*)fetchedResultsControllerBooks {
     
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:NSStringFromClass([Book class])];
-    request.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:@"updatedAt" ascending:NO]];
+    request.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:@"category" ascending:YES]];
     
     return [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.coreDataStack.managedObjectContext sectionNameKeyPath:@"category" cacheName:nil];
     
