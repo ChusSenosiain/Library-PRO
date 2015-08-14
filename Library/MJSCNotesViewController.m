@@ -39,7 +39,7 @@
 #pragma maark - Actions
 -(IBAction)addNote:(id)sender {
     
-    MJSCNoteViewController *noteVC = [[MJSCNoteViewController alloc] initWithBook:self.book page:0];
+    MJSCNoteViewController *noteVC = [[MJSCNoteViewController alloc] initWithBook:self.book];
     [self.navigationController pushViewController:noteVC animated:YES];
     
 }
@@ -73,8 +73,10 @@
     
     
     // Prepare Vcs to the etabbar
-    notesTableVC.tabBarItem.image = [UIImage imageNamed:@"Table"];
+    
+    
     notesMapVC.tabBarItem.image = [UIImage imageNamed:@"ic_map"];
+    notesTableVC.tabBarItem.image = [UIImage imageNamed:@"Table"];
     
     
     self.tab = [[UITabBarController alloc] init];

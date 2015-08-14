@@ -12,6 +12,7 @@
 @interface MJSCNoteTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *noteTitle;
+@property (weak, nonatomic) IBOutlet UILabel *noteDate;
 
 +(NSString*) cellId;
 +(CGFloat) height;

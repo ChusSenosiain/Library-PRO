@@ -15,7 +15,6 @@
 @interface MJSCNoteViewController ()<MJSCNotesMapViewControllerDelegate>
 
 @property (strong, nonatomic) Book *book;
-@property (assign, nonatomic) NSUInteger page;
 @property (strong, nonatomic) Note *note;
 @property (strong, nonatomic) MJSCCoreDataStack *coreStack;
 @property (strong, nonatomic) CLLocation *location;
@@ -24,23 +23,20 @@
 @property (weak, nonatomic) IBOutlet UITextField *noteTitle;
 @property (weak, nonatomic) IBOutlet UITextView *noteText;
 @property (weak, nonatomic) IBOutlet UILabel *bookTitle;
-@property (weak, nonatomic) IBOutlet UILabel *bookPage;
 @property (weak, nonatomic) IBOutlet UILabel *updatedDate;
 @property (weak, nonatomic) IBOutlet UILabel *bookAuthor;
-@property (weak, nonatomic) IBOutlet UILabel *noteAddress;
 @property (weak, nonatomic) IBOutlet UIButton *btnMap;
+@property (weak, nonatomic) IBOutlet UILabel *adress;
 
 
 @end
 
 @implementation MJSCNoteViewController
 
--(id)initWithBook:(Book*)book
-             page:(NSUInteger)page{
+-(id)initWithBook:(Book*)book{
 
     if (self = [super init]) {
         _book = book;
-        _page = page;
     }
     
     return self;
@@ -80,7 +76,6 @@
     
     [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [self.btnMap setImage:image forState:UIControlStateNormal];
-    [self.btnMap setTitle:@"Address" forState:UIControlStateNormal];
     [self.btnMap setTintColor:[UIColor blueColor]];
     
     
@@ -90,18 +85,13 @@
         self.noteText.text = [self.note text];
         
         self.bookTitle.text = [self.note.note_book title];
-        self.noteAddress.text = [self.note address];
-        self.bookPage.text = [NSString stringWithFormat:@"%i", self.page];
-        
-        
+        self.adress.text = [self.note address];
         self.updatedDate.text = [dateFormatter stringFromDate:[self.note updatedAt]];
         self.bookAuthor.text = [self.note.note_book author];
         
     } else if (self.book) {
         
         self.bookTitle.text = [self.book title];
-        self.bookPage.text = [NSString stringWithFormat:@"%i", self.page];
-       
         self.updatedDate.text = [dateFormatter stringFromDate:[NSDate date]];
         self.bookAuthor.text = [self.book author];
 
@@ -119,6 +109,8 @@
 -(void)didSelectLocation:(CLLocation *)location withAddress:(NSString *)address {
     self.location = location;
     self.address = address;
+    
+    self.adress.text = [self.note address];
 }
 
 
@@ -131,7 +123,7 @@
         
         self.note = [Note noteWithContext:self.coreStack.managedObjectContext
                                   address:nil
-                                 bookPage:[NSNumber numberWithLong:self.page]
+                                 bookPage:nil
                                 createdAt:[NSDate date]
                                     image:nil
                                  latitude:@0.0
@@ -147,7 +139,6 @@
     self.note.title = self.noteTitle.text;
     self.note.text = self.noteText.text;
     self.note.updatedAt = [NSDate date];
-    self.note.bookPage = [NSNumber numberWithLong:(self.page)];
     self.note.latitude = [NSNumber numberWithDouble:self.location.coordinate.latitude];
     self.note.longitude = [NSNumber numberWithDouble:self.location.coordinate.longitude];
 

@@ -11,6 +11,7 @@
 #import "MJSCLibraryViewController.h"
 #import "MBProgressHUD.h"
 #import "AFNetworking.h"
+#import "MJSCNotesViewController.h"
 
 @interface MJSCBookPDFViewController () <UIWebViewDelegate>
 @property (weak, nonatomic) IBOutlet UIWebView *browser;
@@ -171,6 +172,15 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 }
 
 
+
+#pragma mark - Actions
+
+- (IBAction)showNotes:(id)sender {
+    MJSCNotesViewController *notesTableVC = [[MJSCNotesViewController alloc] initWithBook:self.book];
+    [self.navigationController pushViewController:notesTableVC animated:YES];
+}
+
+
 #pragma mark - Utils
 
 
@@ -181,6 +191,10 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     self.browser.delegate = self;
     // Enable viewports
     self.browser.scalesPageToFit = YES;
+    
+    UIBarButtonItem *showNotesButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(showNotes:)];
+    self.navigationItem.rightBarButtonItem = showNotesButton;
+
 }
 
 

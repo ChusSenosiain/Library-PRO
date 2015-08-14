@@ -98,30 +98,5 @@
 }
 
 
-# pragma mark - Utils
-
--(Book*) lastBookSelectedInLibrary:(MJSCBookManager*) library {
-    // Obtain the last book selected
-    NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
-    
-    // Is the first time that app starts, assign defaul book (the first one)
-    if (![def objectForKey:LAST_SELECTED_BOOK_KEY]) {
-        [def setObject:@[@0,@0] forKey:LAST_SELECTED_BOOK_KEY];
-        [def synchronize];
-    }
-    
-    NSArray *coords = [def objectForKey:LAST_SELECTED_BOOK_KEY];
-    NSUInteger section = [[coords objectAtIndex:0] integerValue];
-    NSUInteger row = [[coords objectAtIndex:1] integerValue];
-    
-    //Book *book = [library bookAtSection:section index:row];
-    
-    // TODO: ver que carajo hago con esto
-    
-    Book *book = nil;
-    return book;
-}
-
-
 
 @end

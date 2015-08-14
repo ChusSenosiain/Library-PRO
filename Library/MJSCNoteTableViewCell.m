@@ -27,6 +27,11 @@
     
     self.noteTitle.text = [note title];
     
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"yyyy/MM/dd"];
+
+    self.noteDate.text = [dateFormat stringFromDate:[note updatedAt]];
+    
 }
 
 - (void)awakeFromNib {

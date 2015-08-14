@@ -14,6 +14,7 @@
 #import "MJSCCoreDataStack.h"
 #import "MJSCCoreDataManager.h"
 #import "MJSCNotesMapViewController.h"
+#import "MJSCTableViewHeader.h"
 
 
 @interface MJSCNotesTableViewController ()
@@ -48,6 +49,7 @@
 }
 
 #pragma mark - TablewViewDelegate
+
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     MJSCNoteTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[MJSCNoteTableViewCell cellId] forIndexPath:indexPath];
@@ -71,6 +73,7 @@
     
 }
 
+
 -(CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return [MJSCNoteTableViewCell height];
 }
@@ -79,8 +82,17 @@
 #pragma mark - Utils
 
 -(void) registerNibs{
+    
+    // Cell
     UINib *nib = [UINib nibWithNibName:[MJSCNoteTableViewCell cellId] bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:[MJSCNoteTableViewCell cellId]];
+    
+    
+    // Header
+    // Header
+    [self.tableView registerNib:[UINib nibWithNibName:[MJSCTableViewHeader headerID] bundle:nil]
+         forCellReuseIdentifier:[MJSCTableViewHeader headerID]];
+
 }
 
 
