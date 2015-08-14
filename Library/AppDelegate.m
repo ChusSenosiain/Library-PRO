@@ -14,8 +14,10 @@
 #import "Book.h"
 #import "Settings.h"
 #import "MJSCCoreDataStack.h"
+#import "MJSCCoreDataManager.h"
 #import "MJSCLibraryViewController.h"
 #import "UIViewController+Combinators.h"
+
 
 @interface AppDelegate ()
 
@@ -76,8 +78,10 @@
 
 -(void)configureForiPad {
     
+    Book *book = [self lastBookSelected];
+    
     MJSCLibraryViewController *libraryVC = [[MJSCLibraryViewController alloc] init];
-    MJSCBookDetailsViewController *bookDetailsVC = [[MJSCBookDetailsViewController alloc] init];
+    MJSCBookDetailsViewController *bookDetailsVC = [[MJSCBookDetailsViewController alloc] initWithBook:book];
     
     UISplitViewController *splitVC = [[UISplitViewController alloc] init];
     
@@ -95,6 +99,28 @@
     MJSCLibraryViewController *libraryVC = [[MJSCLibraryViewController alloc] init];
     UINavigationController *navVC = [libraryVC wrappedInNavigation];
     self.window.rootViewController = navVC;
+}
+
+
+
+# pragma mark - Utils
+
+-(Book *) lastBookSelected {
+    
+    // Obtain the last book selected
+    NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
+    
+    // Is the first time that app starts, assign defaul book (the first one)
+    if (![def objectForKey:LAST_SELECTED_BOOK_KEY]) {
+        [def setObject:@"" forKey:LAST_SELECTED_BOOK_KEY];
+        [def synchronize];
+    }
+    
+    NSString *bookID = [def objectForKey:LAST_SELECTED_BOOK_KEY];
+    
+    MJSCCoreDataManager *coreManager = [[MJSCCoreDataManager alloc]init];
+    
+    return [coreManager bookWithDetails:bookID];
 }
 
 

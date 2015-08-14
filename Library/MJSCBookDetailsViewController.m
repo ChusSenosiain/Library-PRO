@@ -86,7 +86,7 @@
             UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
             activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact, UIActivityTypePrint, UIActivityTypePostToTwitter, UIActivityTypePostToWeibo];
             
-            [strongSelf presentViewController:activityVC animated:TRUE completion:nil];
+            [strongSelf presentViewController:activityVC animated:YES completion:nil];
         }
         
     }]];

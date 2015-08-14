@@ -37,9 +37,8 @@
     
     // Save the book selected in user preferences
     NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
-    NSArray *coords = @[@(indexPath.section), @(indexPath.row)];
     
-    [def setObject:coords forKey:LAST_SELECTED_BOOK_KEY];
+    [def setObject:book.bookID forKey:LAST_SELECTED_BOOK_KEY];
     [def synchronize];
     
     
