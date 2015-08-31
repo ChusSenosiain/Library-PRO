@@ -1,10 +1,11 @@
-# Library: U-Tad Basic iOS Project
+# Library: U-Tad Advanced iOS Project
 
 ![alt tag](https://raw.githubusercontent.com/ChusSenosiain/Library/master/Library/Images.xcassets/AppIcon.appiconset/Icon-72%402x.png)
 
 ## Description:
 
-A simple project that shows a collection of 11 PDF books. If you select a book you can download and read it. 
+A simple project that shows a collection of PDF books. If you select a book you can download and read it. 
+The books's data are allocated in Parse backend. The app download the data with AFNetworking and save it on Core Data.'
 
 ## External cocoapods libraries:
 
@@ -13,12 +14,14 @@ A simple project that shows a collection of 11 PDF books. If you select a book y
 
 
 This is a good sample code for:
-
+- Persistent store with Core Data.
+- UITableViewController and UICollectionView linked with Core Data: auto update the views if the stored data changes.
+- AFNetworking:
+    API Rest requests.
+    How to download images in UITableView and UICollectionView and cancel the process with recycled views.
+    Download a file.
 - Use of UISplitView.
 - Use of UITabBarController.
-- AFNetworking:
-    Download images in UITableView and UICollectionView.
-    Download a file.
 - Save files in cache.
 - Autolayout with size classes.
 - UICollectionView: dinamic cell size.
